@@ -1,0 +1,985 @@
+{
+  "general": {
+    "device": {},
+    "security": {},
+    "debug": {
+      "syslog": 1,
+      "restart_timer": 120
+    }
+  },
+  "log": {
+    "file": {
+      "split_size": 50,
+      "split_time_period": 0,
+      "split_time_offset": 0,
+      "cyclic": 1
+    },
+    "compression": {
+      "level": 0
+    },
+    "encryption": {
+      "state": 0
+    },
+    "error_frames": {
+      "state": 0
+    }
+  },
+  "rtc": {
+    "sync": 2,
+    "timezone": 0,
+    "adjustment": 0,
+    "tolerance": 30,
+    "ntp_server": "*.pool.ntp.org"
+  },
+  "secondaryport": {
+    "power_schedule": []
+  },
+  "can_internal": {
+    "general": {
+      "rx_state": 1,
+      "tx_state": 1
+    },
+    "filter": {
+      "id": [
+        {
+          "name": "GnssStatus",
+          "state": 1,
+          "type": 0,
+          "id_format": 0,
+          "method": 0,
+          "f1": "65",
+          "f2": "65",
+          "prescaler_type": 0
+        },
+        {
+          "name": "GnssTime",
+          "state": 1,
+          "type": 0,
+          "id_format": 0,
+          "method": 0,
+          "f1": "66",
+          "f2": "66",
+          "prescaler_type": 0
+        },
+        {
+          "name": "GnsssPosition",
+          "state": 1,
+          "type": 0,
+          "id_format": 0,
+          "method": 0,
+          "f1": "67",
+          "f2": "67",
+          "prescaler_type": 0
+        },
+        {
+          "name": "GnssAltitude",
+          "state": 1,
+          "type": 0,
+          "id_format": 0,
+          "method": 0,
+          "f1": "68",
+          "f2": "68",
+          "prescaler_type": 0
+        },
+        {
+          "name": "GnssAttitude",
+          "state": 1,
+          "type": 0,
+          "id_format": 0,
+          "method": 0,
+          "f1": "69",
+          "f2": "69",
+          "prescaler_type": 0
+        },
+        {
+          "name": "GnssDistance",
+          "state": 1,
+          "type": 0,
+          "id_format": 0,
+          "method": 0,
+          "f1": "6A",
+          "f2": "6A",
+          "prescaler_type": 0
+        },
+        {
+          "name": "GnssSpeed",
+          "state": 1,
+          "type": 0,
+          "id_format": 0,
+          "method": 0,
+          "f1": "6B",
+          "f2": "6B",
+          "prescaler_type": 0
+        },
+        {
+          "name": "GnssGeofence",
+          "state": 1,
+          "type": 0,
+          "id_format": 0,
+          "method": 0,
+          "f1": "6C",
+          "f2": "6C",
+          "prescaler_type": 0
+        },
+        {
+          "name": "ImuAlign",
+          "state": 1,
+          "type": 0,
+          "id_format": 0,
+          "method": 0,
+          "f1": "6E",
+          "f2": "6E",
+          "prescaler_type": 0
+        },
+        {
+          "name": "ImuAcc",
+          "state": 1,
+          "type": 0,
+          "id_format": 0,
+          "method": 0,
+          "f1": "6F",
+          "f2": "6F",
+          "prescaler_type": 0
+        }
+      ]
+    },
+    "control": {
+      "control_rx_state": 0,
+      "control_tx_state": 0,
+      "start": {
+        "message": {
+          "chn": 0,
+          "id_format": 0,
+          "id": "0",
+          "id_mask": "7FF"
+        },
+        "signal": {
+          "type": 0,
+          "byteorder": 0,
+          "bitpos": 0,
+          "length": 0,
+          "factor": 0,
+          "offset": 0
+        },
+        "trigger_high": 0,
+        "trigger_low": 0
+      },
+      "stop": {
+        "message": {
+          "chn": 0,
+          "id_format": 0,
+          "id": "0",
+          "id_mask": "7FF"
+        },
+        "signal": {
+          "type": 0,
+          "byteorder": 0,
+          "bitpos": 0,
+          "length": 0,
+          "factor": 0,
+          "offset": 0
+        },
+        "trigger_high": 0,
+        "trigger_low": 0
+      }
+    }
+  },
+  "can_1": {
+    "general": {
+      "rx_state": 1,
+      "tx_state": 1
+    },
+    "phy": {
+      "mode": 0,
+      "retransmission": 1,
+      "fd_spec": 0,
+      "bit_rate_cfg_mode": 0
+    },
+    "filter": {
+      "remote_frames": 0,
+      "id": [
+        {
+          "name": "AllStandardID",
+          "state": 1,
+          "type": 0,
+          "id_format": 0,
+          "method": 0,
+          "f1": "0",
+          "f2": "7FF",
+          "prescaler_type": 0
+        },
+        {
+          "name": "AllExtendedID",
+          "state": 1,
+          "type": 0,
+          "id_format": 1,
+          "method": 0,
+          "f1": "0",
+          "f2": "1FFFFFFF",
+          "prescaler_type": 0
+        }
+      ]
+    },
+    "heartbeat": {
+      "state": 0,
+      "id_format": 1,
+      "id": "00435353"
+    },
+    "control": {
+      "control_rx_state": 0,
+      "control_tx_state": 0,
+      "start": {
+        "message": {
+          "chn": 1,
+          "id_format": 0,
+          "id": "0",
+          "id_mask": "7FF"
+        },
+        "signal": {
+          "type": 0,
+          "byteorder": 0,
+          "bitpos": 0,
+          "length": 0,
+          "factor": 0,
+          "offset": 0
+        },
+        "trigger_high": 0,
+        "trigger_low": 0
+      },
+      "stop": {
+        "message": {
+          "chn": 1,
+          "id_format": 0,
+          "id": "0",
+          "id_mask": "7FF"
+        },
+        "signal": {
+          "type": 0,
+          "byteorder": 0,
+          "bitpos": 0,
+          "length": 0,
+          "factor": 0,
+          "offset": 0
+        },
+        "trigger_high": 0,
+        "trigger_low": 0
+      }
+    },
+    "transmit": [
+      {
+        "name": "DiagSessionExt_BMS",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 2000,
+        "delay": 0,
+        "id": "17FC007B",
+        "data": "0210035555555555"
+      },
+      {
+        "name": "TesterPresent_BMS",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 2000,
+        "delay": 50,
+        "id": "17FC007B",
+        "data": "023e005555555555"
+      },
+      {
+        "name": "T1_028C_SOC__BMS",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 1000,
+        "delay": 100,
+        "id": "17FC007B",
+        "data": "0322028c55555555"
+      },
+      {
+        "name": "T1_1E3B_HV_Battery_voltage",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 1000,
+        "delay": 200,
+        "id": "17FC007B",
+        "data": "03221e3b55555555"
+      },
+      {
+        "name": "T1_1E3D_HV_Battery_current",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 1000,
+        "delay": 300,
+        "id": "17FC007B",
+        "data": "03221e3d55555555"
+      },
+      {
+        "name": "T1_2A0B_HV_Battery_temp__m",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 1000,
+        "delay": 400,
+        "id": "17FC007B",
+        "data": "03222a0b55555555"
+      },
+      {
+        "name": "T1_7448_Car_operation_mode",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 1000,
+        "delay": 500,
+        "id": "17FC007B",
+        "data": "0322744855555555"
+      },
+      {
+        "name": "S3_1EA5_HV_Battery_cell_vo",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 600,
+        "id": "17FC007B",
+        "data": "03221ea555555555"
+      },
+      {
+        "name": "S3_1EA6_HV_Battery_cell_vo",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 700,
+        "id": "17FC007B",
+        "data": "03221ea655555555"
+      },
+      {
+        "name": "S3_1EA7_HV_Battery_cell_vo",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 800,
+        "id": "17FC007B",
+        "data": "03221ea755555555"
+      },
+      {
+        "name": "S3_1EA8_HV_Battery_cell_vo",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 900,
+        "id": "17FC007B",
+        "data": "03221ea855555555"
+      },
+      {
+        "name": "S3_1EA9_HV_Battery_cell_vo",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 1000,
+        "id": "17FC007B",
+        "data": "03221ea955555555"
+      },
+      {
+        "name": "S3_1EAA_HV_Battery_cell_vo",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 1100,
+        "id": "17FC007B",
+        "data": "03221eaa55555555"
+      },
+      {
+        "name": "S3_1EAB_HV_Battery_cell_vo",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 1200,
+        "id": "17FC007B",
+        "data": "03221eab55555555"
+      },
+      {
+        "name": "S3_1EAE_HV_Battery_temp_po",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 1300,
+        "id": "17FC007B",
+        "data": "03221eae55555555"
+      },
+      {
+        "name": "S3_1EAF_HV_Battery_temp_po",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 1400,
+        "id": "17FC007B",
+        "data": "03221eaf55555555"
+      },
+      {
+        "name": "S3_1EB0_HV_Battery_temp_po",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 1500,
+        "id": "17FC007B",
+        "data": "03221eb055555555"
+      },
+      {
+        "name": "S3_1EB1_HV_Battery_temp_po",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 1600,
+        "id": "17FC007B",
+        "data": "03221eb155555555"
+      },
+      {
+        "name": "S3_1EB2_HV_Battery_temp_po",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 1700,
+        "id": "17FC007B",
+        "data": "03221eb255555555"
+      },
+      {
+        "name": "S3_1EB3_HV_Battery_temp_po",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 1800,
+        "id": "17FC007B",
+        "data": "03221eb355555555"
+      },
+      {
+        "name": "S3_1EB4_HV_Battery_temp_po",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 1900,
+        "id": "17FC007B",
+        "data": "03221eb455555555"
+      },
+      {
+        "name": "S3_1EB5_HV_Battery_temp_po",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 2000,
+        "id": "17FC007B",
+        "data": "03221eb555555555"
+      },
+      {
+        "name": "S3_1EB6_HV_Battery_temp_po",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 2100,
+        "id": "17FC007B",
+        "data": "03221eb655555555"
+      },
+      {
+        "name": "S3_1EB7_HV_Battery_temp_po",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 2200,
+        "id": "17FC007B",
+        "data": "03221eb755555555"
+      },
+      {
+        "name": "S3_1EB8_HV_Battery_temp_po",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 2300,
+        "id": "17FC007B",
+        "data": "03221eb855555555"
+      },
+      {
+        "name": "S3_1EB9_HV_Battery_temp_po",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 2400,
+        "id": "17FC007B",
+        "data": "03221eb955555555"
+      },
+      {
+        "name": "S3_1EBA_HV_Battery_temp_po",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 2500,
+        "id": "17FC007B",
+        "data": "03221eba55555555"
+      },
+      {
+        "name": "S3_1EBB_HV_Battery_temp_po",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 2600,
+        "id": "17FC007B",
+        "data": "03221ebb55555555"
+      },
+      {
+        "name": "S3_1EBC_HV_Battery_temp_po",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 2700,
+        "id": "17FC007B",
+        "data": "03221ebc55555555"
+      },
+      {
+        "name": "S3_1EBD_HV_Battery_temp_po",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 2800,
+        "id": "17FC007B",
+        "data": "03221ebd55555555"
+      },
+      {
+        "name": "S3_210E_Driving_mode_posit",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 2900,
+        "id": "17FC007B",
+        "data": "0322210e55555555"
+      },
+      {
+        "name": "S3_2430_GPS_status_quality",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 3000,
+        "id": "17FC007B",
+        "data": "0322243055555555"
+      },
+      {
+        "name": "S3_2431_GPS_number_of_viss",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 3100,
+        "id": "17FC007B",
+        "data": "0322243155555555"
+      },
+      {
+        "name": "S3_2609_Outdoor_temperatur",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 3200,
+        "id": "17FC007B",
+        "data": "0322260955555555"
+      },
+      {
+        "name": "S3_2613_Inside_temperature",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 3300,
+        "id": "17FC007B",
+        "data": "0322261355555555"
+      },
+      {
+        "name": "S3_263B_Recirculation_of_a",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 3400,
+        "id": "17FC007B",
+        "data": "0322263b55555555"
+      },
+      {
+        "name": "S3_27C4_Realtive_humidity_",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 3500,
+        "id": "17FC007B",
+        "data": "032227c455555555"
+      },
+      {
+        "name": "S3_295A_ODOMETER",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 3600,
+        "id": "17FC007B",
+        "data": "0322295a55555555"
+      },
+      {
+        "name": "S3_2AB2_HV_Battery_max_ene",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 3700,
+        "id": "17FC007B",
+        "data": "03222ab255555555"
+      },
+      {
+        "name": "S3_2AB8_HV_Battery_energy_",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 3800,
+        "id": "17FC007B",
+        "data": "03222ab855555555"
+      },
+      {
+        "name": "S3_2AF7_12V_Battery_SoC",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 3900,
+        "id": "17FC007B",
+        "data": "03222af755555555"
+      },
+      {
+        "name": "S3_3ADF_Left_chair_heating",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 4000,
+        "id": "17FC007B",
+        "data": "03223adf55555555"
+      },
+      {
+        "name": "S3_3AE0_Right_chair_heatin",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 4100,
+        "id": "17FC007B",
+        "data": "03223ae055555555"
+      },
+      {
+        "name": "S3_42DB_CO2_content_interi",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 4200,
+        "id": "17FC007B",
+        "data": "032242db55555555"
+      },
+      {
+        "name": "S3_7425_HV_Battery_temp_po",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 4300,
+        "id": "17FC007B",
+        "data": "0322742555555555"
+      },
+      {
+        "name": "S3_7426_HV_Battery_temp_po",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 4400,
+        "id": "17FC007B",
+        "data": "0322742655555555"
+      },
+      {
+        "name": "S3_F40D_Speed",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 4500,
+        "id": "17FC007B",
+        "data": "0322f40d55555555"
+      },
+      {
+        "name": "S3_F449_Accelerator_pedal_",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 4600,
+        "id": "17FC007B",
+        "data": "0322f44955555555"
+      },
+      {
+        "name": "S3_F802_VIN_number_of_car_",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 4700,
+        "id": "17FC007B",
+        "data": "0322f80255555555"
+      }
+    ]
+  },
+  "can_2": {
+    "general": {
+      "rx_state": 1,
+      "tx_state": 1
+    },
+    "phy": {
+      "mode": 1,
+      "retransmission": 1,
+      "fd_spec": 0,
+      "bit_rate_cfg_mode": 0
+    },
+    "filter": {
+      "remote_frames": 0,
+      "id": [
+        {
+          "name": "AllStandardID",
+          "state": 1,
+          "type": 0,
+          "id_format": 0,
+          "method": 0,
+          "f1": "0",
+          "f2": "7FF",
+          "prescaler_type": 0
+        },
+        {
+          "name": "AllExtendedID",
+          "state": 1,
+          "type": 0,
+          "id_format": 1,
+          "method": 0,
+          "f1": "0",
+          "f2": "1FFFFFFF",
+          "prescaler_type": 0
+        }
+      ]
+    },
+    "heartbeat": {
+      "state": 0,
+      "id_format": 1,
+      "id": "00435353"
+    },
+    "control": {
+      "control_rx_state": 0,
+      "control_tx_state": 0,
+      "start": {
+        "message": {
+          "chn": 2,
+          "id_format": 0,
+          "id": "0",
+          "id_mask": "7FF"
+        },
+        "signal": {
+          "type": 0,
+          "byteorder": 0,
+          "bitpos": 0,
+          "length": 0,
+          "factor": 0,
+          "offset": 0
+        },
+        "trigger_high": 0,
+        "trigger_low": 0
+      },
+      "stop": {
+        "message": {
+          "chn": 2,
+          "id_format": 0,
+          "id": "0",
+          "id_mask": "7FF"
+        },
+        "signal": {
+          "type": 0,
+          "byteorder": 0,
+          "bitpos": 0,
+          "length": 0,
+          "factor": 0,
+          "offset": 0
+        },
+        "trigger_high": 0,
+        "trigger_low": 0
+      }
+    }
+  },
+  "lin_1": {
+    "phy": {
+      "mode": 0,
+      "bit_rate": 19200
+    }
+  },
+  "lin_2": {
+    "phy": {
+      "mode": 0,
+      "bit_rate": 19200
+    }
+  },
+  "connect": {
+    "wifi": {
+      "mode": 0,
+      "keyformat": 0,
+      "accesspoint": []
+    },
+    "protocol": 0,
+    "s3": {
+      "sync": {
+        "ota": 600,
+        "heartbeat": 300,
+        "logfiles": 1
+      },
+      "server": {
+        "request_style": 0,
+        "keyformat": 0,
+        "signed_payload": 0
+      }
+    }
+  },
+  "gnss": {
+    "system": 5,
+    "invalid_signals": 0,
+    "alignment": {
+      "method": 0,
+      "z": 0,
+      "y": 0,
+      "x": 0
+    },
+    "geofence": [],
+    "dyn_model": 0
+  }
+}

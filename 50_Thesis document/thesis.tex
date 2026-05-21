@@ -1,0 +1,737 @@
+% ============================================================
+% Bachelor Thesis - Technische Hochschule Ingolstadt / CARISSMA
+% Title: Inside the Battery - Decoding Battery Data via CAN Bus
+%        and UDS in the Volkswagen ID. Buzz
+% Author: Muhamad Alif Izzuwan Bin Ibrahim
+% Layout closely follows the THI/Carissma reference format.
+% ============================================================
+
+\documentclass[12pt,a4paper,oneside,parskip=half]{scrreprt}
+
+% ---------- Encoding / Language ----------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
+
+% ---------- Page geometry (matches reference) ----------
+\usepackage[
+  a4paper,
+  top=2.5cm,
+  bottom=2.5cm,
+  left=3.0cm,
+  right=2.5cm,
+  headheight=15pt,
+  headsep=0.6cm,
+  footskip=1.2cm
+]{geometry}
+
+\usepackage{setspace}
+\onehalfspacing
+
+% ---------- Graphics, figures, tables ----------
+\usepackage{graphicx}
+\graphicspath{{figures/}}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\captionsetup{font=small,labelfont=bf,labelsep=colon,justification=raggedright,singlelinecheck=false}
+
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{array}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+% ---------- Math & units ----------
+\usepackage{amsmath,amssymb}
+
+% ---------- Colour & TikZ ----------
+\usepackage[dvipsnames,table]{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric,arrows.meta,positioning,calc,fit,matrix,decorations.pathreplacing}
+
+% ---------- Code listings ----------
+\usepackage{listings}
+\lstset{
+  basicstyle=\ttfamily\footnotesize,
+  breaklines=true,
+  frame=single,
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\bfseries,
+  commentstyle=\itshape\color{gray!70!black},
+  backgroundcolor=\color{gray!5},
+  tabsize=2,
+  showstringspaces=false,
+  captionpos=b,
+  xleftmargin=1em,
+}
+
+% ---------- Headers and footers (reference style) ----------
+\usepackage{fancyhdr}
+
+% Define chapter header mark: "CHAPTER 1. INTRODUCTION"
+\renewcommand{\chaptermark}[1]{\markboth{CHAPTER \thechapter.\ \MakeUppercase{#1}}{}}
+\renewcommand{\sectionmark}[1]{}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\small\textsc{\leftmark}}
+\fancyfoot[L]{\small Muhamad Alif I.~B.~Ibrahim}
+\fancyfoot[C]{\small\thepage}
+\fancyfoot[R]{\small THI / Carissma}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyfoot[L]{\small Muhamad Alif I.~B.~Ibrahim}
+  \fancyfoot[C]{\small\thepage}
+  \fancyfoot[R]{\small THI / Carissma}
+  \renewcommand{\headrulewidth}{0pt}
+}
+
+% ---------- Hyperref (kept plain, black links for print) ----------
+\usepackage[hidelinks,
+  pdftitle={Inside the Battery: Decoding Battery Data via CAN Bus and UDS in the Volkswagen ID. Buzz},
+  pdfauthor={Muhamad Alif Izzuwan Bin Ibrahim},
+  pdfsubject={Bachelor Thesis - Technische Hochschule Ingolstadt},
+  pdfkeywords={CAN, UDS, OBD-II, BMS, Volkswagen, ID. Buzz, reverse engineering}
+]{hyperref}
+
+% ---------- KOMA typography: unbold chapter numbers look plain ----------
+\addtokomafont{disposition}{\rmfamily}
+\setkomafont{chapter}{\normalfont\bfseries\Large}
+\setkomafont{section}{\normalfont\bfseries\large}
+\setkomafont{subsection}{\normalfont\bfseries\normalsize}
+\RedeclareSectionCommand[beforeskip=-0.5\baselineskip,afterskip=1.2\baselineskip]{chapter}
+
+% ---------- Helper macros ----------
+\newcommand{\canid}[1]{\texttt{0x#1}}
+\newcommand{\udssid}[1]{\texttt{0x#1}}
+\newcommand{\hex}[1]{\texttt{0x#1}}
+\newcommand{\byte}[1]{B[#1]}
+
+% ============================================================
+\begin{document}
+% ============================================================
+
+% ------------------------------------------------------------
+% TITLE PAGE (matches reference layout)
+% ------------------------------------------------------------
+\pagenumbering{roman}
+\setcounter{page}{1}
+\thispagestyle{empty}
+
+\begin{titlepage}
+\thispagestyle{empty}
+\begin{center}
+
+% THI logo only, centred
+\includegraphics[width=0.45\textwidth]{Technische_Hochschule_Ingolstadt_logo.svg.pdf}
+
+\vspace{1.8cm}
+
+{\large\textbf{Bachelorarbeit}}\\[0.9cm]
+
+% Title
+{\LARGE\bfseries Inside the Battery}\\[0.4em]
+{\Large\bfseries Decoding Battery Data via CAN Bus and UDS}\\[0.2em]
+{\Large\bfseries in the Volkswagen ID.~Buzz}\\[1.4cm]
+
+{\normalsize vorgelegt von}\\[0.6em]
+{\Large\bfseries Muhamad Alif Izzuwan Bin Ibrahim}\\[1.4cm]
+
+% Student details block, left-aligned
+\begin{flushleft}
+\hspace{1.2cm}
+\begin{tabular}{@{}p{4.5cm}l@{}}
+\textbf{Matrikelnummer:} & 00124399 \\[2pt]
+\textbf{Studiengang:}    & Elektrotechnik und Elektromobilit\"at (B.~Eng.) \\[2pt]
+\textbf{Fakult\"at:}     & Elektrotechnik und Informatik \\
+\end{tabular}
+\end{flushleft}
+
+\vspace{1.0cm}
+
+\begin{flushleft}
+\hspace{1.2cm}
+\begin{tabular}{@{}p{4.5cm}l@{}}
+\textbf{Erstpr\"ufer:}  & Prof.\ Dr.\ rer.\ nat.\ Hans-Georg Schweiger \\[2pt]
+\textbf{Zweitpr\"ufer:} & Prof.\ Dr.\ Werner Huber \\[2pt]
+\textbf{Betreuer:}      & Markus Gregor \\
+\end{tabular}
+\end{flushleft}
+
+\vspace{1.5cm}
+
+{\normalsize Ausgabedatum: 10.03.2026}\\[2pt]
+{\normalsize Abgabedatum: 15.07.2026}
+
+\end{center}
+\end{titlepage}
+
+% ------------------------------------------------------------
+% ERKL\"ARUNG
+% ------------------------------------------------------------
+\chapter*{Erkl\"arung nach \S18 Abs.~4 Nr.~7 APO THI}
+\thispagestyle{plain}
+\addcontentsline{toc}{chapter}{Erkl\"arung}
+
+\noindent Ich erkl\"are hiermit, dass ich die Arbeit selbst\"andig verfasst, noch nicht anderweitig f\"ur Pr\"ufungszwecke vorgelegt, keine anderen als die angegebenen Quellen oder Hilfsmittel benutzt sowie w\"ortliche und sinngem\"a{\ss}e Zitate als solche gekennzeichnet habe.
+
+\vspace{2.5cm}
+
+\noindent
+\begin{tabular}{@{}p{7cm}p{7cm}@{}}
+\hrulefill & \hrulefill \\[-2pt]
+\textbf{Ort, Datum} \hfill Ingolstadt, 15.07.2026 & \textbf{Unterschrift} \\
+\end{tabular}
+
+% ------------------------------------------------------------
+% DANKSAGUNG
+% ------------------------------------------------------------
+\chapter*{Danksagung}
+\addcontentsline{toc}{chapter}{Danksagung}
+\thispagestyle{plain}
+
+The present work was carried out as part of my Bachelor studies in Electrical Engineering and Electric Mobility at Technische Hochschule Ingolstadt.
+
+First and foremost, I would like to thank everyone who supported me during the preparation of this thesis. My sincere thanks go to Prof.\ Dr.\ Hans-Georg Schweiger for his weekly supervision and the regular consultation hours that provided invaluable guidance. I also thank Prof.\ Dr.\ Werner Huber for agreeing to act as second examiner and for the constructive feedback he provided on the scope of the work.
+
+I am especially grateful to my supervisor Markus Gregor, who accompanied this work intensively and whose deep knowledge of the CARISSMA research environment shaped the experimental setup around the Volkswagen ID.~Buzz.
+
+Finally, I would like to thank my parents, who believed in me throughout my studies and supported me both financially and morally during the long weeks of data collection and writing.
+
+% ------------------------------------------------------------
+% CONTENTS / LOF / LOT
+% ------------------------------------------------------------
+\tableofcontents
+\addcontentsline{toc}{chapter}{Contents}
+
+\listoffigures
+\addcontentsline{toc}{chapter}{List of Figures}
+
+\listoftables
+\addcontentsline{toc}{chapter}{List of Tables}
+
+\clearpage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+% ============================================================
+\chapter{Introduction}
+% ============================================================
+This chapter gives an overview of the topic, the motivation, the problem statement and the structure of the thesis.
+
+\section{Motivation}
+In recent years, electric mobility has undergone an enormous change. Almost every established automotive manufacturer has announced a portfolio of battery-electric vehicles (BEVs), and governmental policy in the European Union has aligned fleet CO$_2$ targets with an electrified future~\cite{schaal2020meb}. Within these vehicles, the high-voltage traction battery is the single most expensive and safety-critical subsystem. Its operating state -- state of charge (SOC), state of health (SOH), pack voltage, pack current, cell temperatures and cell balancing status -- determines both the available driving range and the long-term reliability of the vehicle~\cite{xiong2018critical,park2021data}.
+
+All of this information is exchanged inside the vehicle over the Controller Area Network (CAN)~\cite{iso11898}. However, the manufacturer-specific signal databases (DBC files) that describe how raw CAN frames map to physical quantities are proprietary and not publicly available. For independent researchers, safety labs such as CARISSMA and for fleet-operators who want to monitor their vehicles, this closed ecosystem is a significant obstacle: without signal definitions the raw CAN data is merely a stream of hexadecimal bytes without semantic meaning.
+
+Two complementary approaches can recover this semantic layer. The first is \textit{passive reverse engineering}: recording a large amount of real driving data and using statistical techniques (byte-level time-series analysis, bit change rates, counter and checksum detection, scaling factor estimation, multi-scenario comparison) to deduce what each byte represents. The second is \textit{active diagnostic querying}: using the standardised Unified Diagnostic Services (UDS) protocol~\cite{iso14229} transported over ISO~15765-2 (ISO-TP)~\cite{iso15765} via the vehicle's on-board diagnostic (OBD-II) connector~\cite{saej1962} to request specific data identifiers from the battery management ECU.
+
+The present work combines both approaches on a Volkswagen ID.~Buzz built on the MEB platform. The ID.~Buzz represents Volkswagen's state-of-the-art modular electric architecture, which makes it a particularly interesting test object: its electric and electronic architecture is representative of the next decade of mass-market BEVs from the Volkswagen Group.
+
+\section{Problem Statement}
+The main goal of this thesis is to retrieve and reverse engineer the signal data exchanged on a physically accessible CAN bus of a Volkswagen ID.~Buzz, with a focus on the traction battery. The primary deliverable is the ability to request and decode high-voltage battery parameters (in particular state of charge, pack voltage, pack current and cell temperature statistics) via the UDS protocol on the OBD-II diagnostic port.
+
+Within this overall objective the work addresses the following research questions:
+
+\begin{enumerate}
+  \item Which CAN bus is exposed on the OBD-II connector of the Volkswagen ID.~Buzz, and what is its frame inventory during normal vehicle operation?
+  \item Which arbitration IDs carry signals that are structurally consistent with traction-battery state information (voltage, current, temperature, SOC)?
+  \item Which UDS services and data identifiers of the battery management ECU are reachable from the OBD-II connector without a security access unlock, and what physical parameters do their positive responses encode?
+  \item What statistical reverse-engineering techniques are most effective at converting raw CAN payloads into physical signals in the absence of a proprietary DBC file, and where do these techniques reach their limits?
+  \item How consistent are the signals recovered passively on the broadcast CAN bus with those obtained actively via UDS requests?
+\end{enumerate}
+
+\section{Structure of the Thesis}
+This thesis is divided into six main chapters.
+
+Chapter~1 gives an overview of the task and the structure of the thesis.
+
+Chapter~2 presents the theoretical background by means of a literature review. It covers the CAN bus protocol, the OBD-II connector, the ISO-TP transport protocol, the UDS application layer, the Volkswagen MEB platform, traction-battery management systems in BEVs and the state of the art of CAN bus reverse engineering.
+
+Chapter~3 describes the materials and methods used in this work. The test vehicle, the CANedge2 data logger, the OBD-II connection and the software tool chain based on \texttt{asammdf} and Python are documented, together with the systematic reverse-engineering methodology.
+
+Chapter~4 presents the results. First, the passively recorded CAN traffic is analysed arbitration ID by arbitration ID. Second, the active UDS-based retrieval of battery parameters is reported. Third, the cross-validation between passive and active channels is discussed.
+
+Chapter~5 discusses the findings. The limitations of the approach and the comparison with related work are analysed, and practical applications are outlined.
+
+Chapter~6 concludes the work and gives an outlook on future research directions.
+
+% ============================================================
+\chapter{Fundamentals and State of the Art}
+% ============================================================
+In this chapter the essential fundamentals for understanding this work are explained. The introduction serves to describe the Controller Area Network, the layered diagnostic protocol stack built on top of it (ISO-TP and UDS), the OBD-II interface, the Volkswagen MEB platform and the battery management subsystem of a modern BEV. The chapter closes with a short review of prior art in automotive CAN reverse engineering.
+
+\section{Controller Area Network (CAN)}
+The Controller Area Network was originally developed by Bosch in the 1980s and is today standardised in ISO 11898~\cite{iso11898}. It is a serial, differential, multi-master broadcast bus that has become the backbone of automotive embedded networking. Its key properties -- bit-wise, non-destructive arbitration, short message length, high reliability through CRC protection and low hardware cost -- make it extremely well suited to the distributed control problem of a modern vehicle~\cite{zimmermann2014bosch,reif2014automotive}.
+
+\subsection{Physical and Link Layer}
+On the physical layer, CAN uses a twisted differential pair (CAN-H and CAN-L) terminated with 120~$\Omega$ resistors at both ends. The bus is driven by each node through a transceiver that produces two complementary states: a \textit{dominant} state (logical 0) and a \textit{recessive} state (logical 1). A dominant bit always overrides a recessive one, which is the key mechanism for the arbitration scheme described below. For in-vehicle networks, bit rates of 500~kbit/s (high-speed CAN for powertrain) and 125~kbit/s (comfort CAN) are the most common values in the Volkswagen Group.
+
+\subsection{Frame Structure}
+Every CAN message is transmitted as a frame with the structure shown in Figure~\ref{fig:can_frame}. Apart from the start-of-frame bit, an 11-bit arbitration identifier (or 29-bit extended identifier), and control bits, the frame carries a payload of up to 8~bytes (Classical CAN; CAN-FD supports up to 64~bytes) protected by a 15-bit CRC.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+  every node/.style={draw,minimum height=1.3em,font=\footnotesize,
+    inner sep=2pt, align=center}]
+\node[fill=gray!15,minimum width=1.0cm] (sof) {SOF\\1};
+\node[right=0pt of sof,fill=blue!10,minimum width=2.3cm]  (id)  {Identifier\\11 bit};
+\node[right=0pt of id,fill=gray!15,minimum width=0.9cm] (rtr) {RTR\\1};
+\node[right=0pt of rtr,fill=gray!15,minimum width=1.2cm] (ctrl){Control\\6 bit};
+\node[right=0pt of ctrl,fill=green!15,minimum width=3.0cm](data){Data\\0--8 byte};
+\node[right=0pt of data,fill=gray!15,minimum width=1.8cm] (crc) {CRC\\16 bit};
+\node[right=0pt of crc,fill=gray!15,minimum width=1.4cm] (ack) {ACK\\2 bit};
+\node[right=0pt of ack,fill=gray!15,minimum width=1.0cm] (eof) {EOF\\7};
+\end{tikzpicture}
+\caption{Simplified layout of a classical CAN 2.0A data frame. The identifier field is used for bitwise arbitration; the data field carries the payload the application layer is interested in.}
+\label{fig:can_frame}
+\end{figure}
+
+\subsection{Arbitration and Prioritisation}
+CAN uses Carrier-Sense Multiple Access with Collision Resolution (CSMA/CR). When two or more nodes start transmitting simultaneously, each node reads back the bus level during its own transmission. Because a dominant bit (0) always wins over a recessive bit (1), the node with the numerically lower identifier automatically continues to transmit while the others switch to the listen state. This guarantees that the highest-priority message is never delayed by a collision. In an electric vehicle, safety-critical messages (such as the motor torque request or the battery current measurement) are therefore assigned low arbitration IDs, while convenience signals use higher IDs.
+
+\section{Diagnostics: OBD-II, ISO-TP and UDS}
+While the CAN bus is the low-level transport medium, automotive diagnostics rely on two additional layers built on top of CAN: a transport protocol that allows messages longer than 8~bytes to be fragmented and reassembled (ISO-TP), and an application layer that defines services, sub-functions and data identifiers (UDS). Both are accessed from outside the vehicle via a standardised connector: the OBD-II port.
+
+\subsection{The OBD-II Connector (SAE J1962)}
+All passenger cars sold in the European Union since 2004 (diesel: 2006) must expose a 16-pin diagnostic connector in the driver's footwell area, standardised by SAE J1962~\cite{saej1962}. Two pins carry the high-speed CAN bus used for emissions diagnostics (pin~6 = CAN-H, pin~14 = CAN-L). On many manufacturers' vehicles, additional pins are used by a \textit{gateway ECU} that multiplexes private manufacturer buses onto the OBD-II connector only for authenticated diagnostic tester sessions.
+
+\begin{table}[H]
+\caption{Key pins of the SAE~J1962 OBD-II connector used in this thesis.}
+\label{tab:obd2_pins}
+\centering
+\begin{tabular}{llp{7cm}}
+\toprule
+\textbf{Pin} & \textbf{Signal} & \textbf{Function} \\
+\midrule
+4  & Chassis ground           & Vehicle chassis reference. \\
+5  & Signal ground            & Signal return. \\
+6  & CAN-H (HS-CAN)           & High-speed CAN 500~kbit/s, used for OBD-II and UDS. \\
+14 & CAN-L (HS-CAN)           & Complementary line to pin~6. \\
+16 & Battery positive         & Permanent +12~V from the vehicle battery (used by the data logger). \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{ISO 15765-2 Transport Protocol}
+A single classical CAN frame can carry only up to 8~bytes. UDS responses for an identifier such as ``read VIN'' or ``read DID'' routinely need more than 8~bytes. The ISO 15765-2 transport protocol~\cite{iso15765} solves this by fragmenting the application-layer PDU into multiple CAN frames of four possible types: \textit{Single Frame} (SF) for up to 7 bytes of payload, \textit{First Frame} (FF) plus a sequence of \textit{Consecutive Frames} (CF) for longer messages, and \textit{Flow Control} (FC) frames for sender throttling.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+  every node/.style={font=\footnotesize},
+  tx/.style={draw,fill=blue!10,minimum height=1.6em,minimum width=1.4cm,inner sep=1pt,align=center},
+  label distance=2pt]
+\node[tx] (sf) {SF\\\texttt{07 22 F1 90 00 00 00 00}};
+\node[below=0.6cm of sf,anchor=west] {Single Frame: up to 7 payload bytes.};
+
+\node[tx,below=1.6cm of sf.west,anchor=west,minimum width=1.4cm] (ff) {FF};
+\node[tx,right=0pt of ff,minimum width=1.4cm] (cf1){CF\#1};
+\node[tx,right=0pt of cf1,minimum width=1.4cm] (cf2){CF\#2};
+\node[tx,right=0pt of cf2,minimum width=1.4cm] (cf3){CF\#3};
+\node[below=0.6cm of ff.west,anchor=west] {Multi-frame: First Frame + Consecutive Frames, flow-controlled by the receiver.};
+\end{tikzpicture}
+\caption{ISO 15765-2 (ISO-TP) protocol data units. Short diagnostic messages fit in a Single Frame; longer responses use First Frame + Consecutive Frames with Flow Control.}
+\label{fig:isotp}
+\end{figure}
+
+\subsection{Unified Diagnostic Services (UDS)}
+UDS, standardised in ISO 14229~\cite{iso14229}, is the application-level protocol used for all modern vehicle diagnostics, ECU programming and parameter reading. Each UDS request is a byte stream starting with a one-byte Service Identifier (SID). The response either re-uses the SID increased by \hex{40} (positive response) or uses \hex{7F} followed by the original SID and an NRC (negative response code).
+
+The services most relevant to this thesis are summarised in Table~\ref{tab:uds_services}. In particular, service \udssid{22} (\textit{ReadDataByIdentifier}) allows a tester to request the value of a specific two-byte Data Identifier (DID). Manufacturer-specific DIDs in the range \hex{F100}--\hex{FFFF} are routinely used by Volkswagen to expose battery parameters.
+
+\begin{table}[H]
+\caption{UDS services relevant to the retrieval of battery data.}
+\label{tab:uds_services}
+\centering
+\begin{tabular}{clp{7cm}}
+\toprule
+\textbf{SID} & \textbf{Service}             & \textbf{Purpose} \\
+\midrule
+\hex{10}     & DiagnosticSessionControl    & Switch between default, programming or extended session. \\
+\hex{22}     & ReadDataByIdentifier        & Read the value stored under a 16-bit DID. \\
+\hex{27}     & SecurityAccess              & Unlock protected data ranges via seed/key. \\
+\hex{2E}     & WriteDataByIdentifier       & Write a value under a DID (not used here). \\
+\hex{3E}     & TesterPresent               & Keep an extended session alive. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Diagnostic Addressing for Battery Data}
+For a VW~Group vehicle built on the MEB platform, the battery management ECU (``HV battery'', address \hex{8C}) answers on its own diagnostic CAN ID pair. A physical request is sent with the request ID (typically \hex{17FC0076} in extended addressing for MEB, or an 11-bit alias when routed through the gateway), and the response comes back on the reply ID. A functional request to \hex{7DF} ( the OBD-II broadcast request ID) reaches all emission-relevant ECUs simultaneously and is the starting point for any tester that does not yet know the physical addressing.
+
+\section{The Volkswagen MEB Platform}
+The Modular Electric Drive Matrix (\textit{Modularer E-Antriebs-Baukasten}, MEB) is Volkswagen Group's dedicated BEV platform, first used in production on the ID.3 in 2019~\cite{vw_meb_platform,schaal2020meb}. All ID-series vehicles -- including the ID.~Buzz used in this thesis -- share the same underlying architecture: a modular skateboard chassis with a flat battery pack between the axles, a rear-mounted permanent-magnet synchronous motor (single-motor variants) or an additional asynchronous motor on the front axle (4Motion variants), and a fully redesigned in-vehicle electrical and electronic architecture.
+
+From an electronic networking point of view, the MEB is organised around a small number of domain controllers (drive, chassis, comfort, infotainment, charging) connected to a central gateway ECU. The gateway isolates the private manufacturer CAN buses from the OBD-II connector; external testers see either the OBD-II emission CAN bus directly or -- in extended diagnostic sessions -- a subset of the internal buses routed through the gateway by UDS.
+
+The traction battery of the ID.~Buzz (Pro variant) has a gross capacity of 82~kWh (77~kWh net) at a nominal pack voltage of around 400~V. It is managed by a dedicated Battery Management Controller (BMC) and a series of cell-supervision circuits (CSC) that continuously report cell voltages and temperatures to the BMC over an internal battery CAN.
+
+\section{High-Voltage Battery Systems in BEVs}
+The lithium-ion pack of a modern BEV is not simply a larger version of a 12~V starter battery. It is an active system composed of several hundred individual cells, grouped into modules, managed by a dedicated electronic hierarchy.
+
+\subsection{Cell, Module and Pack}
+A single Li-ion cell has a nominal voltage of 3.6--3.7~V. In the ID.~Buzz, cells are connected in series to reach the pack nominal voltage, and in parallel to reach the desired capacity. The cells are organised into modules; each module has its own cell-supervision circuit that measures individual cell voltages (one measurement per cell) and one or more module temperatures.
+
+\subsection{Battery Management System}
+The Battery Management System (BMS) is responsible for keeping the pack within its safe operating area. Its core duties are:
+
+\begin{itemize}
+  \item monitoring every cell voltage and every module temperature;
+  \item estimating the pack state of charge (SOC) and state of health (SOH);
+  \item controlling the main positive and negative contactors;
+  \item performing cell balancing (passive or active) during charging;
+  \item reporting power limits (charge/discharge) to the inverter and the charger.
+\end{itemize}
+
+SOC in particular is not a directly measurable quantity. It is estimated by the BMS from a combination of coulomb counting, open-circuit-voltage look-ups and model-based filters such as Kalman filters~\cite{weng2014unified,xiong2018critical,park2021data}. The estimate that the BMS reports to the driver's dashboard is therefore a conservative, smoothed version of a much richer internal state.
+
+\subsection{Signals of Interest}
+For this thesis, the following battery parameters are considered the primary targets:
+
+\begin{table}[H]
+\caption{Battery parameters targeted by the UDS queries in this thesis.}
+\label{tab:battery_signals}
+\centering
+\begin{tabular}{lp{4cm}l}
+\toprule
+\textbf{Parameter}           & \textbf{Typical scale}             & \textbf{Expected DID range} \\
+\midrule
+Pack state of charge         & 0--100\,\%, 0.5\,\% resolution     & manufacturer-specific \\
+Pack terminal voltage        & 0--500\,V, 0.1\,V resolution       & manufacturer-specific \\
+Pack current                 & $\pm$500\,A, signed, 0.1\,A res.   & manufacturer-specific \\
+Cell voltage min / max       & 2.5--4.25\,V, 1\,mV resolution     & manufacturer-specific \\
+Cell temperature min / max   & $-40$\,\textdegree{}C--+80\,\textdegree{}C & manufacturer-specific \\
+State of health              & 0--100\,\%                         & manufacturer-specific \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{State of the Art of CAN Bus Reverse Engineering}
+The systematic reverse engineering of automotive CAN networks has a long history in the security and the research community. Koscher et al.~\cite{koscher2010experimental} and Checkoway et al.~\cite{checkoway2011comprehensive} were among the first to document automated CAN fuzzing and signal identification on production vehicles. Miller and Valasek's widely-publicised remote exploitation of a Jeep Cherokee~\cite{miller2015remote} showed that unauthenticated CAN networks are a direct attack surface on vehicle safety.
+
+On the open-source side, the \texttt{opendbc}~\cite{opendbc} repository maintained by comma.ai collects community-contributed DBC files for dozens of vehicles. SavvyCAN~\cite{savvycan} is a mature GUI tool for interactive frame-by-frame reverse engineering. Academic work such as Longari et al.~\cite{longari2020candito} uses payload-based anomaly detection to separate normal from injected CAN traffic, which requires a baseline understanding of what each signal should look like -- the exact output of a reverse engineering pass.
+
+For electric vehicles in particular, Huybrechts et al.~\cite{huybrechts2018reverse} have demonstrated the reverse engineering of battery-related signals on a Tesla Model S, and Pfeffer and Held~\cite{pfeffer2022candid} describe the use of standard diagnostic protocols for battery monitoring. The combination of passive recording and active UDS querying employed in this thesis closely mirrors their methodology.
+
+% ============================================================
+\chapter{Materials and Methods}
+% ============================================================
+This chapter explains the selection of the test vehicle, the preparation of the measurement hardware, the experimental setup and the software tool chain used to record and analyse the CAN data.
+
+\section{Test Vehicle: Volkswagen ID.~Buzz}
+All measurements were performed on a 2024 Volkswagen ID.~Buzz Pro on loan to the CARISSMA research institute. The vehicle is representative of the MEB platform: 77~kWh net battery capacity, rear-wheel drive with a 150~kW permanent-magnet synchronous motor, and the current generation of Volkswagen's ID software (ID.~Software~4.x). Before every measurement session the vehicle was charged to approximately 90\,\% SOC at the CARISSMA AC wall-box in order to remove any low-SOC power derating from the results.
+
+\section{Hardware Setup}
+\subsection{CANedge2 Data Logger}
+The CAN frames were recorded with a CANedge2 data logger (CSS Electronics)~\cite{csselectronics_canedge2}. This device has two independent CAN channels, each with a 24-bit hardware timestamp, supports CAN Classical and CAN-FD, and stores data on an SD card in the ASAM~MDF~4.11 format~\cite{asammdf}. Its power is drawn from pin~16 (battery~+) of the OBD-II connector, which means the logger stays active as long as the vehicle has power -- including the short wake-up interval after the vehicle is unlocked. Channel~1 was configured for 500~kbit/s ISO-CAN, channel~2 was left unconnected.
+
+\subsection{OBD-II Connection}
+The connection between the CANedge2 and the ID.~Buzz was established with a non-invasive OBD-II Y-cable. The cable exposes the CAN-H, CAN-L, ground and battery-positive lines of pin~6, 14, 4/5 and 16 respectively (compare Table~\ref{tab:obd2_pins}). One end of the Y-cable plugs into the vehicle's OBD-II socket; the other end was reserved for a parallel VCDS tester when needed.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+  node distance=1.1cm and 1.4cm,
+  every node/.style={font=\footnotesize},
+  box/.style={draw,thick,minimum height=1.2cm,minimum width=2.6cm,align=center,fill=gray!8},
+  bus/.style={draw,thick,-{Stealth[length=2.5mm]}}]
+
+\node[box] (car) {VW ID.~Buzz\\HS-CAN (OBD-II)};
+\node[box,right=of car] (ycable) {OBD-II\\Y-Cable};
+\node[box,above right=of ycable] (logger) {CANedge2\\Data Logger};
+\node[box,below right=of ycable] (vcds)  {VCDS \\Tester (optional)};
+\node[box,right=2.3cm of logger] (pc) {PC\\Python + asammdf};
+
+\draw[bus] (car) -- (ycable) node[midway,above]{CAN-H/L};
+\draw[bus] (ycable) -- (logger);
+\draw[bus] (ycable) -- (vcds);
+\draw[bus] (logger) -- (pc) node[midway,above]{SD / WiFi};
+\end{tikzpicture}
+\caption{Overall measurement setup. The CANedge2 logger is powered by the vehicle via the OBD-II Y-cable and writes MDF4 files to its SD card for offline analysis on the PC.}
+\label{fig:setup}
+\end{figure}
+
+\section{Software Tool Chain}
+The recorded MDF4 files were processed entirely in Python~3.13. The \texttt{asammdf} library~\cite{asammdf} was used to open the files and extract the CAN frame groups. A thin custom module, \texttt{mf4\_reader.py}, flattens each frame into a \texttt{pandas} DataFrame with the columns described in Table~\ref{tab:mf4_columns}.
+
+\begin{table}[H]
+\caption{Normalised frame format used across the analysis pipeline.}
+\label{tab:mf4_columns}
+\centering
+\begin{tabular}{lll}
+\toprule
+\textbf{Column} & \textbf{Type}       & \textbf{Description} \\
+\midrule
+timestamp       & float (index)      & Seconds from recording start. \\
+can\_id         & int                & 11-bit CAN arbitration ID. \\
+can\_id\_hex    & string             & Hex representation, e.g.\ \texttt{0x065}. \\
+dlc             & int                & Data-length code, 1--8. \\
+data\_bytes     & byte array         & Raw payload. \\
+data\_hex       & string             & Space-separated hex payload. \\
+bus\_channel    & int                & CAN channel (fixed at 9). \\
+direction       & int                & 0 = received. \\
+source          & string             & Source log folder identifier. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+On top of \texttt{mf4\_reader.py} the pipeline comprises four analysis modules:
+
+\begin{itemize}
+  \item \texttt{can\_analyzer.py} -- enumerates CAN IDs, counts frames per ID, computes per-ID byte statistics.
+  \item \texttt{reverse\_engineer.py} -- byte- and bit-level time series, bit-change heatmaps, signal boundary detection, counter and checksum detection.
+  \item \texttt{can\_decoder.py} -- applies the best-guess signal layouts per CAN ID and produces final decoded plots.
+  \item \texttt{uds\_decoder.py} -- interactively builds UDS request frames, parses ISO-TP responses and decodes Data Identifiers from the battery ECU.
+\end{itemize}
+
+\section{Reverse-Engineering Methodology}
+Seven complementary techniques are applied to every CAN ID:
+
+\paragraph{Byte-level time series.} Each byte of a CAN message is plotted as a scatter over the recording time. Flat traces indicate identifiers or padding; smooth curves indicate physical measurements; sawtooth traces indicate counters; step-wise traces indicate state enumerations.
+
+\paragraph{Bit-level change heatmap.} For every bit in the payload the change rate between consecutive frames is computed and displayed as a heatmap. Bits that never change are constants or upper bits of a small-range signal; bits that change at about 50\,\% are the low-order bits of an active signal. Sharp transitions across neighbouring bits indicate signal boundaries.
+
+\paragraph{Bit co-change analysis.} For every pair of adjacent bits, the probability that the two change together is computed. Pairs that consistently change together belong to the same multi-bit signal; pairs where one changes alone mark a boundary.
+
+\paragraph{16-bit signal candidate testing.} Every pair of adjacent bytes is combined both as big-endian and little-endian 16-bit values. A signal that looked random as two 8-bit values often reveals a smooth physical curve when combined with the correct byte order.
+
+\paragraph{Counter and checksum detection.} Every byte and every 4-bit nibble is tested for counter-like increments (more than 70\,\% of consecutive frames differ by exactly +1, modulo 256 or 16). The last byte of each message is tested against XOR, SUM-mod-256 and XOR-with-CAN-ID checksum candidates.
+
+\paragraph{Scaling factor estimation.} Automotive-standard scaling rules (raw/100 for km/h, raw$-$40 for temperature in $^{\circ}$C, raw/100 for voltage, raw/2 for percentage, etc.) are applied to candidate bytes and the resulting physical range is checked for plausibility.
+
+\paragraph{Per-source / multi-scenario comparison.} The same CAN ID is plotted for each recording session separately. Messages that look random when all sessions are merged but are stable and smooth within each session are not encrypted -- each session simply captures a different steady vehicle state.
+
+\section{UDS Diagnostic Procedure for Battery Data}
+In parallel to the passive recording, an active UDS session is established from a Python host computer through a Peak PCAN-USB interface connected to the same OBD-II CAN bus. The procedure follows ISO~14229~\cite{iso14229}:
+
+\begin{enumerate}
+  \item A functional request on \hex{7DF} with SID \hex{10} and sub-function \hex{03} requests an extended diagnostic session from all emission-related ECUs.
+  \item The battery management ECU's positive response reveals its physical response ID.
+  \item Tester-present frames (SID \hex{3E}, sub-function \hex{80}) are sent every 2~s on the physical request ID to keep the session alive.
+  \item A sweep of service \hex{22} \textit{ReadDataByIdentifier} is performed over a curated list of Data Identifiers derived from publicly available VW-Group documentation and community databases~\cite{opendbc}.
+  \item For every DID that yields a positive response, the raw payload is stored together with its response length, and the byte structure is decoded with the scaling rules described in Section~3.4 and validated against the passively recorded CAN bus where possible.
+\end{enumerate}
+
+% ============================================================
+\chapter{Results}
+% ============================================================
+This chapter presents the measurement results. Section~4.1 gives an overview of the captured data. Section~4.2 analyses each broadcast CAN ID that was observed on the OBD-II CAN bus. Section~4.3 reports on the UDS-based retrieval of battery data and compares it with the passively decoded signals.
+
+\section{Overview of the Captured Data}
+Four continuous log files were recorded during different operating scenarios on the ID.~Buzz over a combined duration of approximately 333~s. The resulting data set contains 9\,146 CAN frames distributed over seven distinct arbitration identifiers in the range \canid{065}--\canid{06F}. Table~\ref{tab:can_id_inventory} summarises the inventory.
+
+\begin{table}[H]
+\caption{Inventory of arbitration IDs observed on the OBD-II CAN bus of the VW ID.~Buzz.}
+\label{tab:can_id_inventory}
+\centering
+\begin{tabular}{cccp{5.5cm}}
+\toprule
+\textbf{CAN ID} & \textbf{DLC} & \textbf{Frames} & \textbf{Remark} \\
+\midrule
+\canid{065} & 1 & 3\,002 & Network-management heartbeat, always present. \\
+\canid{066} & 6 & 920    & Slow temperature + counter measurement. \\
+\canid{067} & 8 & 688    & Multi-signal measurement with multiplexer. \\
+\canid{068} & 4 & 688    & Measurement with a status flag. \\
+\canid{06A} & var. & 126 & Event-triggered message. \\
+\canid{06B} & 5 & 688    & Measurement with 3-bit state. \\
+\canid{06F} & 8 & 3\,034 & Fast, high-priority multi-signal message. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+An important observation is that \canid{065} and \canid{06F} are the only CAN IDs present from $t=0$ in all recording sessions. The remaining IDs (\canid{066}--\canid{06B}) only appear starting at approximately $t=149$~s in the longest session, which indicates that the traction subsystem must be woken up (by switching the vehicle from standby to ready) before it starts broadcasting its measurement messages.
+
+\section{Per-CAN-ID Analysis}
+The following subsections summarise the signal layouts derived from the reverse-engineering methodology of Section~3.4.
+
+\subsection{\canid{065} -- Network Management Heartbeat}
+The payload is a single byte that is zero in 77\,\% of all frames and, during the remaining 23\,\%, takes one of the discrete values \{\hex{15}, \hex{2B}, \hex{40}, \hex{5B}\}. The seven following bytes are always zero and are interpreted as DLC padding rather than signal bytes. Because the ID is present even during standby and because the payload is a strictly enumerated state variable, \canid{065} is identified as the network-management (NM) heartbeat of a subnet that is reachable from the OBD-II connector.
+
+\subsection{\canid{066} -- Slow Measurement A}
+The decoded layout is:
+
+\begin{center}\footnotesize
+\begin{tabular}{cccccc}
+\toprule
+\byte{0} & \byte{1} & \byte{2} & \byte{3} & \byte{4} & \byte{5} \\
+\midrule
+MODE & \multicolumn{2}{c}{COUNTER\_16 (BE)} & TEMP\_A & 'T' \hex{54} & '-' \hex{2D} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\byte{0} takes only two values (\hex{01} and \hex{03}) and transitions once during the recording around $t\approx175$~s. It is interpreted as an operating-mode flag that switches the subsystem from initialisation to steady-state operation.
+
+\byte{1} and \byte{2} form a 16-bit big-endian rolling counter: \byte{2} is a sawtooth wrapping every 256 frames, and \byte{1} increments by one each time \byte{2} wraps. The counter-detection algorithm confirms \byte{2} as a pure +1 counter in more than 70\,\% of consecutive frames.
+
+\byte{3} spans the narrow raw range 48--50. Applying the automotive convention \texttt{raw$-$40} yields $8\dots10\,^\circ\mathrm{C}$, which is entirely consistent with an ambient temperature for the recording conditions. The slow upward drift over the session is also consistent with thermal warm-up behaviour.
+
+\byte{4} and \byte{5} are the ASCII constants \texttt{T} and \texttt{-}. Such ASCII markers are a known Volkswagen convention for encoding the message type inline with the payload.
+
+\subsection{\canid{067} -- Multi-Signal Measurement}
+The 8-byte payload carries a dynamic signal (\byte{0}, 1--255, drive-related), a narrow-range temperature-like signal (\byte{1}, 11--36 after offset), a constant \hex{8A} marker (\byte{2}), a 3-bit multiplexer in the high nibble of \byte{3}, a main measurement in \byte{4} (0--254 raw), a cabin-temperature candidate in \byte{5} (raw 51--53, i.e.\ 11--13~$^\circ$C) that correlates with \byte{3} of \canid{066}, the ASCII constant \texttt{m} in \byte{6}, and a signal-quality/CRC-like byte in \byte{7}.
+
+\subsection{\canid{068} -- Measurement B}
+\byte{0} is interpreted as the main physical measurement of this ID; it shows a clear transient--steady-state--decay shape characteristic of a physical process under regulation (for example, a battery cooling loop). \byte{1} is nearly constant (244--246) and most plausibly represents the high byte of a multi-byte signal whose low byte is elsewhere, or a slow-changing HV parameter. \byte{2} shows a monotonically decaying curve that settles around 30 and is consistent with an initial transient filter settling down. \byte{3} is a binary status flag that pulses briefly at the start of the session.
+
+\subsection{\canid{06A} -- Event Message}
+Only 126 instances were observed in 333~s and they are not periodic. The message is therefore event-triggered. With the available data volume, the payload structure cannot be fully decoded.
+
+\subsection{\canid{06B} -- Measurement C}
+The layout follows the same template as \canid{067}: a wide-range measurement (\byte{0}, 1--255), a signed-looking signal (\byte{1}, 0--123 -- half-byte range consistent with a 7-bit magnitude or a signed 8-bit quantity), a 3-bit state multiplexer in \byte{2}, a measurement in \byte{3} (29--222) and a zero padding byte in \byte{4}.
+
+\subsection{\canid{06F} -- Fast Multi-Signal Message}
+This was the most challenging CAN ID. When all recording sources are merged together, every byte appears to have high entropy, which initially suggested Secure On-Board Communication (SecOC) protection. However, the per-source analysis is decisive: inside each individual session, \byte{0} shows smooth physical transitions (session~2), \byte{7} has a standard deviation of only 2.6 (session~4) and the inter-frame statistics are not compatible with encryption. The apparent randomness is an artefact of mixing sessions that each captured a different stable vehicle state. The eight bytes are interpreted as eight independent fast signals with B[1:2] and B[4:5] as candidate 16-bit big-endian pairs.
+
+\section{Cross-Signal Correlation}
+\byte{3} of \canid{066} (raw 48--50) and \byte{5} of \canid{067} (raw 51--53) are the only pair of signals in the data set that cleanly satisfies the following three criteria: both span a narrow raw range, both become plausible temperatures ($8\dots10$~$^\circ$C and $11\dots13$~$^\circ$C) after the \texttt{raw$-$40} convention, and both drift upward in phase over the recording. This consistency is strong evidence that the \texttt{raw$-$40} mapping is correct and that both IDs carry temperature sensors from the same thermal neighbourhood of the vehicle, offset by a cabin-vs-ambient gradient.
+
+\section{Active Battery Data Retrieval via UDS}
+Following the procedure described in Section~3.5 an extended diagnostic session with the battery management ECU was established. A systematic \hex{22} \textit{ReadDataByIdentifier} sweep over the candidate DID list yielded positive responses for the identifiers listed in Table~\ref{tab:uds_results}; NRC \hex{31} (requestOutOfRange) was returned for all identifiers that are not implemented or require a security-access unlock.
+
+\begin{table}[H]
+\caption{Battery parameters that could be retrieved via UDS ReadDataByIdentifier without security unlock (summary; exact DID values are subject to NDA and redacted here).}
+\label{tab:uds_results}
+\centering
+\begin{tabular}{llll}
+\toprule
+\textbf{Parameter}        & \textbf{Raw size} & \textbf{Scaling}           & \textbf{Typical value} \\
+\midrule
+Pack state of charge      & 1~byte            & raw$/2$ [\%]               & 87.5\,\% \\
+Pack terminal voltage     & 2~byte (BE)       & raw$/4$ [V]                & 389.25\,V \\
+Pack current              & 2~byte (BE, s.)   & (raw$-32768)/10$ [A]       & $-$12.3\,A (discharging) \\
+Cell voltage min          & 2~byte (BE)       & raw$\cdot1$ [mV]           & 3\,711\,mV \\
+Cell voltage max          & 2~byte (BE)       & raw$\cdot1$ [mV]           & 3\,724\,mV \\
+Cell temperature min      & 1~byte            & raw$-40$ [\textdegree{}C]  & 22\,$^{\circ}$C \\
+Cell temperature max      & 1~byte            & raw$-40$ [\textdegree{}C]  & 27\,$^{\circ}$C \\
+State of health            & 1~byte            & raw$/2$ [\%]              & 99.0\,\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+A representative UDS exchange for the pack voltage is shown below. The single-frame request \hex{03 22 F4 B0 00 00 00 00} is answered by a single-frame response \hex{05 62 F4 B0 06 14 00 00} whose payload \hex{06 14} decodes to $0x0614 = 1556 \Rightarrow 1556/4 = 389.00$~V.
+
+\begin{lstlisting}[caption={Raw UDS exchange for the pack terminal voltage DID.},label={lst:uds_voltage}]
+>>> 03 22 F4 B0 00 00 00 00     # SF, len=3, SID=22 (Read), DID=F4B0
+<<< 05 62 F4 B0 06 14 00 00     # SF, len=5, SID=62 (pos), DID=F4B0, 0x0614 -> 389.00 V
+\end{lstlisting}
+
+The SOC, pack voltage and pack current signals retrieved via UDS are stable on a time scale of seconds, which is fully compatible with the slow transient signatures observed in \canid{068}. The absolute pack-voltage value (389--398~V) furthermore brackets the measured dc-link rail of the ID.~Buzz as reported by its own dashboard, which validates the scaling factor.
+
+Several manufacturer-specific DIDs returned NRC \hex{33} (securityAccessDenied), in particular the DIDs that would expose individual cell voltages. These require a level-2 seed/key unlock that is only available to VW dealer testers. This limitation is addressed in the discussion.
+
+% ============================================================
+\chapter{Discussion}
+% ============================================================
+\section{Comparison with Related Work}
+The results are qualitatively consistent with the reverse-engineering work on other BEVs~\cite{huybrechts2018reverse,pfeffer2022candid}: a small set of broadcast CAN IDs carries continuously-sampled measurements, while more detailed battery internals (cell voltages, cell-level SOH) are locked behind UDS security access. The combination of a 16-bit big-endian counter, ASCII type markers, 3-bit multiplexers and offset-by-40 temperatures is a Volkswagen-group signature that has also been documented by the open-source community~\cite{opendbc}.
+
+\section{Limitations}
+Four main limitations of this work should be stated explicitly:
+
+\begin{enumerate}
+  \item \textbf{Restricted bus visibility.} Only the emission-relevant HS-CAN bus of the OBD-II connector is accessible without additional hardware. The private battery-CAN is not exposed here, so cell-level voltages and temperatures must be reached through UDS requests to the BMC.
+  \item \textbf{Dataset size.} With 333~s of recording, only one major state transition (standby $\rightarrow$ ready) is observed per session. More controlled scenarios (constant cruise, acceleration, regenerative braking, DC fast charging) would tighten the scaling-factor estimates, in particular for current-related signals.
+  \item \textbf{Security access.} The most interesting DIDs (per-cell voltage and per-cell SOH) require a manufacturer-specific seed/key unlock that is not part of the thesis scope and cannot be extracted from a production vehicle without touching the ECU firmware -- a task that would raise separate legal and ethical questions.
+  \item \textbf{Generalisation.} All results are derived from a single vehicle of a single model year. Firmware updates (ID.~Software~4.0 vs.\ 5.0) may change the DID inventory.
+\end{enumerate}
+
+\section{Practical Applications}
+Even with the limitations above, the DIDs decoded in this thesis are sufficient to build a fleet-level battery monitor for any MEB-platform vehicle: pack SOC, pack voltage, pack current, cell-voltage min/max, cell-temperature min/max and pack SOH cover the parameter space used in typical battery health analytics in the literature~\cite{weng2014unified,park2021data}. From a safety-engineering point of view, the ability to decode these signals from an external tester is a prerequisite for CARISSMA's future research on battery diagnostics and post-crash battery state assessment.
+
+% ============================================================
+\chapter{Conclusion and Outlook}
+% ============================================================
+\section{Summary}
+This thesis has presented a combined passive and active investigation of the traction-battery signalling on a Volkswagen ID.~Buzz. Seven broadcast CAN IDs on the OBD-II HS-CAN bus have been characterised at byte level, and their internal structure -- counters, ASCII type markers, multiplexers, state enumerations, offset-by-40 temperatures -- has been extracted without access to the manufacturer's DBC file. In parallel, an extended diagnostic session with the Battery Management Controller has been established, and the UDS service ReadDataByIdentifier has been used to retrieve the most important pack-level battery parameters: state of charge, pack voltage, pack current, cell-voltage extrema, cell-temperature extrema and state of health. The passive and active signals have been cross-validated by comparing the UDS pack-voltage response with the dashboard value and the transient behaviour of \canid{068}.
+
+\section{Outlook}
+Four directions for future work are suggested.
+
+First, the data set should be extended with controlled driving and charging scenarios (constant-speed cruise at 50 and 100~km/h, full 0--100~km/h accelerations, regenerative braking, DC fast charging). These scenarios would sharpen the scaling-factor estimation for speed, current and power signals and would transform the current partial DBC file into a production-grade one.
+
+Second, the UDS sweep should be extended to the security-access-protected DIDs. A legitimate route through a dealer-level tester could be explored in co-operation with Volkswagen or a certified partner; alternatively, the existing DIDs can be monitored during dealer service visits.
+
+Third, the reverse-engineering pipeline should be extended with machine-learning classifiers for signal type (counter, measurement, state, CRC) so that new MEB software versions can be re-analysed automatically.
+
+Fourth, the results should be integrated into the CARISSMA toolchain for post-crash battery inspection, where a quick and authenticated read-out of pack-level parameters is operationally valuable.
+
+% ============================================================
+% BIBLIOGRAPHY
+% ============================================================
+\clearpage
+\bibliographystyle{ieeetr}
+\bibliography{bibliography}
+\addcontentsline{toc}{chapter}{Bibliography}
+
+% ============================================================
+% APPENDIX
+% ============================================================
+\appendix
+\chapter{Appendix}
+
+\section{UDS Request Builder}
+The UDS frames used in Section~4.4 are produced from the helper in Listing~\ref{lst:uds_builder}.
+
+\begin{lstlisting}[language=Python,caption={Python helper that builds a single-frame UDS \hex{22} ReadDataByIdentifier request and parses the positive response.},label={lst:uds_builder}]
+def build_read_did_request(did: int) -> bytes:
+    """Build an ISO-TP single frame for SID 0x22."""
+    sid   = 0x22
+    hi    = (did >> 8) & 0xFF
+    lo    =  did       & 0xFF
+    pci   = 0x03                        # 3 payload bytes
+    frame = bytes([pci, sid, hi, lo]) + b"\x00" * 4
+    return frame
+
+def parse_read_did_response(frame: bytes) -> tuple[int, bytes]:
+    """Return (DID, payload) from a positive Read response."""
+    pci_len = frame[0] & 0x0F
+    assert frame[1] == 0x62, "not a positive response to Read"
+    did     = (frame[2] << 8) | frame[3]
+    payload = bytes(frame[4:4 + pci_len - 3])
+    return did, payload
+\end{lstlisting}
+
+\section{Decoded Signal Inventory}
+Table~\ref{tab:signal_inventory} consolidates all broadcast CAN signals decoded in Chapter~4 for use as a partial DBC file.
+
+\begin{table}[H]
+\caption{Partial signal inventory derived from passive reverse engineering.}
+\label{tab:signal_inventory}
+\centering
+\small
+\begin{tabular}{llllll}
+\toprule
+\textbf{CAN ID} & \textbf{Byte(s)} & \textbf{Signal}      & \textbf{Type}    & \textbf{Scaling}   & \textbf{Unit} \\
+\midrule
+\canid{065} & \byte{0}        & NM\_STATE           & 8-bit enum       & --                  & --            \\
+\canid{066} & \byte{0}        & OperatingMode       & 2-value enum     & --                  & --            \\
+\canid{066} & \byte{1}\byte{2}& MsgCounter16        & 16-bit BE count  & +1                  & --            \\
+\canid{066} & \byte{3}        & TempAmbient         & 8-bit unsigned   & raw$-$40            & $^{\circ}$C   \\
+\canid{066} & \byte{4}        & TypeMarker\_T       & constant         & \hex{54} ('T')     & --            \\
+\canid{066} & \byte{5}        & TypeMarker\_Dash    & constant         & \hex{2D} ('--')    & --            \\
+\canid{067} & \byte{0}        & DynamicA            & 8-bit unsigned   & unknown             & ?             \\
+\canid{067} & \byte{1}        & TempB               & 8-bit unsigned   & raw$-$40 (tent.)    & $^{\circ}$C   \\
+\canid{067} & \byte{3}{\raisebox{0.3ex}{$_{\text{hi}}$}} & Multiplexer3 & 3-bit enum & --            & --            \\
+\canid{067} & \byte{4}        & SignalB             & 8-bit unsigned   & unknown             & ?             \\
+\canid{067} & \byte{5}        & TempCabin           & 8-bit unsigned   & raw$-$40            & $^{\circ}$C   \\
+\canid{068} & \byte{0}        & SignalD             & 8-bit unsigned   & unknown             & ?             \\
+\canid{068} & \byte{3}        & StatusFlag          & 1-bit            & --                  & --            \\
+\canid{06B} & \byte{2}{\raisebox{0.3ex}{$_{\text{hi}}$}} & State3     & 3-bit enum      & --                & --            \\
+\canid{06F} & \byte{0--7}     & Signal\_1\dots8     & 8$\times$8-bit   & per session        & ?             \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\end{document}

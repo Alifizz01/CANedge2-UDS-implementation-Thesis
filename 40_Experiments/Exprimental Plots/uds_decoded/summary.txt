@@ -1,0 +1,12 @@
+VW MEB UDS Battery Decoder Summary
+Total decoded values: 1318
+Unique PIDs decoded: 6
+
+PID      Name                                                    Unit      count        min        max       last
+--------------------------------------------------------------------------------------------------------------
+0x028C  SOC (BMS)                                               %           596     66.800     68.000     66.800
+0x1E0E  HV Battery max temp and temp point                      °C          106      9.875     10.000     10.000
+0x1E3B  HV Battery voltage                                      V           211    368.000    368.500    368.250
+0x1E3D  HV Battery current                                      A           211     -4.960     -2.400     -2.400
+0x2A0B  HV Battery temp (main value)                            °C          106      9.000      9.500      9.500
+0x7448  Car operation mode                                      logic        88                          driving

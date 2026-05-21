@@ -1,0 +1,127 @@
+# ---------- Python ----------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+env/
+ENV/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+*.egg-info/
+build/
+dist/
+pip-wheel-metadata/
+
+# ---------- Jupyter ----------
+*.ipynb_checkpoints
+
+# ---------- IDE / Editor ----------
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ---------- OS ----------
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+
+# ---------- CAN / CANedge2 / Vehicle log data (large binaries) ----------
+*.MF4
+*.mf4
+*.BLF
+*.blf
+*.ASC
+*.asc
+*.TRC
+*.trc
+*.DBC.bak
+*.log
+*.pcap
+*.pcapng
+
+# Raw CANedge SD card dumps
+**/raw/
+**/raw_logs/
+**/sd_dump/
+
+# Decoded / intermediate large outputs
+*.parquet
+*.feather
+*.h5
+*.hdf5
+*.npz
+*.pkl
+*.pickle
+
+# ---------- MATLAB ----------
+*.asv
+*.mex*
+*.mat
+slprj/
+*.slxc
+
+# ---------- LaTeX (thesis document) ----------
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.lof
+*.log
+*.lot
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+*.nav
+*.snm
+*.vrb
+*.dvi
+*-blx.bib
+*.xdv
+_minted-*/
+*.pyg
+
+# ---------- Office temp / lock files ----------
+~$*.doc*
+~$*.xls*
+~$*.ppt*
+~$*.vsd*
+
+# ---------- Secrets / credentials ----------
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials.json
+secrets.yaml
+secrets.yml
+
+# ---------- Vendor / third-party tool binaries ----------
+# asammdf GUI and other prebuilt tools shouldn't be in git.
+# Re-download from the upstream project instead.
+20_Hardware/tools/
+*.exe
+*.dll
+*.pyd
+*.so.*
+*.dylib
+
+# ---------- Large media (optional — uncomment if needed) ----------
+# *.mp4
+# *.mov
+# *.avi
+# *.zip
+# *.7z
+# *.rar
