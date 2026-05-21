@@ -1,0 +1,20 @@
+{
+  "id": "2A73E1CC",
+  "type": "0000005F",
+  "kpub": "A4T5g+amdCMbAMcff1MZqRZXJY0yxV97LPFyxytnb6TVdYZDGcVgdBgf2rQJoewvu8umHvVziRPVHHh1WlbuEQ==",
+  "fw_ver": "01.08.01",
+  "hw_ver": "00.03/00.00",
+  "cfg_ver": "01.08",
+  "cfg_name": "config-01.08.json",
+  "cfg_crc32": "4454CC8C",
+  "sch_name": "schema-01.08.json",
+  "log_meta": "",
+  "space_used_mb": "15/7572",
+  "sd_info": "00035344534130384780D2DA52C80161",
+  "sd_used_lifespan": "1",
+  "reset_cause": "",
+  "gnss_fw_ver": "2.16",
+  "wifi_fw_ver": "19.7.7/19.7.7",
+  "wifi_mac": "60-8A-10-C6-87-4F",
+  "certs_server_sha1": []
+}

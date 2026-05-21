@@ -1,0 +1,163 @@
+kind,sid,length,raw_bytes,timestamp,raw_hex,session,pid,value_bytes,pid_name,pid_unit,pid_group,value,value_kind,total_length,partial
+OTHER,80.0,6.0,b'\x06P\x03\x00\x1e\x01\xe5',1.0626,06 50 03 00 1E 01 E5 AA,sd_2A73E1CC/00000012,,,,,,,,,
+SF,,4.0,,1.1625999999999999,04 62 02 8C AA AA AA AA,sd_2A73E1CC/00000012,652.0,b'\xaa',SOC (BMS),%,Battery,68.0,numeric,,
+SF,,5.0,,1.26265,05 62 1E 3B 05 C1 AA AA,sd_2A73E1CC/00000012,7739.0,b'\x05\xc1',HV Battery voltage,V,Battery,368.25,numeric,,
+FF,,,,1.3629499999999999,10 08 62 1E 3D 00 02 48,sd_2A73E1CC/00000012,7741.0,b'\x00\x02H',HV Battery current,A,Battery,-4.96,partial,8.0,True
+SF,,4.0,,1.46265,04 62 2A 0B 62 AA AA AA,sd_2A73E1CC/00000012,10763.0,b'b',HV Battery temp (main value),°C,Battery,9.0,numeric,,
+SF,,7.0,,1.5626499999999999,07 62 1E 0E 02 78 00 01,sd_2A73E1CC/00000012,7694.0,b'\x02x\x00\x01',HV Battery max temp and temp point,°C,Battery,9.875,numeric,,
+SF,,4.0,,2.1626499999999997,04 62 02 8C AA AA AA AA,sd_2A73E1CC/00000012,652.0,b'\xaa',SOC (BMS),%,Battery,68.0,numeric,,
+SF,,5.0,,2.26305,05 62 1E 3B 05 C1 AA AA,sd_2A73E1CC/00000012,7739.0,b'\x05\xc1',HV Battery voltage,V,Battery,368.25,numeric,,
+FF,,,,2.3627,10 08 62 1E 3D 00 02 48,sd_2A73E1CC/00000012,7741.0,b'\x00\x02H',HV Battery current,A,Battery,-4.96,partial,8.0,True
+OTHER,80.0,6.0,b'\x06P\x03\x00\x1e\x01\xe5',3.06275,06 50 03 00 1E 01 E5 AA,sd_2A73E1CC/00000012,,,,,,,,,
+SF,,4.0,,3.1630499999999997,04 62 02 8C AA AA AA AA,sd_2A73E1CC/00000012,652.0,b'\xaa',SOC (BMS),%,Battery,68.0,numeric,,
+SF,,5.0,,3.26275,05 62 1E 3B 05 C1 AA AA,sd_2A73E1CC/00000012,7739.0,b'\x05\xc1',HV Battery voltage,V,Battery,368.25,numeric,,
+FF,,,,3.3627499999999997,10 08 62 1E 3D 00 02 48,sd_2A73E1CC/00000012,7741.0,b'\x00\x02H',HV Battery current,A,Battery,-4.96,partial,8.0,True
+SF,,4.0,,3.4627499999999998,04 62 2A 0B 62 AA AA AA,sd_2A73E1CC/00000012,10763.0,b'b',HV Battery temp (main value),°C,Battery,9.0,numeric,,
+SF,,7.0,,3.56275,07 62 1E 0E 02 78 00 01,sd_2A73E1CC/00000012,7694.0,b'\x02x\x00\x01',HV Battery max temp and temp point,°C,Battery,9.875,numeric,,
+SF,,4.0,,4.1628,04 62 02 8C AA AA AA AA,sd_2A73E1CC/00000012,652.0,b'\xaa',SOC (BMS),%,Battery,68.0,numeric,,
+SF,,5.0,,4.2627999999999995,05 62 1E 3B 05 C1 AA AA,sd_2A73E1CC/00000012,7739.0,b'\x05\xc1',HV Battery voltage,V,Battery,368.25,numeric,,
+FF,,,,4.3628,10 08 62 1E 3D 00 02 48,sd_2A73E1CC/00000012,7741.0,b'\x00\x02H',HV Battery current,A,Battery,-4.96,partial,8.0,True
+OTHER,80.0,6.0,b'\x06P\x03\x00\x1e\x01\xe5',5.06285,06 50 03 00 1E 01 E5 AA,sd_2A73E1CC/00000012,,,,,,,,,
+SF,,4.0,,5.16285,04 62 02 8C AA AA AA AA,sd_2A73E1CC/00000012,652.0,b'\xaa',SOC (BMS),%,Battery,68.0,numeric,,
+SF,,5.0,,5.2629,05 62 1E 3B 05 C2 AA AA,sd_2A73E1CC/00000012,7739.0,b'\x05\xc2',HV Battery voltage,V,Battery,368.5,numeric,,
+FF,,,,5.3629,10 08 62 1E 3D 00 02 48,sd_2A73E1CC/00000012,7741.0,b'\x00\x02H',HV Battery current,A,Battery,-4.96,partial,8.0,True
+SF,,4.0,,5.4628499999999995,04 62 2A 0B 62 AA AA AA,sd_2A73E1CC/00000012,10763.0,b'b',HV Battery temp (main value),°C,Battery,9.0,numeric,,
+SF,,7.0,,5.5629,07 62 1E 0E 02 78 00 01,sd_2A73E1CC/00000012,7694.0,b'\x02x\x00\x01',HV Battery max temp and temp point,°C,Battery,9.875,numeric,,
+SF,,4.0,,6.1629499999999995,04 62 02 8C AA AA AA AA,sd_2A73E1CC/00000012,652.0,b'\xaa',SOC (BMS),%,Battery,68.0,numeric,,
+SF,,5.0,,6.26295,05 62 1E 3B 05 C1 AA AA,sd_2A73E1CC/00000012,7739.0,b'\x05\xc1',HV Battery voltage,V,Battery,368.25,numeric,,
+FF,,,,6.36295,10 08 62 1E 3D 00 02 48,sd_2A73E1CC/00000012,7741.0,b'\x00\x02H',HV Battery current,A,Battery,-4.96,partial,8.0,True
+OTHER,80.0,6.0,b'\x06P\x03\x00\x1e\x01\xe5',7.063,06 50 03 00 1E 01 E5 AA,sd_2A73E1CC/00000012,,,,,,,,,
+SF,,4.0,,7.1629499999999995,04 62 02 8C AA AA AA AA,sd_2A73E1CC/00000012,652.0,b'\xaa',SOC (BMS),%,Battery,68.0,numeric,,
+SF,,5.0,,7.263,05 62 1E 3B 05 C1 AA AA,sd_2A73E1CC/00000012,7739.0,b'\x05\xc1',HV Battery voltage,V,Battery,368.25,numeric,,
+FF,,,,7.3629999999999995,10 08 62 1E 3D 00 02 48,sd_2A73E1CC/00000012,7741.0,b'\x00\x02H',HV Battery current,A,Battery,-4.96,partial,8.0,True
+SF,,4.0,,7.463,04 62 2A 0B 62 AA AA AA,sd_2A73E1CC/00000012,10763.0,b'b',HV Battery temp (main value),°C,Battery,9.0,numeric,,
+SF,,7.0,,7.563,07 62 1E 0E 02 78 00 01,sd_2A73E1CC/00000012,7694.0,b'\x02x\x00\x01',HV Battery max temp and temp point,°C,Battery,9.875,numeric,,
+SF,,4.0,,8.163,04 62 02 8C AA AA AA AA,sd_2A73E1CC/00000012,652.0,b'\xaa',SOC (BMS),%,Battery,68.0,numeric,,
+SF,,5.0,,8.26305,05 62 1E 3B 05 C1 AA AA,sd_2A73E1CC/00000012,7739.0,b'\x05\xc1',HV Battery voltage,V,Battery,368.25,numeric,,
+FF,,,,8.36305,10 08 62 1E 3D 00 02 48,sd_2A73E1CC/00000012,7741.0,b'\x00\x02H',HV Battery current,A,Battery,-4.96,partial,8.0,True
+OTHER,80.0,6.0,b'\x06P\x03\x00\x1e\x01\xe5',9.0631,06 50 03 00 1E 01 E5 AA,sd_2A73E1CC/00000012,,,,,,,,,
+SF,,4.0,,9.1631,04 62 02 8C AA AA AA AA,sd_2A73E1CC/00000012,652.0,b'\xaa',SOC (BMS),%,Battery,68.0,numeric,,
+SF,,5.0,,9.2631,05 62 1E 3B 05 C1 AA AA,sd_2A73E1CC/00000012,7739.0,b'\x05\xc1',HV Battery voltage,V,Battery,368.25,numeric,,
+FF,,,,9.3631,10 08 62 1E 3D 00 02 48,sd_2A73E1CC/00000012,7741.0,b'\x00\x02H',HV Battery current,A,Battery,-4.96,partial,8.0,True
+SF,,4.0,,9.46345,04 62 2A 0B 62 AA AA AA,sd_2A73E1CC/00000012,10763.0,b'b',HV Battery temp (main value),°C,Battery,9.0,numeric,,
+SF,,7.0,,9.56315,07 62 1E 0E 02 78 00 01,sd_2A73E1CC/00000012,7694.0,b'\x02x\x00\x01',HV Battery max temp and temp point,°C,Battery,9.875,numeric,,
+SF,,4.0,,10.1632,04 62 02 8C AA AA AA AA,sd_2A73E1CC/00000012,652.0,b'\xaa',SOC (BMS),%,Battery,68.0,numeric,,
+SF,,5.0,,10.2632,05 62 1E 3B 05 C1 AA AA,sd_2A73E1CC/00000012,7739.0,b'\x05\xc1',HV Battery voltage,V,Battery,368.25,numeric,,
+FF,,,,10.3635,10 08 62 1E 3D 00 02 48,sd_2A73E1CC/00000012,7741.0,b'\x00\x02H',HV Battery current,A,Battery,-4.96,partial,8.0,True
+OTHER,80.0,6.0,b'\x06P\x03\x00\x1e\x01\xe5',11.06325,06 50 03 00 1E 01 E5 AA,sd_2A73E1CC/00000012,,,,,,,,,
+SF,,4.0,,11.1632,04 62 02 8C AA AA AA AA,sd_2A73E1CC/00000012,652.0,b'\xaa',SOC (BMS),%,Battery,68.0,numeric,,
+SF,,5.0,,11.2636,05 62 1E 3B 05 C1 AA AA,sd_2A73E1CC/00000012,7739.0,b'\x05\xc1',HV Battery voltage,V,Battery,368.25,numeric,,
+FF,,,,11.363199999999999,10 08 62 1E 3D 00 02 48,sd_2A73E1CC/00000012,7741.0,b'\x00\x02H',HV Battery current,A,Battery,-4.96,partial,8.0,True
+SF,,4.0,,11.463249999999999,04 62 2A 0B 62 AA AA AA,sd_2A73E1CC/00000012,10763.0,b'b',HV Battery temp (main value),°C,Battery,9.0,numeric,,
+SF,,7.0,,11.5633,07 62 1E 0E 02 78 00 01,sd_2A73E1CC/00000012,7694.0,b'\x02x\x00\x01',HV Battery max temp and temp point,°C,Battery,9.875,numeric,,
+SF,,4.0,,12.163599999999999,04 62 02 8C AA AA AA AA,sd_2A73E1CC/00000012,652.0,b'\xaa',SOC (BMS),%,Battery,68.0,numeric,,
+SF,,5.0,,12.2633,05 62 1E 3B 05 C1 AA AA,sd_2A73E1CC/00000012,7739.0,b'\x05\xc1',HV Battery voltage,V,Battery,368.25,numeric,,
+FF,,,,12.363299999999999,10 08 62 1E 3D 00 02 48,sd_2A73E1CC/00000012,7741.0,b'\x00\x02H',HV Battery current,A,Battery,-4.96,partial,8.0,True
+OTHER,80.0,6.0,b'\x06P\x03\x00\x1e\x01\xe5',13.063649999999999,06 50 03 00 1E 01 E5 AA,sd_2A73E1CC/00000012,,,,,,,,,
+SF,,4.0,,13.16335,04 62 02 8C AA AA AA AA,sd_2A73E1CC/00000012,652.0,b'\xaa',SOC (BMS),%,Battery,68.0,numeric,,
+SF,,5.0,,13.263349999999999,05 62 1E 3B 05 C1 AA AA,sd_2A73E1CC/00000012,7739.0,b'\x05\xc1',HV Battery voltage,V,Battery,368.25,numeric,,
+FF,,,,13.363349999999999,10 08 62 1E 3D 00 02 48,sd_2A73E1CC/00000012,7741.0,b'\x00\x02H',HV Battery current,A,Battery,-4.96,partial,8.0,True
+SF,,4.0,,13.46335,04 62 2A 0B 62 AA AA AA,sd_2A73E1CC/00000012,10763.0,b'b',HV Battery temp (main value),°C,Battery,9.0,numeric,,
+SF,,7.0,,13.5634,07 62 1E 0E 02 78 00 01,sd_2A73E1CC/00000012,7694.0,b'\x02x\x00\x01',HV Battery max temp and temp point,°C,Battery,9.875,numeric,,
+SF,,4.0,,14.1634,04 62 02 8C AA AA AA AA,sd_2A73E1CC/00000012,652.0,b'\xaa',SOC (BMS),%,Battery,68.0,numeric,,
+SF,,5.0,,14.263449999999999,05 62 1E 3B 05 C1 AA AA,sd_2A73E1CC/00000012,7739.0,b'\x05\xc1',HV Battery voltage,V,Battery,368.25,numeric,,
+FF,,,,14.363449999999998,10 08 62 1E 3D 00 02 48,sd_2A73E1CC/00000012,7741.0,b'\x00\x02H',HV Battery current,A,Battery,-4.96,partial,8.0,True
+OTHER,80.0,6.0,b'\x06P\x03\x00\x1e\x01\xe5',15.0635,06 50 03 00 1E 01 E5 AA,sd_2A73E1CC/00000012,,,,,,,,,
+SF,,4.0,,15.16345,04 62 02 8C AA AA AA AA,sd_2A73E1CC/00000012,652.0,b'\xaa',SOC (BMS),%,Battery,68.0,numeric,,
+SF,,5.0,,15.263499999999999,05 62 1E 3B 05 C1 AA AA,sd_2A73E1CC/00000012,7739.0,b'\x05\xc1',HV Battery voltage,V,Battery,368.25,numeric,,
+FF,,,,15.363449999999998,10 08 62 1E 3D 00 02 48,sd_2A73E1CC/00000012,7741.0,b'\x00\x02H',HV Battery current,A,Battery,-4.96,partial,8.0,True
+SF,,4.0,,15.46345,04 62 2A 0B 62 AA AA AA,sd_2A73E1CC/00000012,10763.0,b'b',HV Battery temp (main value),°C,Battery,9.0,numeric,,
+SF,,7.0,,15.5635,07 62 1E 0E 02 78 00 01,sd_2A73E1CC/00000012,7694.0,b'\x02x\x00\x01',HV Battery max temp and temp point,°C,Battery,9.875,numeric,,
+SF,,4.0,,16.1635,04 62 02 8C AA AA AA AA,sd_2A73E1CC/00000012,652.0,b'\xaa',SOC (BMS),%,Battery,68.0,numeric,,
+SF,,5.0,,16.26355,05 62 1E 3B 05 C1 AA AA,sd_2A73E1CC/00000012,7739.0,b'\x05\xc1',HV Battery voltage,V,Battery,368.25,numeric,,
+FF,,,,16.36355,10 08 62 1E 3D 00 02 49,sd_2A73E1CC/00000012,7741.0,b'\x00\x02I',HV Battery current,A,Battery,-2.4,partial,8.0,True
+OTHER,80.0,6.0,b'\x06P\x03\x00\x1e\x01\xe5',17.06355,06 50 03 00 1E 01 E5 AA,sd_2A73E1CC/00000012,,,,,,,,,
+SF,,4.0,,17.16355,04 62 02 8C AA AA AA AA,sd_2A73E1CC/00000012,652.0,b'\xaa',SOC (BMS),%,Battery,68.0,numeric,,
+SF,,5.0,,17.2636,05 62 1E 3B 05 C1 AA AA,sd_2A73E1CC/00000012,7739.0,b'\x05\xc1',HV Battery voltage,V,Battery,368.25,numeric,,
+FF,,,,17.363599999999998,10 08 62 1E 3D 00 02 48,sd_2A73E1CC/00000012,7741.0,b'\x00\x02H',HV Battery current,A,Battery,-4.96,partial,8.0,True
+SF,,4.0,,17.4636,04 62 2A 0B 62 AA AA AA,sd_2A73E1CC/00000012,10763.0,b'b',HV Battery temp (main value),°C,Battery,9.0,numeric,,
+SF,,7.0,,17.56395,07 62 1E 0E 02 78 00 01,sd_2A73E1CC/00000012,7694.0,b'\x02x\x00\x01',HV Battery max temp and temp point,°C,Battery,9.875,numeric,,
+SF,,4.0,,18.16365,04 62 02 8C AA AA AA AA,sd_2A73E1CC/00000012,652.0,b'\xaa',SOC (BMS),%,Battery,68.0,numeric,,
+SF,,5.0,,18.26365,05 62 1E 3B 05 C1 AA AA,sd_2A73E1CC/00000012,7739.0,b'\x05\xc1',HV Battery voltage,V,Battery,368.25,numeric,,
+FF,,,,18.36365,10 08 62 1E 3D 00 02 48,sd_2A73E1CC/00000012,7741.0,b'\x00\x02H',HV Battery current,A,Battery,-4.96,partial,8.0,True
+OTHER,80.0,6.0,b'\x06P\x03\x00\x1e\x01\xe5',19.0637,06 50 03 00 1E 01 E5 AA,sd_2A73E1CC/00000012,,,,,,,,,
+SF,,4.0,,19.16375,04 62 02 8C AA AA AA AA,sd_2A73E1CC/00000012,652.0,b'\xaa',SOC (BMS),%,Battery,68.0,numeric,,
+SF,,5.0,,19.263749999999998,05 62 1E 3B 05 C2 AA AA,sd_2A73E1CC/00000012,7739.0,b'\x05\xc2',HV Battery voltage,V,Battery,368.5,numeric,,
+FF,,,,19.36405,10 08 62 1E 3D 00 02 48,sd_2A73E1CC/00000012,7741.0,b'\x00\x02H',HV Battery current,A,Battery,-4.96,partial,8.0,True
+SF,,4.0,,19.4638,04 62 2A 0B 62 AA AA AA,sd_2A73E1CC/00000012,10763.0,b'b',HV Battery temp (main value),°C,Battery,9.0,numeric,,
+SF,,7.0,,19.56375,07 62 1E 0E 02 78 00 01,sd_2A73E1CC/00000012,7694.0,b'\x02x\x00\x01',HV Battery max temp and temp point,°C,Battery,9.875,numeric,,
+SF,,4.0,,20.1638,04 62 02 8C AA AA AA AA,sd_2A73E1CC/00000012,652.0,b'\xaa',SOC (BMS),%,Battery,68.0,numeric,,
+SF,,5.0,,20.26415,05 62 1E 3B 05 C1 AA AA,sd_2A73E1CC/00000012,7739.0,b'\x05\xc1',HV Battery voltage,V,Battery,368.25,numeric,,
+FF,,,,20.363799999999998,10 08 62 1E 3D 00 02 48,sd_2A73E1CC/00000012,7741.0,b'\x00\x02H',HV Battery current,A,Battery,-4.96,partial,8.0,True
+OTHER,80.0,6.0,b'\x06P\x03\x00\x1e\x01\xe5',21.06385,06 50 03 00 1E 01 E5 AA,sd_2A73E1CC/00000012,,,,,,,,,
+SF,,4.0,,21.164199999999997,04 62 02 8C AA AA AA AA,sd_2A73E1CC/00000012,652.0,b'\xaa',SOC (BMS),%,Battery,68.0,numeric,,
+SF,,5.0,,21.263849999999998,05 62 1E 3B 05 C1 AA AA,sd_2A73E1CC/00000012,7739.0,b'\x05\xc1',HV Battery voltage,V,Battery,368.25,numeric,,
+FF,,,,21.36385,10 08 62 1E 3D 00 02 48,sd_2A73E1CC/00000012,7741.0,b'\x00\x02H',HV Battery current,A,Battery,-4.96,partial,8.0,True
+SF,,4.0,,21.46385,04 62 2A 0B 62 AA AA AA,sd_2A73E1CC/00000012,10763.0,b'b',HV Battery temp (main value),°C,Battery,9.0,numeric,,
+SF,,7.0,,21.5639,07 62 1E 0E 02 78 00 01,sd_2A73E1CC/00000012,7694.0,b'\x02x\x00\x01',HV Battery max temp and temp point,°C,Battery,9.875,numeric,,
+SF,,4.0,,22.163899999999998,04 62 02 8C AA AA AA AA,sd_2A73E1CC/00000012,652.0,b'\xaa',SOC (BMS),%,Battery,68.0,numeric,,
+SF,,5.0,,22.2639,05 62 1E 3B 05 C1 AA AA,sd_2A73E1CC/00000012,7739.0,b'\x05\xc1',HV Battery voltage,V,Battery,368.25,numeric,,
+FF,,,,22.363899999999997,10 08 62 1E 3D 00 02 48,sd_2A73E1CC/00000012,7741.0,b'\x00\x02H',HV Battery current,A,Battery,-4.96,partial,8.0,True
+OTHER,80.0,6.0,b'\x06P\x03\x00\x1e\x01\xe5',23.06395,06 50 03 00 1E 01 E5 AA,sd_2A73E1CC/00000012,,,,,,,,,
+SF,,4.0,,23.16395,04 62 02 8C AA AA AA AA,sd_2A73E1CC/00000012,652.0,b'\xaa',SOC (BMS),%,Battery,68.0,numeric,,
+SF,,5.0,,23.264,05 62 1E 3B 05 C1 AA AA,sd_2A73E1CC/00000012,7739.0,b'\x05\xc1',HV Battery voltage,V,Battery,368.25,numeric,,
+FF,,,,23.36395,10 08 62 1E 3D 00 02 48,sd_2A73E1CC/00000012,7741.0,b'\x00\x02H',HV Battery current,A,Battery,-4.96,partial,8.0,True
+SF,,4.0,,23.46395,04 62 2A 0B 62 AA AA AA,sd_2A73E1CC/00000012,10763.0,b'b',HV Battery temp (main value),°C,Battery,9.0,numeric,,
+SF,,7.0,,23.564,07 62 1E 0E 02 78 00 01,sd_2A73E1CC/00000012,7694.0,b'\x02x\x00\x01',HV Battery max temp and temp point,°C,Battery,9.875,numeric,,
+SF,,4.0,,24.163999999999998,04 62 02 8C AA AA AA AA,sd_2A73E1CC/00000012,652.0,b'\xaa',SOC (BMS),%,Battery,68.0,numeric,,
+SF,,5.0,,24.264,05 62 1E 3B 05 C1 AA AA,sd_2A73E1CC/00000012,7739.0,b'\x05\xc1',HV Battery voltage,V,Battery,368.25,numeric,,
+FF,,,,24.363999999999997,10 08 62 1E 3D 00 02 48,sd_2A73E1CC/00000012,7741.0,b'\x00\x02H',HV Battery current,A,Battery,-4.96,partial,8.0,True
+OTHER,80.0,6.0,b'\x06P\x03\x00\x1e\x01\xe5',25.0641,06 50 03 00 1E 01 E5 AA,sd_2A73E1CC/00000012,,,,,,,,,
+SF,,4.0,,25.164099999999998,04 62 02 8C AA AA AA AA,sd_2A73E1CC/00000012,652.0,b'\xaa',SOC (BMS),%,Battery,68.0,numeric,,
+SF,,5.0,,25.264049999999997,05 62 1E 3B 05 C1 AA AA,sd_2A73E1CC/00000012,7739.0,b'\x05\xc1',HV Battery voltage,V,Battery,368.25,numeric,,
+FF,,,,25.36415,10 08 62 1E 3D 00 02 48,sd_2A73E1CC/00000012,7741.0,b'\x00\x02H',HV Battery current,A,Battery,-4.96,partial,8.0,True
+SF,,4.0,,25.4641,04 62 2A 0B 62 AA AA AA,sd_2A73E1CC/00000012,10763.0,b'b',HV Battery temp (main value),°C,Battery,9.0,numeric,,
+SF,,7.0,,25.564149999999998,07 62 1E 0E 02 78 00 01,sd_2A73E1CC/00000012,7694.0,b'\x02x\x00\x01',HV Battery max temp and temp point,°C,Battery,9.875,numeric,,
+SF,,4.0,,26.164099999999998,04 62 02 8C AA AA AA AA,sd_2A73E1CC/00000012,652.0,b'\xaa',SOC (BMS),%,Battery,68.0,numeric,,
+SF,,5.0,,26.264149999999997,05 62 1E 3B 05 C1 AA AA,sd_2A73E1CC/00000012,7739.0,b'\x05\xc1',HV Battery voltage,V,Battery,368.25,numeric,,
+FF,,,,26.3642,10 08 62 1E 3D 00 02 48,sd_2A73E1CC/00000012,7741.0,b'\x00\x02H',HV Battery current,A,Battery,-4.96,partial,8.0,True
+OTHER,80.0,6.0,b'\x06P\x03\x00\x1e\x01\xe5',27.0642,06 50 03 00 1E 01 E5 AA,sd_2A73E1CC/00000012,,,,,,,,,
+SF,,4.0,,27.164199999999997,04 62 02 8C AA AA AA AA,sd_2A73E1CC/00000012,652.0,b'\xaa',SOC (BMS),%,Battery,68.0,numeric,,
+SF,,5.0,,27.2642,05 62 1E 3B 05 C1 AA AA,sd_2A73E1CC/00000012,7739.0,b'\x05\xc1',HV Battery voltage,V,Battery,368.25,numeric,,
+FF,,,,27.3642,10 08 62 1E 3D 00 02 48,sd_2A73E1CC/00000012,7741.0,b'\x00\x02H',HV Battery current,A,Battery,-4.96,partial,8.0,True
+SF,,4.0,,27.46465,04 62 2A 0B 62 AA AA AA,sd_2A73E1CC/00000012,10763.0,b'b',HV Battery temp (main value),°C,Battery,9.0,numeric,,
+SF,,7.0,,27.564349999999997,07 62 1E 0E 02 78 00 01,sd_2A73E1CC/00000012,7694.0,b'\x02x\x00\x01',HV Battery max temp and temp point,°C,Battery,9.875,numeric,,
+SF,,4.0,,28.16435,04 62 02 8C AA AA AA AA,sd_2A73E1CC/00000012,652.0,b'\xaa',SOC (BMS),%,Battery,68.0,numeric,,
+SF,,5.0,,28.2643,05 62 1E 3B 05 C1 AA AA,sd_2A73E1CC/00000012,7739.0,b'\x05\xc1',HV Battery voltage,V,Battery,368.25,numeric,,
+FF,,,,28.3649,10 08 62 1E 3D 00 02 48,sd_2A73E1CC/00000012,7741.0,b'\x00\x02H',HV Battery current,A,Battery,-4.96,partial,8.0,True
+OTHER,80.0,6.0,b'\x06P\x03\x00\x1e\x01\xe5',29.0643,06 50 03 00 1E 01 E5 AA,sd_2A73E1CC/00000012,,,,,,,,,
+SF,,4.0,,29.16435,04 62 02 8C AA AA AA AA,sd_2A73E1CC/00000012,652.0,b'\xaa',SOC (BMS),%,Battery,68.0,numeric,,
+SF,,5.0,,29.26475,05 62 1E 3B 05 C1 AA AA,sd_2A73E1CC/00000012,7739.0,b'\x05\xc1',HV Battery voltage,V,Battery,368.25,numeric,,
+FF,,,,29.3645,10 08 62 1E 3D 00 02 48,sd_2A73E1CC/00000012,7741.0,b'\x00\x02H',HV Battery current,A,Battery,-4.96,partial,8.0,True
+SF,,4.0,,29.464299999999998,04 62 2A 0B 62 AA AA AA,sd_2A73E1CC/00000012,10763.0,b'b',HV Battery temp (main value),°C,Battery,9.0,numeric,,
+SF,,7.0,,29.564449999999997,07 62 1E 0E 02 78 00 01,sd_2A73E1CC/00000012,7694.0,b'\x02x\x00\x01',HV Battery max temp and temp point,°C,Battery,9.875,numeric,,
+SF,,4.0,,30.165,04 62 02 8C AA AA AA AA,sd_2A73E1CC/00000012,652.0,b'\xaa',SOC (BMS),%,Battery,68.0,numeric,,
+SF,,5.0,,30.26445,05 62 1E 3B 05 C1 AA AA,sd_2A73E1CC/00000012,7739.0,b'\x05\xc1',HV Battery voltage,V,Battery,368.25,numeric,,
+FF,,,,30.364449999999998,10 08 62 1E 3D 00 02 48,sd_2A73E1CC/00000012,7741.0,b'\x00\x02H',HV Battery current,A,Battery,-4.96,partial,8.0,True
+OTHER,80.0,6.0,b'\x06P\x03\x00\x1e\x01\xe5',31.064799999999998,06 50 03 00 1E 01 E5 AA,sd_2A73E1CC/00000012,,,,,,,,,
+SF,,4.0,,31.16445,04 62 02 8C AA AA AA AA,sd_2A73E1CC/00000012,652.0,b'\xaa',SOC (BMS),%,Battery,68.0,numeric,,
+SF,,5.0,,31.264499999999998,05 62 1E 3B 05 C1 AA AA,sd_2A73E1CC/00000012,7739.0,b'\x05\xc1',HV Battery voltage,V,Battery,368.25,numeric,,
+FF,,,,31.3645,10 08 62 1E 3D 00 02 48,sd_2A73E1CC/00000012,7741.0,b'\x00\x02H',HV Battery current,A,Battery,-4.96,partial,8.0,True
+SF,,4.0,,31.464499999999997,04 62 2A 0B 62 AA AA AA,sd_2A73E1CC/00000012,10763.0,b'b',HV Battery temp (main value),°C,Battery,9.0,numeric,,
+SF,,7.0,,31.564549999999997,07 62 1E 0E 02 78 00 01,sd_2A73E1CC/00000012,7694.0,b'\x02x\x00\x01',HV Battery max temp and temp point,°C,Battery,9.875,numeric,,
+SF,,4.0,,32.1645,04 62 02 8C AA AA AA AA,sd_2A73E1CC/00000012,652.0,b'\xaa',SOC (BMS),%,Battery,68.0,numeric,,
+SF,,5.0,,32.26455,05 62 1E 3B 05 C1 AA AA,sd_2A73E1CC/00000012,7739.0,b'\x05\xc1',HV Battery voltage,V,Battery,368.25,numeric,,
+FF,,,,32.36455,10 08 62 1E 3D 00 02 48,sd_2A73E1CC/00000012,7741.0,b'\x00\x02H',HV Battery current,A,Battery,-4.96,partial,8.0,True
+OTHER,80.0,6.0,b'\x06P\x03\x00\x1e\x01\xe5',33.0646,06 50 03 00 1E 01 E5 AA,sd_2A73E1CC/00000012,,,,,,,,,
+SF,,4.0,,33.1646,04 62 02 8C AA AA AA AA,sd_2A73E1CC/00000012,652.0,b'\xaa',SOC (BMS),%,Battery,68.0,numeric,,
+SF,,5.0,,33.2646,05 62 1E 3B 05 C1 AA AA,sd_2A73E1CC/00000012,7739.0,b'\x05\xc1',HV Battery voltage,V,Battery,368.25,numeric,,
+FF,,,,33.364599999999996,10 08 62 1E 3D 00 02 48,sd_2A73E1CC/00000012,7741.0,b'\x00\x02H',HV Battery current,A,Battery,-4.96,partial,8.0,True
+SF,,4.0,,33.4646,04 62 2A 0B 62 AA AA AA,sd_2A73E1CC/00000012,10763.0,b'b',HV Battery temp (main value),°C,Battery,9.0,numeric,,
+SF,,7.0,,33.56465,07 62 1E 0E 02 78 00 01,sd_2A73E1CC/00000012,7694.0,b'\x02x\x00\x01',HV Battery max temp and temp point,°C,Battery,9.875,numeric,,
+SF,,4.0,,34.16465,04 62 02 8C AA AA AA AA,sd_2A73E1CC/00000012,652.0,b'\xaa',SOC (BMS),%,Battery,68.0,numeric,,
+SF,,5.0,,34.264649999999996,05 62 1E 3B 05 C1 AA AA,sd_2A73E1CC/00000012,7739.0,b'\x05\xc1',HV Battery voltage,V,Battery,368.25,numeric,,
+FF,,,,34.36465,10 08 62 1E 3D 00 02 48,sd_2A73E1CC/00000012,7741.0,b'\x00\x02H',HV Battery current,A,Battery,-4.96,partial,8.0,True
+OTHER,80.0,6.0,b'\x06P\x03\x00\x1e\x01\xe5',35.06465,06 50 03 00 1E 01 E5 AA,sd_2A73E1CC/00000012,,,,,,,,,
+SF,,4.0,,35.164699999999996,04 62 02 8C AA AA AA AA,sd_2A73E1CC/00000012,652.0,b'\xaa',SOC (BMS),%,Battery,68.0,numeric,,
+SF,,5.0,,35.2647,05 62 1E 3B 05 C1 AA AA,sd_2A73E1CC/00000012,7739.0,b'\x05\xc1',HV Battery voltage,V,Battery,368.25,numeric,,
+FF,,,,35.3647,10 08 62 1E 3D 00 02 48,sd_2A73E1CC/00000012,7741.0,b'\x00\x02H',HV Battery current,A,Battery,-4.96,partial,8.0,True
+SF,,4.0,,35.4647,04 62 2A 0B 62 AA AA AA,sd_2A73E1CC/00000012,10763.0,b'b',HV Battery temp (main value),°C,Battery,9.0,numeric,,
+SF,,7.0,,35.56545,07 62 1E 0E 02 78 00 01,sd_2A73E1CC/00000012,7694.0,b'\x02x\x00\x01',HV Battery max temp and temp point,°C,Battery,9.875,numeric,,
+SF,,4.0,,36.164699999999996,04 62 02 8C AA AA AA AA,sd_2A73E1CC/00000012,652.0,b'\xaa',SOC (BMS),%,Battery,68.0,numeric,,
+SF,,5.0,,36.26475,05 62 1E 3B 05 C1 AA AA,sd_2A73E1CC/00000012,7739.0,b'\x05\xc1',HV Battery voltage,V,Battery,368.25,numeric,,
+FF,,,,36.36475,10 08 62 1E 3D 00 02 48,sd_2A73E1CC/00000012,7741.0,b'\x00\x02H',HV Battery current,A,Battery,-4.96,partial,8.0,True

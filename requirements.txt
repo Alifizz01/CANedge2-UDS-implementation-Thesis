@@ -1,0 +1,7 @@
+asammdf>=7.0.0
+pandas>=2.0.0
+canedge_browser>=0.1.0
+numpy>=1.24.0
+matplotlib>=3.7.0
+PyQt5>=5.15.0
+pyqtgraph>=0.13.0
