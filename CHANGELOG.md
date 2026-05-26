@@ -4,7 +4,7 @@
 
 ### What was done
 - Imported the SD card dump from 2025-04-09 (14 new sessions, 00000007–00000023) under `data/sd_dumps_2A73E1CC_20250409/`.
-- Discovered that sessions 12, 13, 17, 18, 22, 23 already contain working BMS UDS exchanges on `0x17FC007B` request → `0x17FE007B` response. The earlier broad inventory missed these because asammdf splits standard- and extended-ID frames into separate channel groups (`CAN1_Rx_IDE`, `CAN1_Tx_IDE`) and the original `mf4_reader.py` only read the first group.
+- Discovered that sessions 12, 13, 17, 18, 22, 23 already contain working BMS UDS exchanges on `0x17FC007B` request → `0x17FE007B` response. The earlier broad inventory missed these because asammdf splits standard- and extended-ID frames into separate channel groups (`CAN1_Rx_IDE`, `CAN1_Tx_IDE`), and the original `mf4_reader.py` only read the first group.
 - Built `src/uds_battery_decoder.py`: parses the VW MEB UDS PID CSV into a PID database (161 PIDs), decodes ISO-TP framing (SF/FF/NEG), maps payload bytes by position to formula labels (`WW`/`XX`/`YY`/`ZZ`), and evaluates the formula. Outputs `output/uds_decoded/{all_sessions.csv, summary.txt, plots/}`.
 - **First decoded battery signals from VW ID Buzz** (1318 decoded values across the dataset):
   - SOC (0x028C): 66.8–68.0 %
@@ -129,4 +129,4 @@ All changes made across Claude sessions are logged here for cross-session refere
   - Background conversion with spinner UI (uses Python/asammdf under the hood)
   - Seamless workflow: record with CANedge2 → open in CAN Analyzer
   - Falls back to CSV if already exported
-- Updated memory file with complete project state, Rust toolchain details, and workflow notes
+- Updated memory file with complete project state, Rust toolchain details, and workflow notes.
