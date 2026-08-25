@@ -193,7 +193,9 @@
       "mode": 0,
       "retransmission": 1,
       "fd_spec": 0,
-      "bit_rate_cfg_mode": 0
+      "bit_rate_cfg_mode": 1,
+      "bit_rate_std": 500000,
+      "bit_rate_fd": 2000000
     },
     "filter": {
       "remote_frames": 0,
@@ -267,91 +269,55 @@
     },
     "transmit": [
       {
-        "name": "DiagSessionExt_BMS",
+        "name": "BMS_DiagSessExt",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
         "brs": 0,
         "log": 1,
-        "period": 2000,
+        "period": 10000,
         "delay": 0,
         "id": "17FC007B",
         "data": "0210035555555555"
       },
       {
-        "name": "TesterPresent_BMS",
+        "name": "BMS_TP",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
         "brs": 0,
         "log": 1,
-        "period": 2000,
-        "delay": 50,
+        "period": 10000,
+        "delay": 150,
         "id": "17FC007B",
         "data": "023e005555555555"
       },
       {
-        "name": "T1_028C_SOC__BMS",
+        "name": "T1_028C_SOC",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
         "brs": 0,
         "log": 1,
-        "period": 1000,
-        "delay": 100,
+        "period": 10000,
+        "delay": 300,
         "id": "17FC007B",
         "data": "0322028c55555555"
       },
       {
-        "name": "T1_1E3B_HV_Battery_voltage",
+        "name": "T1_1E3B_HV_V",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
         "brs": 0,
         "log": 1,
-        "period": 1000,
-        "delay": 200,
+        "period": 10000,
+        "delay": 450,
         "id": "17FC007B",
         "data": "03221e3b55555555"
       },
       {
-        "name": "T1_1E3D_HV_Battery_current",
-        "state": 1,
-        "id_format": 1,
-        "frame_format": 0,
-        "brs": 0,
-        "log": 1,
-        "period": 1000,
-        "delay": 300,
-        "id": "17FC007B",
-        "data": "03221e3d55555555"
-      },
-      {
-        "name": "T1_2A0B_HV_Battery_temp__m",
-        "state": 1,
-        "id_format": 1,
-        "frame_format": 0,
-        "brs": 0,
-        "log": 1,
-        "period": 1000,
-        "delay": 400,
-        "id": "17FC007B",
-        "data": "03222a0b55555555"
-      },
-      {
-        "name": "T1_7448_Car_operation_mode",
-        "state": 1,
-        "id_format": 1,
-        "frame_format": 0,
-        "brs": 0,
-        "log": 1,
-        "period": 1000,
-        "delay": 500,
-        "id": "17FC007B",
-        "data": "0322744855555555"
-      },
-      {
-        "name": "S1_1E0E_HV_Battery_max_tem",
+        "name": "T1_1E3D_HV_I",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
@@ -360,34 +326,22 @@
         "period": 10000,
         "delay": 600,
         "id": "17FC007B",
-        "data": "03221e0e55555555"
+        "data": "03221e3d55555555"
       },
       {
-        "name": "S1_1E0F_HV_Battery_min_tem",
+        "name": "T1_2A0B_Tmain",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
         "brs": 0,
         "log": 1,
         "period": 10000,
-        "delay": 700,
+        "delay": 750,
         "id": "17FC007B",
-        "data": "03221e0f55555555"
+        "data": "03222a0b55555555"
       },
       {
-        "name": "S1_1E32_HV_battery_total_d",
-        "state": 1,
-        "id_format": 1,
-        "frame_format": 0,
-        "brs": 0,
-        "log": 1,
-        "period": 10000,
-        "delay": 800,
-        "id": "17FC007B",
-        "data": "03221e3255555555"
-      },
-      {
-        "name": "S1_1E33_HV_Battery_cell___",
+        "name": "T1_7448_OpMode",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
@@ -396,34 +350,22 @@
         "period": 10000,
         "delay": 900,
         "id": "17FC007B",
-        "data": "03221e3355555555"
+        "data": "0322744855555555"
       },
       {
-        "name": "S1_1E34_HV_Battery_cell___",
+        "name": "S2_Cell001V",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
         "brs": 0,
         "log": 1,
         "period": 10000,
-        "delay": 1000,
+        "delay": 1050,
         "id": "17FC007B",
-        "data": "03221e3455555555"
+        "data": "03221e4055555555"
       },
       {
-        "name": "S1_465B_DC_DC_current__HV_",
-        "state": 1,
-        "id_format": 1,
-        "frame_format": 0,
-        "brs": 0,
-        "log": 1,
-        "period": 10000,
-        "delay": 1100,
-        "id": "17FC007B",
-        "data": "0322465b55555555"
-      },
-      {
-        "name": "S1_465D_DC_DC_voltage__HV_",
+        "name": "S2_Cell002V",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
@@ -432,34 +374,22 @@
         "period": 10000,
         "delay": 1200,
         "id": "17FC007B",
-        "data": "0322465d55555555"
+        "data": "03221e4155555555"
       },
       {
-        "name": "S1_743B_cirkulation_pump_H",
+        "name": "S2_Cell003V",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
         "brs": 0,
         "log": 1,
         "period": 10000,
-        "delay": 1300,
+        "delay": 1350,
         "id": "17FC007B",
-        "data": "0322743b55555555"
+        "data": "03221e4255555555"
       },
       {
-        "name": "S1_0364_HV_auxilary_consum",
-        "state": 1,
-        "id_format": 1,
-        "frame_format": 0,
-        "brs": 0,
-        "log": 1,
-        "period": 10000,
-        "delay": 1400,
-        "id": "17FC007B",
-        "data": "0322036455555555"
-      },
-      {
-        "name": "S1_0500_HV_Battery_serial",
+        "name": "S2_Cell004V",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
@@ -468,34 +398,22 @@
         "period": 10000,
         "delay": 1500,
         "id": "17FC007B",
-        "data": "0322050055555555"
+        "data": "03221e4355555555"
       },
       {
-        "name": "S1_0800_A_C_compressor_pow",
+        "name": "S2_Cell005V",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
         "brs": 0,
         "log": 1,
         "period": 10000,
-        "delay": 1600,
+        "delay": 1650,
         "id": "17FC007B",
-        "data": "0322080055555555"
+        "data": "03221e4455555555"
       },
       {
-        "name": "S1_0801_PTC_air_heater_HV_",
-        "state": 1,
-        "id_format": 1,
-        "frame_format": 0,
-        "brs": 0,
-        "log": 1,
-        "period": 10000,
-        "delay": 1700,
-        "id": "17FC007B",
-        "data": "0322080155555555"
-      },
-      {
-        "name": "S1_1620_PTC_heater_battery",
+        "name": "S2_Cell006V",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
@@ -504,34 +422,22 @@
         "period": 10000,
         "delay": 1800,
         "id": "17FC007B",
-        "data": "0322162055555555"
+        "data": "03221e4555555555"
       },
       {
-        "name": "S1_189D_HV_Battery_cooling",
+        "name": "S2_Cell007V",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
         "brs": 0,
         "log": 1,
         "period": 10000,
-        "delay": 1900,
+        "delay": 1950,
         "id": "17FC007B",
-        "data": "0322189d55555555"
+        "data": "03221e4655555555"
       },
       {
-        "name": "S1_1E40_HV_Battery_cell_vo",
-        "state": 1,
-        "id_format": 1,
-        "frame_format": 0,
-        "brs": 0,
-        "log": 1,
-        "period": 10000,
-        "delay": 2000,
-        "id": "17FC007B",
-        "data": "03221e4055555555"
-      },
-      {
-        "name": "S1_1E41_HV_Battery_cell_vo",
+        "name": "S2_Cell008V",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
@@ -540,34 +446,22 @@
         "period": 10000,
         "delay": 2100,
         "id": "17FC007B",
-        "data": "03221e4155555555"
+        "data": "03221e4755555555"
       },
       {
-        "name": "S1_1E42_HV_Battery_cell_vo",
+        "name": "S2_Cell009V",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
         "brs": 0,
         "log": 1,
         "period": 10000,
-        "delay": 2200,
+        "delay": 2250,
         "id": "17FC007B",
-        "data": "03221e4255555555"
+        "data": "03221e4855555555"
       },
       {
-        "name": "S1_1E43_HV_Battery_cell_vo",
-        "state": 1,
-        "id_format": 1,
-        "frame_format": 0,
-        "brs": 0,
-        "log": 1,
-        "period": 10000,
-        "delay": 2300,
-        "id": "17FC007B",
-        "data": "03221e4355555555"
-      },
-      {
-        "name": "S1_1E44_HV_Battery_cell_vo",
+        "name": "S2_Cell010V",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
@@ -576,34 +470,22 @@
         "period": 10000,
         "delay": 2400,
         "id": "17FC007B",
-        "data": "03221e4455555555"
+        "data": "03221e4955555555"
       },
       {
-        "name": "S1_1E45_HV_Battery_cell_vo",
+        "name": "S2_Cell011V",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
         "brs": 0,
         "log": 1,
         "period": 10000,
-        "delay": 2500,
+        "delay": 2550,
         "id": "17FC007B",
-        "data": "03221e4555555555"
+        "data": "03221e4a55555555"
       },
       {
-        "name": "S1_1E46_HV_Battery_cell_vo",
-        "state": 1,
-        "id_format": 1,
-        "frame_format": 0,
-        "brs": 0,
-        "log": 1,
-        "period": 10000,
-        "delay": 2600,
-        "id": "17FC007B",
-        "data": "03221e4655555555"
-      },
-      {
-        "name": "S1_1E47_HV_Battery_cell_vo",
+        "name": "S2_Cell012V",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
@@ -612,34 +494,22 @@
         "period": 10000,
         "delay": 2700,
         "id": "17FC007B",
-        "data": "03221e4755555555"
+        "data": "03221e4b55555555"
       },
       {
-        "name": "S1_1E48_HV_Battery_cell_vo",
+        "name": "S2_Cell013V",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
         "brs": 0,
         "log": 1,
         "period": 10000,
-        "delay": 2800,
+        "delay": 2850,
         "id": "17FC007B",
-        "data": "03221e4855555555"
+        "data": "03221e4c55555555"
       },
       {
-        "name": "S1_1E49_HV_Battery_cell_vo",
-        "state": 1,
-        "id_format": 1,
-        "frame_format": 0,
-        "brs": 0,
-        "log": 1,
-        "period": 10000,
-        "delay": 2900,
-        "id": "17FC007B",
-        "data": "03221e4955555555"
-      },
-      {
-        "name": "S1_1E4A_HV_Battery_cell_vo",
+        "name": "S2_Cell014V",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
@@ -648,34 +518,22 @@
         "period": 10000,
         "delay": 3000,
         "id": "17FC007B",
-        "data": "03221e4a55555555"
+        "data": "03221e4d55555555"
       },
       {
-        "name": "S1_1E4B_HV_Battery_cell_vo",
+        "name": "S2_Cell015V",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
         "brs": 0,
         "log": 1,
         "period": 10000,
-        "delay": 3100,
+        "delay": 3150,
         "id": "17FC007B",
-        "data": "03221e4b55555555"
+        "data": "03221e4e55555555"
       },
       {
-        "name": "S1_1E4C_HV_Battery_cell_vo",
-        "state": 1,
-        "id_format": 1,
-        "frame_format": 0,
-        "brs": 0,
-        "log": 1,
-        "period": 10000,
-        "delay": 3200,
-        "id": "17FC007B",
-        "data": "03221e4c55555555"
-      },
-      {
-        "name": "S1_1E4D_HV_Battery_cell_vo",
+        "name": "S2_Cell016V",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
@@ -684,34 +542,22 @@
         "period": 10000,
         "delay": 3300,
         "id": "17FC007B",
-        "data": "03221e4d55555555"
-      },
-      {
-        "name": "S1_1E4E_HV_Battery_cell_vo",
-        "state": 1,
-        "id_format": 1,
-        "frame_format": 0,
-        "brs": 0,
-        "log": 1,
-        "period": 10000,
-        "delay": 3400,
-        "id": "17FC007B",
-        "data": "03221e4e55555555"
-      },
-      {
-        "name": "S1_1E4F_HV_Battery_cell_vo",
-        "state": 1,
-        "id_format": 1,
-        "frame_format": 0,
-        "brs": 0,
-        "log": 1,
-        "period": 10000,
-        "delay": 3500,
-        "id": "17FC007B",
         "data": "03221e4f55555555"
       },
       {
-        "name": "S1_1E50_HV_Battery_cell_vo",
+        "name": "S2_Cell017V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 3450,
+        "id": "17FC007B",
+        "data": "03221e5055555555"
+      },
+      {
+        "name": "S2_Cell018V",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
@@ -720,34 +566,22 @@
         "period": 10000,
         "delay": 3600,
         "id": "17FC007B",
-        "data": "03221e5055555555"
-      },
-      {
-        "name": "S1_1E51_HV_Battery_cell_vo",
-        "state": 1,
-        "id_format": 1,
-        "frame_format": 0,
-        "brs": 0,
-        "log": 1,
-        "period": 10000,
-        "delay": 3700,
-        "id": "17FC007B",
         "data": "03221e5155555555"
       },
       {
-        "name": "S1_1E52_HV_Battery_cell_vo",
+        "name": "S2_Cell019V",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
         "brs": 0,
         "log": 1,
         "period": 10000,
-        "delay": 3800,
+        "delay": 3750,
         "id": "17FC007B",
         "data": "03221e5255555555"
       },
       {
-        "name": "S1_1E53_HV_Battery_cell_vo",
+        "name": "S2_Cell020V",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
@@ -759,31 +593,19 @@
         "data": "03221e5355555555"
       },
       {
-        "name": "S1_1E54_HV_Battery_cell_vo",
+        "name": "S2_Cell021V",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
         "brs": 0,
         "log": 1,
         "period": 10000,
-        "delay": 4000,
+        "delay": 4050,
         "id": "17FC007B",
         "data": "03221e5455555555"
       },
       {
-        "name": "S1_1E55_HV_Battery_cell_vo",
-        "state": 1,
-        "id_format": 1,
-        "frame_format": 0,
-        "brs": 0,
-        "log": 1,
-        "period": 10000,
-        "delay": 4100,
-        "id": "17FC007B",
-        "data": "03221e5555555555"
-      },
-      {
-        "name": "S1_1E56_HV_Battery_cell_vo",
+        "name": "S2_Cell022V",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
@@ -792,34 +614,22 @@
         "period": 10000,
         "delay": 4200,
         "id": "17FC007B",
+        "data": "03221e5555555555"
+      },
+      {
+        "name": "S2_Cell023V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 4350,
+        "id": "17FC007B",
         "data": "03221e5655555555"
       },
       {
-        "name": "S1_1E57_HV_Battery_cell_vo",
-        "state": 1,
-        "id_format": 1,
-        "frame_format": 0,
-        "brs": 0,
-        "log": 1,
-        "period": 10000,
-        "delay": 4300,
-        "id": "17FC007B",
-        "data": "03221e5755555555"
-      },
-      {
-        "name": "S1_1E58_HV_Battery_cell_vo",
-        "state": 1,
-        "id_format": 1,
-        "frame_format": 0,
-        "brs": 0,
-        "log": 1,
-        "period": 10000,
-        "delay": 4400,
-        "id": "17FC007B",
-        "data": "03221e5855555555"
-      },
-      {
-        "name": "S1_1E59_HV_Battery_cell_vo",
+        "name": "S2_Cell024V",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
@@ -828,34 +638,22 @@
         "period": 10000,
         "delay": 4500,
         "id": "17FC007B",
-        "data": "03221e5955555555"
+        "data": "03221e5755555555"
       },
       {
-        "name": "S1_1E5A_HV_Battery_cell_vo",
+        "name": "S2_Cell025V",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
         "brs": 0,
         "log": 1,
         "period": 10000,
-        "delay": 4600,
+        "delay": 4650,
         "id": "17FC007B",
-        "data": "03221e5a55555555"
+        "data": "03221e5855555555"
       },
       {
-        "name": "S1_1E5B_HV_Battery_cell_vo",
-        "state": 1,
-        "id_format": 1,
-        "frame_format": 0,
-        "brs": 0,
-        "log": 1,
-        "period": 10000,
-        "delay": 4700,
-        "id": "17FC007B",
-        "data": "03221e5b55555555"
-      },
-      {
-        "name": "S1_1E5C_HV_Battery_cell_vo",
+        "name": "S2_Cell026V",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
@@ -864,34 +662,22 @@
         "period": 10000,
         "delay": 4800,
         "id": "17FC007B",
-        "data": "03221e5c55555555"
+        "data": "03221e5955555555"
       },
       {
-        "name": "S1_1E5D_HV_Battery_cell_vo",
+        "name": "S2_Cell027V",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
         "brs": 0,
         "log": 1,
         "period": 10000,
-        "delay": 4900,
+        "delay": 4950,
         "id": "17FC007B",
-        "data": "03221e5d55555555"
+        "data": "03221e5a55555555"
       },
       {
-        "name": "S1_1E5E_HV_Battery_cell_vo",
-        "state": 1,
-        "id_format": 1,
-        "frame_format": 0,
-        "brs": 0,
-        "log": 1,
-        "period": 10000,
-        "delay": 5000,
-        "id": "17FC007B",
-        "data": "03221e5e55555555"
-      },
-      {
-        "name": "S1_1E5F_HV_Battery_cell_vo",
+        "name": "S2_Cell028V",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
@@ -900,34 +686,22 @@
         "period": 10000,
         "delay": 5100,
         "id": "17FC007B",
-        "data": "03221e5f55555555"
+        "data": "03221e5b55555555"
       },
       {
-        "name": "S1_1E60_HV_Battery_cell_vo",
+        "name": "S2_Cell029V",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
         "brs": 0,
         "log": 1,
         "period": 10000,
-        "delay": 5200,
+        "delay": 5250,
         "id": "17FC007B",
-        "data": "03221e6055555555"
+        "data": "03221e5c55555555"
       },
       {
-        "name": "S1_1E61_HV_Battery_cell_vo",
-        "state": 1,
-        "id_format": 1,
-        "frame_format": 0,
-        "brs": 0,
-        "log": 1,
-        "period": 10000,
-        "delay": 5300,
-        "id": "17FC007B",
-        "data": "03221e6155555555"
-      },
-      {
-        "name": "S1_1E62_HV_Battery_cell_vo",
+        "name": "S2_Cell030V",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
@@ -936,34 +710,22 @@
         "period": 10000,
         "delay": 5400,
         "id": "17FC007B",
-        "data": "03221e6255555555"
+        "data": "03221e5d55555555"
       },
       {
-        "name": "S1_1E63_HV_Battery_cell_vo",
+        "name": "S2_Cell031V",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
         "brs": 0,
         "log": 1,
         "period": 10000,
-        "delay": 5500,
+        "delay": 5550,
         "id": "17FC007B",
-        "data": "03221e6355555555"
+        "data": "03221e5e55555555"
       },
       {
-        "name": "S1_1E64_HV_Battery_cell_vo",
-        "state": 1,
-        "id_format": 1,
-        "frame_format": 0,
-        "brs": 0,
-        "log": 1,
-        "period": 10000,
-        "delay": 5600,
-        "id": "17FC007B",
-        "data": "03221e6455555555"
-      },
-      {
-        "name": "S1_1E65_HV_Battery_cell_vo",
+        "name": "S2_Cell032V",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
@@ -972,34 +734,22 @@
         "period": 10000,
         "delay": 5700,
         "id": "17FC007B",
-        "data": "03221e6555555555"
+        "data": "03221e5f55555555"
       },
       {
-        "name": "S1_1E66_HV_Battery_cell_vo",
+        "name": "S2_Cell033V",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
         "brs": 0,
         "log": 1,
         "period": 10000,
-        "delay": 5800,
+        "delay": 5850,
         "id": "17FC007B",
-        "data": "03221e6655555555"
+        "data": "03221e6055555555"
       },
       {
-        "name": "S1_1E67_HV_Battery_cell_vo",
-        "state": 1,
-        "id_format": 1,
-        "frame_format": 0,
-        "brs": 0,
-        "log": 1,
-        "period": 10000,
-        "delay": 5900,
-        "id": "17FC007B",
-        "data": "03221e6755555555"
-      },
-      {
-        "name": "S1_1E68_HV_Battery_cell_vo",
+        "name": "S2_Cell034V",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
@@ -1008,31 +758,247 @@
         "period": 10000,
         "delay": 6000,
         "id": "17FC007B",
-        "data": "03221e6855555555"
+        "data": "03221e6155555555"
       },
       {
-        "name": "S1_1E6A_HV_Battery_cell_vo",
+        "name": "S2_Cell035V",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
         "brs": 0,
         "log": 1,
         "period": 10000,
-        "delay": 6100,
+        "delay": 6150,
+        "id": "17FC007B",
+        "data": "03221e6255555555"
+      },
+      {
+        "name": "S2_Cell036V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 6300,
+        "id": "17FC007B",
+        "data": "03221e6355555555"
+      },
+      {
+        "name": "S2_Cell037V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 6450,
+        "id": "17FC007B",
+        "data": "03221e6455555555"
+      },
+      {
+        "name": "S2_Cell038V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 6600,
+        "id": "17FC007B",
+        "data": "03221e6555555555"
+      },
+      {
+        "name": "S2_Cell039V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 6750,
+        "id": "17FC007B",
+        "data": "03221e6655555555"
+      },
+      {
+        "name": "S2_Cell040V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 6900,
+        "id": "17FC007B",
+        "data": "03221e6755555555"
+      },
+      {
+        "name": "S2_Cell041V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 7050,
+        "id": "17FC007B",
+        "data": "03221e6855555555"
+      },
+      {
+        "name": "S2_Cell042V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 7200,
+        "id": "17FC007B",
+        "data": "03221e6955555555"
+      },
+      {
+        "name": "S2_Cell043V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 7350,
         "id": "17FC007B",
         "data": "03221e6a55555555"
       },
       {
-        "name": "S1_1E6B_HV_Battery_cell_vo",
+        "name": "S2_Cell044V",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
         "brs": 0,
         "log": 1,
         "period": 10000,
-        "delay": 6200,
+        "delay": 7500,
         "id": "17FC007B",
         "data": "03221e6b55555555"
+      },
+      {
+        "name": "S2_Cell045V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 7650,
+        "id": "17FC007B",
+        "data": "03221e6c55555555"
+      },
+      {
+        "name": "S2_Cell046V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 7800,
+        "id": "17FC007B",
+        "data": "03221e6d55555555"
+      },
+      {
+        "name": "S2_Cell047V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 7950,
+        "id": "17FC007B",
+        "data": "03221e6e55555555"
+      },
+      {
+        "name": "S2_Cell048V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 8100,
+        "id": "17FC007B",
+        "data": "03221e6f55555555"
+      },
+      {
+        "name": "S2_Cell049V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 8250,
+        "id": "17FC007B",
+        "data": "03221e7055555555"
+      },
+      {
+        "name": "S2_Cell050V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 8400,
+        "id": "17FC007B",
+        "data": "03221e7155555555"
+      },
+      {
+        "name": "S2_Cell051V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 8550,
+        "id": "17FC007B",
+        "data": "03221e7255555555"
+      },
+      {
+        "name": "S2_Cell052V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 8700,
+        "id": "17FC007B",
+        "data": "03221e7355555555"
+      },
+      {
+        "name": "S2_Cell053V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 8850,
+        "id": "17FC007B",
+        "data": "03221e7455555555"
+      },
+      {
+        "name": "S2_Cell054V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 9000,
+        "id": "17FC007B",
+        "data": "03221e7555555555"
       }
     ]
   },
@@ -1045,7 +1011,9 @@
       "mode": 1,
       "retransmission": 1,
       "fd_spec": 0,
-      "bit_rate_cfg_mode": 0
+      "bit_rate_cfg_mode": 1,
+      "bit_rate_std": 500000,
+      "bit_rate_fd": 2000000
     },
     "filter": {
       "remote_frames": 0,
@@ -1134,24 +1102,36 @@
     "wifi": {
       "mode": 0,
       "keyformat": 0,
-      "accesspoint": []
+      "accesspoint": [
+        {
+          "ssid": "Alippo",
+          "pwd": "010117060517010117",
+          "minrssi": 0
+        }
+      ]
     },
     "protocol": 0,
     "s3": {
       "sync": {
-        "ota": 600,
+        "ota": 0,
         "heartbeat": 300,
-        "logfiles": 1
+        "logfiles": 0
       },
       "server": {
+        "endpoint": "http://172.20.10.2",
+        "port": 9000,
+        "bucket": "canedge-buzz",
+        "region": "us-east-1",
         "request_style": 0,
+        "accesskey": "canedgeadmin",
         "keyformat": 0,
+        "secretkey": "BuzzMEB-canedge-thesis-pw1",
         "signed_payload": 0
       }
     }
   },
   "gnss": {
-    "system": 5,
+    "system": 10,
     "invalid_signals": 0,
     "alignment": {
       "method": 0,

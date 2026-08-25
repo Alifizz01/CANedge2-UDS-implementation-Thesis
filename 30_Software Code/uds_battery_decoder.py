@@ -62,7 +62,7 @@ def parse_pid_csv(path: Path) -> dict:
     # ['Status','group','Popular name','Unit','type','Request package','ATCP',
     #  'ATSH','data send','Response package','ATCRA','datareceived',
     #  'Calculation','info']
-    col = {name: i for i, name in enumerate(header)}
+    col = {name.strip(): i for i, name in enumerate(header)}
 
     PLACEHOLDERS = {"WW", "XX", "YY", "ZZ", "VV", "UU", "TT", "SS"}
     for r in rows[5:]:
@@ -356,12 +356,16 @@ def find_all_mf4_files():
             mf4 = sub / "00000001.MF4"
             if mf4.exists():
                 files.append((f"data_mf4/{sub.name}", mf4))
-    sd = DATA_DIR / "sd_dumps_2A73E1CC_20250409" / "LOG" / "2A73E1CC"
+    sd = Path(r"D:\LOG\2A73E1CC")
     if sd.exists():
         for sub in sorted(sd.iterdir()):
-            mf4 = sub / "00000001.MF4"
-            if mf4.exists():
-                files.append((f"sd_2A73E1CC/{sub.name}", mf4))
+            if not sub.is_dir():
+                continue
+            # Pick the first MF4 in the session folder (SD card can name it
+            # 00000001.MF4, etc.)
+            mf4s = sorted(sub.glob("*.MF4")) + sorted(sub.glob("*.mf4"))
+            if mf4s:
+                files.append((f"sd_2A73E1CC/{sub.name}", mf4s[0]))
     return files
 
 
@@ -458,14 +462,14 @@ def main():
         print("matplotlib unavailable, skipping plots")
         return
 
-    for pid in sorted(summary):
+    for pid in sorted(merged_summary):
         sub = df_decoded[df_decoded["pid"] == pid]
         if sub.empty:
             continue
         fig, ax = plt.subplots(figsize=(10, 4))
         for label, grp in sub.groupby("session"):
             ax.plot(grp["timestamp"], grp["value"], "o-", markersize=2, label=label)
-        meta = summary[pid]
+        meta = merged_summary[pid]
         ax.set_title(f"0x{pid:04X}  {meta['name']}  [{meta['unit']}]")
         ax.set_xlabel("timestamp (s within session)")
         ax.set_ylabel(meta["unit"] or "value")
@@ -476,7 +480,7 @@ def main():
         fig.tight_layout()
         fig.savefig(fname, dpi=110)
         plt.close(fig)
-    print(f"Wrote {len(summary)} plots to {OUTPUT_DIR / 'plots'}")
+    print(f"Wrote {len(merged_summary)} plots to {OUTPUT_DIR / 'plots'}")
 
 
 if __name__ == "__main__":

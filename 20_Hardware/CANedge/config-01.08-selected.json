@@ -1,0 +1,1157 @@
+{
+  "general": {
+    "device": {},
+    "security": {},
+    "debug": {
+      "syslog": 1,
+      "restart_timer": 120
+    }
+  },
+  "log": {
+    "file": {
+      "split_size": 50,
+      "split_time_period": 0,
+      "split_time_offset": 0,
+      "cyclic": 1
+    },
+    "compression": {
+      "level": 0
+    },
+    "encryption": {
+      "state": 0
+    },
+    "error_frames": {
+      "state": 0
+    }
+  },
+  "rtc": {
+    "sync": 2,
+    "timezone": 0,
+    "adjustment": 0,
+    "tolerance": 30,
+    "ntp_server": "*.pool.ntp.org"
+  },
+  "secondaryport": {
+    "power_schedule": []
+  },
+  "can_internal": {
+    "general": {
+      "rx_state": 1,
+      "tx_state": 1
+    },
+    "filter": {
+      "id": [
+        {
+          "name": "GnssStatus",
+          "state": 1,
+          "type": 0,
+          "id_format": 0,
+          "method": 0,
+          "f1": "65",
+          "f2": "65",
+          "prescaler_type": 0
+        },
+        {
+          "name": "GnssTime",
+          "state": 1,
+          "type": 0,
+          "id_format": 0,
+          "method": 0,
+          "f1": "66",
+          "f2": "66",
+          "prescaler_type": 0
+        },
+        {
+          "name": "GnsssPosition",
+          "state": 1,
+          "type": 0,
+          "id_format": 0,
+          "method": 0,
+          "f1": "67",
+          "f2": "67",
+          "prescaler_type": 0
+        },
+        {
+          "name": "GnssAltitude",
+          "state": 1,
+          "type": 0,
+          "id_format": 0,
+          "method": 0,
+          "f1": "68",
+          "f2": "68",
+          "prescaler_type": 0
+        },
+        {
+          "name": "GnssAttitude",
+          "state": 1,
+          "type": 0,
+          "id_format": 0,
+          "method": 0,
+          "f1": "69",
+          "f2": "69",
+          "prescaler_type": 0
+        },
+        {
+          "name": "GnssDistance",
+          "state": 1,
+          "type": 0,
+          "id_format": 0,
+          "method": 0,
+          "f1": "6A",
+          "f2": "6A",
+          "prescaler_type": 0
+        },
+        {
+          "name": "GnssSpeed",
+          "state": 1,
+          "type": 0,
+          "id_format": 0,
+          "method": 0,
+          "f1": "6B",
+          "f2": "6B",
+          "prescaler_type": 0
+        },
+        {
+          "name": "GnssGeofence",
+          "state": 1,
+          "type": 0,
+          "id_format": 0,
+          "method": 0,
+          "f1": "6C",
+          "f2": "6C",
+          "prescaler_type": 0
+        },
+        {
+          "name": "ImuAlign",
+          "state": 1,
+          "type": 0,
+          "id_format": 0,
+          "method": 0,
+          "f1": "6E",
+          "f2": "6E",
+          "prescaler_type": 0
+        },
+        {
+          "name": "ImuAcc",
+          "state": 1,
+          "type": 0,
+          "id_format": 0,
+          "method": 0,
+          "f1": "6F",
+          "f2": "6F",
+          "prescaler_type": 0
+        }
+      ]
+    },
+    "control": {
+      "control_rx_state": 0,
+      "control_tx_state": 0,
+      "start": {
+        "message": {
+          "chn": 0,
+          "id_format": 0,
+          "id": "0",
+          "id_mask": "7FF"
+        },
+        "signal": {
+          "type": 0,
+          "byteorder": 0,
+          "bitpos": 0,
+          "length": 0,
+          "factor": 0,
+          "offset": 0
+        },
+        "trigger_high": 0,
+        "trigger_low": 0
+      },
+      "stop": {
+        "message": {
+          "chn": 0,
+          "id_format": 0,
+          "id": "0",
+          "id_mask": "7FF"
+        },
+        "signal": {
+          "type": 0,
+          "byteorder": 0,
+          "bitpos": 0,
+          "length": 0,
+          "factor": 0,
+          "offset": 0
+        },
+        "trigger_high": 0,
+        "trigger_low": 0
+      }
+    }
+  },
+  "can_1": {
+    "general": {
+      "rx_state": 1,
+      "tx_state": 1
+    },
+    "phy": {
+      "mode": 0,
+      "retransmission": 1,
+      "fd_spec": 0,
+      "bit_rate_cfg_mode": 1,
+      "bit_rate_std": 500000,
+      "bit_rate_fd": 2000000
+    },
+    "filter": {
+      "remote_frames": 0,
+      "id": [
+        {
+          "name": "AllStandardID",
+          "state": 1,
+          "type": 0,
+          "id_format": 0,
+          "method": 0,
+          "f1": "0",
+          "f2": "7FF",
+          "prescaler_type": 0
+        },
+        {
+          "name": "AllExtendedID",
+          "state": 1,
+          "type": 0,
+          "id_format": 1,
+          "method": 0,
+          "f1": "0",
+          "f2": "1FFFFFFF",
+          "prescaler_type": 0
+        }
+      ]
+    },
+    "heartbeat": {
+      "state": 0,
+      "id_format": 1,
+      "id": "00435353"
+    },
+    "control": {
+      "control_rx_state": 0,
+      "control_tx_state": 0,
+      "start": {
+        "message": {
+          "chn": 1,
+          "id_format": 0,
+          "id": "0",
+          "id_mask": "7FF"
+        },
+        "signal": {
+          "type": 0,
+          "byteorder": 0,
+          "bitpos": 0,
+          "length": 0,
+          "factor": 0,
+          "offset": 0
+        },
+        "trigger_high": 0,
+        "trigger_low": 0
+      },
+      "stop": {
+        "message": {
+          "chn": 1,
+          "id_format": 0,
+          "id": "0",
+          "id_mask": "7FF"
+        },
+        "signal": {
+          "type": 0,
+          "byteorder": 0,
+          "bitpos": 0,
+          "length": 0,
+          "factor": 0,
+          "offset": 0
+        },
+        "trigger_high": 0,
+        "trigger_low": 0
+      }
+    },
+    "transmit": [
+      {
+        "name": "BMS_DiagSessExt",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 0,
+        "id": "17FC007B",
+        "data": "0210035555555555"
+      },
+      {
+        "name": "BMS_TP",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 150,
+        "id": "17FC007B",
+        "data": "023e005555555555"
+      },
+      {
+        "name": "SOC_BMS_028C",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 300,
+        "id": "17FC007B",
+        "data": "0322028c55555555"
+      },
+      {
+        "name": "HV_Volt_1E3B",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 450,
+        "id": "17FC007B",
+        "data": "03221e3b55555555"
+      },
+      {
+        "name": "HV_Curr_1E3D",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 600,
+        "id": "17FC007B",
+        "data": "03221e3d55555555"
+      },
+      {
+        "name": "Temp_Main_2A0B",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 750,
+        "id": "17FC007B",
+        "data": "03222a0b55555555"
+      },
+      {
+        "name": "OpMode_7448",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 900,
+        "id": "17FC007B",
+        "data": "0322744855555555"
+      },
+      {
+        "name": "TempMax_1E0E",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 1050,
+        "id": "17FC007B",
+        "data": "03221e0e55555555"
+      },
+      {
+        "name": "TempMin_1E0F",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 1200,
+        "id": "17FC007B",
+        "data": "03221e0f55555555"
+      },
+      {
+        "name": "CellHiId_1E33",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 1350,
+        "id": "17FC007B",
+        "data": "03221e3355555555"
+      },
+      {
+        "name": "CellLoId_1E34",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 1500,
+        "id": "17FC007B",
+        "data": "03221e3455555555"
+      },
+      {
+        "name": "ChgLim_1E1B",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 1650,
+        "id": "17FC007B",
+        "data": "03221e1b55555555"
+      },
+      {
+        "name": "DchgLim_1E1C",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 1800,
+        "id": "17FC007B",
+        "data": "03221e1c55555555"
+      },
+      {
+        "name": "Speed_F40D",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 1950,
+        "id": "17FC007B",
+        "data": "0322f40d55555555"
+      },
+      {
+        "name": "PTC_Curr_1620",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 2100,
+        "id": "17FC007B",
+        "data": "0322162055555555"
+      },
+      {
+        "name": "BattSerial_0500",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 2250,
+        "id": "17FC007B",
+        "data": "0322050055555555"
+      },
+      {
+        "name": "ChgDchg_1E32",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 2400,
+        "id": "17FC007B",
+        "data": "03221e3255555555"
+      },
+      {
+        "name": "TempPt01_AE",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 2550,
+        "id": "17FC007B",
+        "data": "03221eae55555555"
+      },
+      {
+        "name": "TempPt03_B0",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 2700,
+        "id": "17FC007B",
+        "data": "03221eb055555555"
+      },
+      {
+        "name": "TempPt06_B3",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 2850,
+        "id": "17FC007B",
+        "data": "03221eb355555555"
+      },
+      {
+        "name": "TempPt09_B6",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 3000,
+        "id": "17FC007B",
+        "data": "03221eb655555555"
+      },
+      {
+        "name": "TempPt12_B9",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 3150,
+        "id": "17FC007B",
+        "data": "03221eb955555555"
+      },
+      {
+        "name": "TempPt15_BC",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 3300,
+        "id": "17FC007B",
+        "data": "03221ebc55555555"
+      },
+      {
+        "name": "TempPt18_26",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 3450,
+        "id": "17FC007B",
+        "data": "0322742655555555"
+      },
+      {
+        "name": "Cell001V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 3600,
+        "id": "17FC007B",
+        "data": "03221e4055555555"
+      },
+      {
+        "name": "Cell010V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 3750,
+        "id": "17FC007B",
+        "data": "03221e4955555555"
+      },
+      {
+        "name": "Cell013V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 3900,
+        "id": "17FC007B",
+        "data": "03221e4c55555555"
+      },
+      {
+        "name": "Cell017V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 4050,
+        "id": "17FC007B",
+        "data": "03221e5055555555"
+      },
+      {
+        "name": "Cell020V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 4200,
+        "id": "17FC007B",
+        "data": "03221e5355555555"
+      },
+      {
+        "name": "Cell023V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 4350,
+        "id": "17FC007B",
+        "data": "03221e5655555555"
+      },
+      {
+        "name": "Cell027V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 4500,
+        "id": "17FC007B",
+        "data": "03221e5a55555555"
+      },
+      {
+        "name": "Cell030V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 4650,
+        "id": "17FC007B",
+        "data": "03221e5d55555555"
+      },
+      {
+        "name": "Cell033V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 4800,
+        "id": "17FC007B",
+        "data": "03221e6055555555"
+      },
+      {
+        "name": "Cell037V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 4950,
+        "id": "17FC007B",
+        "data": "03221e6455555555"
+      },
+      {
+        "name": "Cell040V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 5100,
+        "id": "17FC007B",
+        "data": "03221e6755555555"
+      },
+      {
+        "name": "Cell043V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 5250,
+        "id": "17FC007B",
+        "data": "03221e6a55555555"
+      },
+      {
+        "name": "Cell047V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 5400,
+        "id": "17FC007B",
+        "data": "03221e6e55555555"
+      },
+      {
+        "name": "Cell050V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 5550,
+        "id": "17FC007B",
+        "data": "03221e7155555555"
+      },
+      {
+        "name": "Cell053V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 5700,
+        "id": "17FC007B",
+        "data": "03221e7455555555"
+      },
+      {
+        "name": "Cell055V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 5850,
+        "id": "17FC007B",
+        "data": "03221e7655555555"
+      },
+      {
+        "name": "Cell057V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 6000,
+        "id": "17FC007B",
+        "data": "03221e7855555555"
+      },
+      {
+        "name": "Cell060V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 6150,
+        "id": "17FC007B",
+        "data": "03221e7b55555555"
+      },
+      {
+        "name": "Cell063V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 6300,
+        "id": "17FC007B",
+        "data": "03221e7e55555555"
+      },
+      {
+        "name": "Cell067V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 6450,
+        "id": "17FC007B",
+        "data": "03221e8255555555"
+      },
+      {
+        "name": "Cell070V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 6600,
+        "id": "17FC007B",
+        "data": "03221e8555555555"
+      },
+      {
+        "name": "Cell073V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 6750,
+        "id": "17FC007B",
+        "data": "03221e8855555555"
+      },
+      {
+        "name": "Cell077V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 6900,
+        "id": "17FC007B",
+        "data": "03221e8c55555555"
+      },
+      {
+        "name": "Cell080V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 7050,
+        "id": "17FC007B",
+        "data": "03221e8f55555555"
+      },
+      {
+        "name": "Cell083V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 7200,
+        "id": "17FC007B",
+        "data": "03221e9255555555"
+      },
+      {
+        "name": "Cell087V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 7350,
+        "id": "17FC007B",
+        "data": "03221e9655555555"
+      },
+      {
+        "name": "Cell090V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 7500,
+        "id": "17FC007B",
+        "data": "03221e9955555555"
+      },
+      {
+        "name": "Cell093V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 7650,
+        "id": "17FC007B",
+        "data": "03221e9c55555555"
+      },
+      {
+        "name": "Cell097V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 7800,
+        "id": "17FC007B",
+        "data": "03221ea055555555"
+      },
+      {
+        "name": "Cell100V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 7950,
+        "id": "17FC007B",
+        "data": "03221ea355555555"
+      },
+      {
+        "name": "Cell104V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 8100,
+        "id": "17FC007B",
+        "data": "03221ea755555555"
+      },
+      {
+        "name": "Odometer_295A",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 8250,
+        "id": "17FC0076",
+        "data": "0322295a55555555"
+      },
+      {
+        "name": "VIN_F802",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 8400,
+        "id": "17FC0076",
+        "data": "0322f80255555555"
+      },
+      {
+        "name": "OutdoorT_2609",
+        "state": 1,
+        "id_format": 0,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 8550,
+        "id": "746",
+        "data": "0322260955555555"
+      },
+      {
+        "name": "ACcompPwr_0800",
+        "state": 1,
+        "id_format": 0,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 8700,
+        "id": "746",
+        "data": "0322080055555555"
+      },
+      {
+        "name": "V12_Volt_2AF7",
+        "state": 1,
+        "id_format": 0,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 8850,
+        "id": "710",
+        "data": "03222af755555555"
+      },
+      {
+        "name": "Energy_2AB8",
+        "state": 1,
+        "id_format": 0,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 9000,
+        "id": "710",
+        "data": "03222ab855555555"
+      },
+      {
+        "name": "MaxEnergy_2AB2",
+        "state": 1,
+        "id_format": 0,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 9150,
+        "id": "710",
+        "data": "03222ab255555555"
+      }
+    ]
+  },
+  "can_2": {
+    "general": {
+      "rx_state": 1,
+      "tx_state": 1
+    },
+    "phy": {
+      "mode": 1,
+      "retransmission": 1,
+      "fd_spec": 0,
+      "bit_rate_cfg_mode": 1,
+      "bit_rate_std": 500000,
+      "bit_rate_fd": 2000000
+    },
+    "filter": {
+      "remote_frames": 0,
+      "id": [
+        {
+          "name": "AllStandardID",
+          "state": 1,
+          "type": 0,
+          "id_format": 0,
+          "method": 0,
+          "f1": "0",
+          "f2": "7FF",
+          "prescaler_type": 0
+        },
+        {
+          "name": "AllExtendedID",
+          "state": 1,
+          "type": 0,
+          "id_format": 1,
+          "method": 0,
+          "f1": "0",
+          "f2": "1FFFFFFF",
+          "prescaler_type": 0
+        }
+      ]
+    },
+    "heartbeat": {
+      "state": 0,
+      "id_format": 1,
+      "id": "00435353"
+    },
+    "control": {
+      "control_rx_state": 0,
+      "control_tx_state": 0,
+      "start": {
+        "message": {
+          "chn": 2,
+          "id_format": 0,
+          "id": "0",
+          "id_mask": "7FF"
+        },
+        "signal": {
+          "type": 0,
+          "byteorder": 0,
+          "bitpos": 0,
+          "length": 0,
+          "factor": 0,
+          "offset": 0
+        },
+        "trigger_high": 0,
+        "trigger_low": 0
+      },
+      "stop": {
+        "message": {
+          "chn": 2,
+          "id_format": 0,
+          "id": "0",
+          "id_mask": "7FF"
+        },
+        "signal": {
+          "type": 0,
+          "byteorder": 0,
+          "bitpos": 0,
+          "length": 0,
+          "factor": 0,
+          "offset": 0
+        },
+        "trigger_high": 0,
+        "trigger_low": 0
+      }
+    }
+  },
+  "lin_1": {
+    "phy": {
+      "mode": 0,
+      "bit_rate": 19200
+    }
+  },
+  "lin_2": {
+    "phy": {
+      "mode": 0,
+      "bit_rate": 19200
+    }
+  },
+  "connect": {
+    "wifi": {
+      "mode": 0,
+      "keyformat": 0,
+      "accesspoint": [
+        {
+          "ssid": "Alippo",
+          "pwd": "010117060517010117",
+          "minrssi": 0
+        }
+      ]
+    },
+    "protocol": 0,
+    "s3": {
+      "sync": {
+        "ota": 0,
+        "heartbeat": 300,
+        "logfiles": 0
+      },
+      "server": {
+        "endpoint": "http://172.20.10.2",
+        "port": 9000,
+        "bucket": "canedge-buzz",
+        "region": "us-east-1",
+        "request_style": 0,
+        "accesskey": "canedgeadmin",
+        "keyformat": 0,
+        "secretkey": "BuzzMEB-canedge-thesis-pw1",
+        "signed_payload": 0
+      }
+    }
+  },
+  "gnss": {
+    "system": 10,
+    "invalid_signals": 0,
+    "alignment": {
+      "method": 0,
+      "z": 0,
+      "y": 0,
+      "x": 0
+    },
+    "geofence": [],
+    "dyn_model": 0
+  }
+}

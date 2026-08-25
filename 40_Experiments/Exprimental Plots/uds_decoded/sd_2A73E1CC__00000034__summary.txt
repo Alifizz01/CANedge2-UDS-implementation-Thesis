@@ -1,4 +1,4 @@
-VW MEB UDS Battery Decoder Summary — merged across sessions: data_mf4/00000002, data_mf4/00000003, data_mf4/00000004, data_mf4/00000005, data_mf4/00000007, data_mf4/00000008, sd_2A73E1CC/00000033, sd_2A73E1CC/00000034
+VW MEB UDS Battery Decoder Summary — session sd_2A73E1CC/00000034
 Total decoded values: 80
 Unique PIDs decoded: 5
 
