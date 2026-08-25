@@ -1,0 +1,509 @@
+{
+  "general": {
+    "device": {},
+    "security": {},
+    "debug": {
+      "syslog": 1,
+      "restart_timer": 120
+    }
+  },
+  "log": {
+    "file": {
+      "split_size": 50,
+      "split_time_period": 0,
+      "split_time_offset": 0,
+      "cyclic": 1
+    },
+    "compression": {
+      "level": 0
+    },
+    "encryption": {
+      "state": 0
+    },
+    "error_frames": {
+      "state": 0
+    }
+  },
+  "rtc": {
+    "sync": 2,
+    "timezone": 0,
+    "adjustment": 0,
+    "tolerance": 30,
+    "ntp_server": "*.pool.ntp.org"
+  },
+  "secondaryport": {
+    "power_schedule": []
+  },
+  "can_internal": {
+    "general": {
+      "rx_state": 1,
+      "tx_state": 1
+    },
+    "filter": {
+      "id": [
+        {
+          "name": "GnssStatus",
+          "state": 1,
+          "type": 0,
+          "id_format": 0,
+          "method": 0,
+          "f1": "65",
+          "f2": "65",
+          "prescaler_type": 0
+        },
+        {
+          "name": "GnssTime",
+          "state": 1,
+          "type": 0,
+          "id_format": 0,
+          "method": 0,
+          "f1": "66",
+          "f2": "66",
+          "prescaler_type": 0
+        },
+        {
+          "name": "GnsssPosition",
+          "state": 1,
+          "type": 0,
+          "id_format": 0,
+          "method": 0,
+          "f1": "67",
+          "f2": "67",
+          "prescaler_type": 0
+        },
+        {
+          "name": "GnssAltitude",
+          "state": 1,
+          "type": 0,
+          "id_format": 0,
+          "method": 0,
+          "f1": "68",
+          "f2": "68",
+          "prescaler_type": 0
+        },
+        {
+          "name": "GnssAttitude",
+          "state": 1,
+          "type": 0,
+          "id_format": 0,
+          "method": 0,
+          "f1": "69",
+          "f2": "69",
+          "prescaler_type": 0
+        },
+        {
+          "name": "GnssDistance",
+          "state": 1,
+          "type": 0,
+          "id_format": 0,
+          "method": 0,
+          "f1": "6A",
+          "f2": "6A",
+          "prescaler_type": 0
+        },
+        {
+          "name": "GnssSpeed",
+          "state": 1,
+          "type": 0,
+          "id_format": 0,
+          "method": 0,
+          "f1": "6B",
+          "f2": "6B",
+          "prescaler_type": 0
+        },
+        {
+          "name": "GnssGeofence",
+          "state": 1,
+          "type": 0,
+          "id_format": 0,
+          "method": 0,
+          "f1": "6C",
+          "f2": "6C",
+          "prescaler_type": 0
+        },
+        {
+          "name": "ImuAlign",
+          "state": 1,
+          "type": 0,
+          "id_format": 0,
+          "method": 0,
+          "f1": "6E",
+          "f2": "6E",
+          "prescaler_type": 0
+        },
+        {
+          "name": "ImuAcc",
+          "state": 1,
+          "type": 0,
+          "id_format": 0,
+          "method": 0,
+          "f1": "6F",
+          "f2": "6F",
+          "prescaler_type": 0
+        }
+      ]
+    },
+    "control": {
+      "control_rx_state": 0,
+      "control_tx_state": 0,
+      "start": {
+        "message": {
+          "chn": 0,
+          "id_format": 0,
+          "id": "0",
+          "id_mask": "7FF"
+        },
+        "signal": {
+          "type": 0,
+          "byteorder": 0,
+          "bitpos": 0,
+          "length": 0,
+          "factor": 0,
+          "offset": 0
+        },
+        "trigger_high": 0,
+        "trigger_low": 0
+      },
+      "stop": {
+        "message": {
+          "chn": 0,
+          "id_format": 0,
+          "id": "0",
+          "id_mask": "7FF"
+        },
+        "signal": {
+          "type": 0,
+          "byteorder": 0,
+          "bitpos": 0,
+          "length": 0,
+          "factor": 0,
+          "offset": 0
+        },
+        "trigger_high": 0,
+        "trigger_low": 0
+      }
+    }
+  },
+  "can_1": {
+    "general": {
+      "rx_state": 1,
+      "tx_state": 1
+    },
+    "phy": {
+      "mode": 0,
+      "retransmission": 1,
+      "fd_spec": 0,
+      "bit_rate_cfg_mode": 1,
+      "bit_rate_std": 500000,
+      "bit_rate_fd": 2000000
+    },
+    "filter": {
+      "remote_frames": 0,
+      "id": [
+        {
+          "name": "AllStandardID",
+          "state": 1,
+          "type": 0,
+          "id_format": 0,
+          "method": 0,
+          "f1": "0",
+          "f2": "7FF",
+          "prescaler_type": 0
+        },
+        {
+          "name": "AllExtendedID",
+          "state": 1,
+          "type": 0,
+          "id_format": 1,
+          "method": 0,
+          "f1": "0",
+          "f2": "1FFFFFFF",
+          "prescaler_type": 0
+        }
+      ]
+    },
+    "heartbeat": {
+      "state": 0,
+      "id_format": 1,
+      "id": "00435353"
+    },
+    "control": {
+      "control_rx_state": 0,
+      "control_tx_state": 0,
+      "start": {
+        "message": {
+          "chn": 1,
+          "id_format": 0,
+          "id": "0",
+          "id_mask": "7FF"
+        },
+        "signal": {
+          "type": 0,
+          "byteorder": 0,
+          "bitpos": 0,
+          "length": 0,
+          "factor": 0,
+          "offset": 0
+        },
+        "trigger_high": 0,
+        "trigger_low": 0
+      },
+      "stop": {
+        "message": {
+          "chn": 1,
+          "id_format": 0,
+          "id": "0",
+          "id_mask": "7FF"
+        },
+        "signal": {
+          "type": 0,
+          "byteorder": 0,
+          "bitpos": 0,
+          "length": 0,
+          "factor": 0,
+          "offset": 0
+        },
+        "trigger_high": 0,
+        "trigger_low": 0
+      }
+    },
+    "transmit": [
+      {
+        "name": "BMS_DiagSessExt",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 2000,
+        "delay": 0,
+        "id": "17FC007B",
+        "data": "0210035555555555"
+      },
+      {
+        "name": "BMS_TP",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 2000,
+        "delay": 100,
+        "id": "17FC007B",
+        "data": "023e005555555555"
+      },
+      {
+        "name": "BMS_028C_SOC",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 2000,
+        "delay": 200,
+        "id": "17FC007B",
+        "data": "0322028c55555555"
+      },
+      {
+        "name": "DCDC_465B_I",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 2000,
+        "delay": 400,
+        "id": "17FC00B9",
+        "data": "0322465b55555555"
+      },
+      {
+        "name": "EDU_295A_Odo",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 2000,
+        "delay": 600,
+        "id": "17FC0076",
+        "data": "0322295a55555555"
+      },
+      {
+        "name": "AC_2609_Tout",
+        "state": 1,
+        "id_format": 0,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 2000,
+        "delay": 800,
+        "id": "746",
+        "data": "0322260955555555"
+      },
+      {
+        "name": "GW_2AB2_MaxE",
+        "state": 1,
+        "id_format": 0,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 2000,
+        "delay": 1000,
+        "id": "710",
+        "data": "03222ab255555555"
+      },
+      {
+        "name": "NAV_2431_GpsSat",
+        "state": 1,
+        "id_format": 0,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 2000,
+        "delay": 1200,
+        "id": "767",
+        "data": "0322243155555555"
+      }
+    ]
+  },
+  "can_2": {
+    "general": {
+      "rx_state": 1,
+      "tx_state": 1
+    },
+    "phy": {
+      "mode": 1,
+      "retransmission": 1,
+      "fd_spec": 0,
+      "bit_rate_cfg_mode": 1,
+      "bit_rate_std": 500000,
+      "bit_rate_fd": 2000000
+    },
+    "filter": {
+      "remote_frames": 0,
+      "id": [
+        {
+          "name": "AllStandardID",
+          "state": 1,
+          "type": 0,
+          "id_format": 0,
+          "method": 0,
+          "f1": "0",
+          "f2": "7FF",
+          "prescaler_type": 0
+        },
+        {
+          "name": "AllExtendedID",
+          "state": 1,
+          "type": 0,
+          "id_format": 1,
+          "method": 0,
+          "f1": "0",
+          "f2": "1FFFFFFF",
+          "prescaler_type": 0
+        }
+      ]
+    },
+    "heartbeat": {
+      "state": 0,
+      "id_format": 1,
+      "id": "00435353"
+    },
+    "control": {
+      "control_rx_state": 0,
+      "control_tx_state": 0,
+      "start": {
+        "message": {
+          "chn": 2,
+          "id_format": 0,
+          "id": "0",
+          "id_mask": "7FF"
+        },
+        "signal": {
+          "type": 0,
+          "byteorder": 0,
+          "bitpos": 0,
+          "length": 0,
+          "factor": 0,
+          "offset": 0
+        },
+        "trigger_high": 0,
+        "trigger_low": 0
+      },
+      "stop": {
+        "message": {
+          "chn": 2,
+          "id_format": 0,
+          "id": "0",
+          "id_mask": "7FF"
+        },
+        "signal": {
+          "type": 0,
+          "byteorder": 0,
+          "bitpos": 0,
+          "length": 0,
+          "factor": 0,
+          "offset": 0
+        },
+        "trigger_high": 0,
+        "trigger_low": 0
+      }
+    }
+  },
+  "lin_1": {
+    "phy": {
+      "mode": 0,
+      "bit_rate": 19200
+    }
+  },
+  "lin_2": {
+    "phy": {
+      "mode": 0,
+      "bit_rate": 19200
+    }
+  },
+  "connect": {
+    "wifi": {
+      "mode": 0,
+      "keyformat": 0,
+      "accesspoint": [
+        {
+          "ssid": "Alippo",
+          "pwd": "010117060517010117",
+          "minrssi": 0
+        }
+      ]
+    },
+    "protocol": 0,
+    "s3": {
+      "sync": {
+        "ota": 0,
+        "heartbeat": 300,
+        "logfiles": 0
+      },
+      "server": {
+        "endpoint": "http://172.20.10.2",
+        "port": 9000,
+        "bucket": "canedge-buzz",
+        "region": "us-east-1",
+        "request_style": 0,
+        "accesskey": "canedgeadmin",
+        "keyformat": 0,
+        "secretkey": "BuzzMEB-canedge-thesis-pw1",
+        "signed_payload": 0
+      }
+    }
+  },
+  "gnss": {
+    "system": 10,
+    "invalid_signals": 0,
+    "alignment": {
+      "method": 0,
+      "z": 0,
+      "y": 0,
+      "x": 0
+    },
+    "geofence": [],
+    "dyn_model": 0
+  }
+}

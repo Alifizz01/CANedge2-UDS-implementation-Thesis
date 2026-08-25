@@ -193,7 +193,9 @@
       "mode": 0,
       "retransmission": 1,
       "fd_spec": 0,
-      "bit_rate_cfg_mode": 0
+      "bit_rate_cfg_mode": 1,
+      "bit_rate_std": 500000,
+      "bit_rate_fd": 2000000
     },
     "filter": {
       "remote_frames": 0,
@@ -267,91 +269,55 @@
     },
     "transmit": [
       {
-        "name": "DiagSessionExt_BMS",
+        "name": "BMS_DiagSessExt",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
         "brs": 0,
         "log": 1,
-        "period": 2000,
+        "period": 10000,
         "delay": 0,
         "id": "17FC007B",
         "data": "0210035555555555"
       },
       {
-        "name": "TesterPresent_BMS",
+        "name": "BMS_TP",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
         "brs": 0,
         "log": 1,
-        "period": 2000,
-        "delay": 50,
+        "period": 10000,
+        "delay": 150,
         "id": "17FC007B",
         "data": "023e005555555555"
       },
       {
-        "name": "T1_028C_SOC__BMS",
+        "name": "T1_028C_SOC",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
         "brs": 0,
         "log": 1,
-        "period": 1000,
-        "delay": 100,
+        "period": 10000,
+        "delay": 300,
         "id": "17FC007B",
         "data": "0322028c55555555"
       },
       {
-        "name": "T1_1E3B_HV_Battery_voltage",
+        "name": "T1_1E3B_HV_V",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
         "brs": 0,
         "log": 1,
-        "period": 1000,
-        "delay": 200,
+        "period": 10000,
+        "delay": 450,
         "id": "17FC007B",
         "data": "03221e3b55555555"
       },
       {
-        "name": "T1_1E3D_HV_Battery_current",
-        "state": 1,
-        "id_format": 1,
-        "frame_format": 0,
-        "brs": 0,
-        "log": 1,
-        "period": 1000,
-        "delay": 300,
-        "id": "17FC007B",
-        "data": "03221e3d55555555"
-      },
-      {
-        "name": "T1_2A0B_HV_Battery_temp__m",
-        "state": 1,
-        "id_format": 1,
-        "frame_format": 0,
-        "brs": 0,
-        "log": 1,
-        "period": 1000,
-        "delay": 400,
-        "id": "17FC007B",
-        "data": "03222a0b55555555"
-      },
-      {
-        "name": "T1_7448_Car_operation_mode",
-        "state": 1,
-        "id_format": 1,
-        "frame_format": 0,
-        "brs": 0,
-        "log": 1,
-        "period": 1000,
-        "delay": 500,
-        "id": "17FC007B",
-        "data": "0322744855555555"
-      },
-      {
-        "name": "S3_1EA5_HV_Battery_cell_vo",
+        "name": "T1_1E3D_HV_I",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
@@ -360,34 +326,22 @@
         "period": 10000,
         "delay": 600,
         "id": "17FC007B",
-        "data": "03221ea555555555"
+        "data": "03221e3d55555555"
       },
       {
-        "name": "S3_1EA6_HV_Battery_cell_vo",
+        "name": "T1_2A0B_Tmain",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
         "brs": 0,
         "log": 1,
         "period": 10000,
-        "delay": 700,
+        "delay": 750,
         "id": "17FC007B",
-        "data": "03221ea655555555"
+        "data": "03222a0b55555555"
       },
       {
-        "name": "S3_1EA7_HV_Battery_cell_vo",
-        "state": 1,
-        "id_format": 1,
-        "frame_format": 0,
-        "brs": 0,
-        "log": 1,
-        "period": 10000,
-        "delay": 800,
-        "id": "17FC007B",
-        "data": "03221ea755555555"
-      },
-      {
-        "name": "S3_1EA8_HV_Battery_cell_vo",
+        "name": "T1_7448_OpMode",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
@@ -396,34 +350,22 @@
         "period": 10000,
         "delay": 900,
         "id": "17FC007B",
-        "data": "03221ea855555555"
+        "data": "0322744855555555"
       },
       {
-        "name": "S3_1EA9_HV_Battery_cell_vo",
+        "name": "S1_1E0E_Tmax",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
         "brs": 0,
         "log": 1,
         "period": 10000,
-        "delay": 1000,
+        "delay": 1050,
         "id": "17FC007B",
-        "data": "03221ea955555555"
+        "data": "03221e0e55555555"
       },
       {
-        "name": "S3_1EAA_HV_Battery_cell_vo",
-        "state": 1,
-        "id_format": 1,
-        "frame_format": 0,
-        "brs": 0,
-        "log": 1,
-        "period": 10000,
-        "delay": 1100,
-        "id": "17FC007B",
-        "data": "03221eaa55555555"
-      },
-      {
-        "name": "S3_1EAB_HV_Battery_cell_vo",
+        "name": "S1_1E0F_Tmin",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
@@ -432,34 +374,22 @@
         "period": 10000,
         "delay": 1200,
         "id": "17FC007B",
-        "data": "03221eab55555555"
+        "data": "03221e0f55555555"
       },
       {
-        "name": "S3_1EAE_HV_Battery_temp_po",
+        "name": "S1_1E33_CMaxId",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
         "brs": 0,
         "log": 1,
         "period": 10000,
-        "delay": 1300,
+        "delay": 1350,
         "id": "17FC007B",
-        "data": "03221eae55555555"
+        "data": "03221e3355555555"
       },
       {
-        "name": "S3_1EAF_HV_Battery_temp_po",
-        "state": 1,
-        "id_format": 1,
-        "frame_format": 0,
-        "brs": 0,
-        "log": 1,
-        "period": 10000,
-        "delay": 1400,
-        "id": "17FC007B",
-        "data": "03221eaf55555555"
-      },
-      {
-        "name": "S3_1EB0_HV_Battery_temp_po",
+        "name": "S1_1E34_CMinId",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
@@ -468,34 +398,22 @@
         "period": 10000,
         "delay": 1500,
         "id": "17FC007B",
-        "data": "03221eb055555555"
+        "data": "03221e3455555555"
       },
       {
-        "name": "S3_1EB1_HV_Battery_temp_po",
+        "name": "S1_743B_Pump",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
         "brs": 0,
         "log": 1,
         "period": 10000,
-        "delay": 1600,
+        "delay": 1650,
         "id": "17FC007B",
-        "data": "03221eb155555555"
+        "data": "0322743b55555555"
       },
       {
-        "name": "S3_1EB2_HV_Battery_temp_po",
-        "state": 1,
-        "id_format": 1,
-        "frame_format": 0,
-        "brs": 0,
-        "log": 1,
-        "period": 10000,
-        "delay": 1700,
-        "id": "17FC007B",
-        "data": "03221eb255555555"
-      },
-      {
-        "name": "S3_1EB3_HV_Battery_temp_po",
+        "name": "S1_189D_CoolIO",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
@@ -504,34 +422,22 @@
         "period": 10000,
         "delay": 1800,
         "id": "17FC007B",
-        "data": "03221eb355555555"
+        "data": "0322189d55555555"
       },
       {
-        "name": "S3_1EB4_HV_Battery_temp_po",
+        "name": "S1_1E1B_ChgLim",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
         "brs": 0,
         "log": 1,
         "period": 10000,
-        "delay": 1900,
+        "delay": 1950,
         "id": "17FC007B",
-        "data": "03221eb455555555"
+        "data": "03221e1b55555555"
       },
       {
-        "name": "S3_1EB5_HV_Battery_temp_po",
-        "state": 1,
-        "id_format": 1,
-        "frame_format": 0,
-        "brs": 0,
-        "log": 1,
-        "period": 10000,
-        "delay": 2000,
-        "id": "17FC007B",
-        "data": "03221eb555555555"
-      },
-      {
-        "name": "S3_1EB6_HV_Battery_temp_po",
+        "name": "S1_1E1C_DchgLim",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
@@ -540,34 +446,22 @@
         "period": 10000,
         "delay": 2100,
         "id": "17FC007B",
-        "data": "03221eb655555555"
+        "data": "03221e1c55555555"
       },
       {
-        "name": "S3_1EB7_HV_Battery_temp_po",
+        "name": "S1_F40D_Speed",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
         "brs": 0,
         "log": 1,
         "period": 10000,
-        "delay": 2200,
+        "delay": 2250,
         "id": "17FC007B",
-        "data": "03221eb755555555"
+        "data": "0322f40d55555555"
       },
       {
-        "name": "S3_1EB8_HV_Battery_temp_po",
-        "state": 1,
-        "id_format": 1,
-        "frame_format": 0,
-        "brs": 0,
-        "log": 1,
-        "period": 10000,
-        "delay": 2300,
-        "id": "17FC007B",
-        "data": "03221eb855555555"
-      },
-      {
-        "name": "S3_1EB9_HV_Battery_temp_po",
+        "name": "S1_1620_PTC",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
@@ -576,34 +470,22 @@
         "period": 10000,
         "delay": 2400,
         "id": "17FC007B",
-        "data": "03221eb955555555"
+        "data": "0322162055555555"
       },
       {
-        "name": "S3_1EBA_HV_Battery_temp_po",
+        "name": "S1_1EAE_TempPt01",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
         "brs": 0,
         "log": 1,
         "period": 10000,
-        "delay": 2500,
+        "delay": 2550,
         "id": "17FC007B",
-        "data": "03221eba55555555"
+        "data": "03221eae55555555"
       },
       {
-        "name": "S3_1EBB_HV_Battery_temp_po",
-        "state": 1,
-        "id_format": 1,
-        "frame_format": 0,
-        "brs": 0,
-        "log": 1,
-        "period": 10000,
-        "delay": 2600,
-        "id": "17FC007B",
-        "data": "03221ebb55555555"
-      },
-      {
-        "name": "S3_1EBC_HV_Battery_temp_po",
+        "name": "S1_1EAF_TempPt02",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
@@ -612,34 +494,22 @@
         "period": 10000,
         "delay": 2700,
         "id": "17FC007B",
-        "data": "03221ebc55555555"
+        "data": "03221eaf55555555"
       },
       {
-        "name": "S3_1EBD_HV_Battery_temp_po",
+        "name": "S1_1EB0_TempPt03",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
         "brs": 0,
         "log": 1,
         "period": 10000,
-        "delay": 2800,
+        "delay": 2850,
         "id": "17FC007B",
-        "data": "03221ebd55555555"
+        "data": "03221eb055555555"
       },
       {
-        "name": "S3_210E_Driving_mode_posit",
-        "state": 1,
-        "id_format": 1,
-        "frame_format": 0,
-        "brs": 0,
-        "log": 1,
-        "period": 10000,
-        "delay": 2900,
-        "id": "17FC007B",
-        "data": "0322210e55555555"
-      },
-      {
-        "name": "S3_2430_GPS_status_quality",
+        "name": "S1_1EB1_TempPt04",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
@@ -648,34 +518,22 @@
         "period": 10000,
         "delay": 3000,
         "id": "17FC007B",
-        "data": "0322243055555555"
+        "data": "03221eb155555555"
       },
       {
-        "name": "S3_2431_GPS_number_of_viss",
+        "name": "S1_1EB2_TempPt05",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
         "brs": 0,
         "log": 1,
         "period": 10000,
-        "delay": 3100,
+        "delay": 3150,
         "id": "17FC007B",
-        "data": "0322243155555555"
+        "data": "03221eb255555555"
       },
       {
-        "name": "S3_2609_Outdoor_temperatur",
-        "state": 1,
-        "id_format": 1,
-        "frame_format": 0,
-        "brs": 0,
-        "log": 1,
-        "period": 10000,
-        "delay": 3200,
-        "id": "17FC007B",
-        "data": "0322260955555555"
-      },
-      {
-        "name": "S3_2613_Inside_temperature",
+        "name": "S1_1EB3_TempPt06",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
@@ -684,34 +542,22 @@
         "period": 10000,
         "delay": 3300,
         "id": "17FC007B",
-        "data": "0322261355555555"
+        "data": "03221eb355555555"
       },
       {
-        "name": "S3_263B_Recirculation_of_a",
+        "name": "S1_1EB4_TempPt07",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
         "brs": 0,
         "log": 1,
         "period": 10000,
-        "delay": 3400,
+        "delay": 3450,
         "id": "17FC007B",
-        "data": "0322263b55555555"
+        "data": "03221eb455555555"
       },
       {
-        "name": "S3_27C4_Realtive_humidity_",
-        "state": 1,
-        "id_format": 1,
-        "frame_format": 0,
-        "brs": 0,
-        "log": 1,
-        "period": 10000,
-        "delay": 3500,
-        "id": "17FC007B",
-        "data": "032227c455555555"
-      },
-      {
-        "name": "S3_295A_ODOMETER",
+        "name": "S1_1EB5_TempPt08",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
@@ -720,34 +566,22 @@
         "period": 10000,
         "delay": 3600,
         "id": "17FC007B",
-        "data": "0322295a55555555"
+        "data": "03221eb555555555"
       },
       {
-        "name": "S3_2AB2_HV_Battery_max_ene",
+        "name": "S1_1EB6_TempPt09",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
         "brs": 0,
         "log": 1,
         "period": 10000,
-        "delay": 3700,
+        "delay": 3750,
         "id": "17FC007B",
-        "data": "03222ab255555555"
+        "data": "03221eb655555555"
       },
       {
-        "name": "S3_2AB8_HV_Battery_energy_",
-        "state": 1,
-        "id_format": 1,
-        "frame_format": 0,
-        "brs": 0,
-        "log": 1,
-        "period": 10000,
-        "delay": 3800,
-        "id": "17FC007B",
-        "data": "03222ab855555555"
-      },
-      {
-        "name": "S3_2AF7_12V_Battery_SoC",
+        "name": "S1_1EB7_TempPt10",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
@@ -756,34 +590,22 @@
         "period": 10000,
         "delay": 3900,
         "id": "17FC007B",
-        "data": "03222af755555555"
+        "data": "03221eb755555555"
       },
       {
-        "name": "S3_3ADF_Left_chair_heating",
+        "name": "S1_1EB8_TempPt11",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
         "brs": 0,
         "log": 1,
         "period": 10000,
-        "delay": 4000,
+        "delay": 4050,
         "id": "17FC007B",
-        "data": "03223adf55555555"
+        "data": "03221eb855555555"
       },
       {
-        "name": "S3_3AE0_Right_chair_heatin",
-        "state": 1,
-        "id_format": 1,
-        "frame_format": 0,
-        "brs": 0,
-        "log": 1,
-        "period": 10000,
-        "delay": 4100,
-        "id": "17FC007B",
-        "data": "03223ae055555555"
-      },
-      {
-        "name": "S3_42DB_CO2_content_interi",
+        "name": "S1_1EB9_TempPt12",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
@@ -792,34 +614,22 @@
         "period": 10000,
         "delay": 4200,
         "id": "17FC007B",
-        "data": "032242db55555555"
+        "data": "03221eb955555555"
       },
       {
-        "name": "S3_7425_HV_Battery_temp_po",
+        "name": "S1_1EBA_TempPt13",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
         "brs": 0,
         "log": 1,
         "period": 10000,
-        "delay": 4300,
+        "delay": 4350,
         "id": "17FC007B",
-        "data": "0322742555555555"
+        "data": "03221eba55555555"
       },
       {
-        "name": "S3_7426_HV_Battery_temp_po",
-        "state": 1,
-        "id_format": 1,
-        "frame_format": 0,
-        "brs": 0,
-        "log": 1,
-        "period": 10000,
-        "delay": 4400,
-        "id": "17FC007B",
-        "data": "0322742655555555"
-      },
-      {
-        "name": "S3_F40D_Speed",
+        "name": "S1_1EBB_TempPt14",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
@@ -828,31 +638,403 @@
         "period": 10000,
         "delay": 4500,
         "id": "17FC007B",
-        "data": "0322f40d55555555"
+        "data": "03221ebb55555555"
       },
       {
-        "name": "S3_F449_Accelerator_pedal_",
+        "name": "S1_1EBC_TempPt15",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
         "brs": 0,
         "log": 1,
         "period": 10000,
-        "delay": 4600,
+        "delay": 4650,
         "id": "17FC007B",
+        "data": "03221ebc55555555"
+      },
+      {
+        "name": "S1_1EBD_TempPt16",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 4800,
+        "id": "17FC007B",
+        "data": "03221ebd55555555"
+      },
+      {
+        "name": "S1_7425_TempPt17",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 4950,
+        "id": "17FC007B",
+        "data": "0322742555555555"
+      },
+      {
+        "name": "S1_7426_TempPt18",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 5100,
+        "id": "17FC007B",
+        "data": "0322742655555555"
+      },
+      {
+        "name": "S1_465B_DCDCI",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 5250,
+        "id": "17FC00B9",
+        "data": "0322465b55555555"
+      },
+      {
+        "name": "S1_465D_DCDCV",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 5400,
+        "id": "17FC00B9",
+        "data": "0322465d55555555"
+      },
+      {
+        "name": "S1_210E_Gear",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 5550,
+        "id": "17FC0076",
+        "data": "0322210e55555555"
+      },
+      {
+        "name": "S1_0364_HVAux",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 5700,
+        "id": "17FC0076",
+        "data": "0322036455555555"
+      },
+      {
+        "name": "S1_295A_Odo",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 5850,
+        "id": "17FC0076",
+        "data": "0322295a55555555"
+      },
+      {
+        "name": "S1_2609_Tout",
+        "state": 1,
+        "id_format": 0,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 6000,
+        "id": "746",
+        "data": "0322260955555555"
+      },
+      {
+        "name": "S1_2613_Tin",
+        "state": 1,
+        "id_format": 0,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 6150,
+        "id": "746",
+        "data": "0322261355555555"
+      },
+      {
+        "name": "S1_F449_Pedal",
+        "state": 1,
+        "id_format": 0,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 6300,
+        "id": "746",
         "data": "0322f44955555555"
       },
       {
-        "name": "S3_F802_VIN_number_of_car_",
+        "name": "S1_42DB_CO2",
+        "state": 1,
+        "id_format": 0,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 6450,
+        "id": "746",
+        "data": "032242db55555555"
+      },
+      {
+        "name": "S1_263B_Recirc",
+        "state": 1,
+        "id_format": 0,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 6600,
+        "id": "746",
+        "data": "0322263b55555555"
+      },
+      {
+        "name": "S1_2AB2_MaxE",
+        "state": 1,
+        "id_format": 0,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 6750,
+        "id": "710",
+        "data": "03222ab255555555"
+      },
+      {
+        "name": "S1_2431_GpsSat",
+        "state": 1,
+        "id_format": 0,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 6900,
+        "id": "767",
+        "data": "0322243155555555"
+      },
+      {
+        "name": "S1_Cell001V",
         "state": 1,
         "id_format": 1,
         "frame_format": 0,
         "brs": 0,
         "log": 1,
         "period": 10000,
-        "delay": 4700,
+        "delay": 7050,
         "id": "17FC007B",
-        "data": "0322f80255555555"
+        "data": "03221e4055555555"
+      },
+      {
+        "name": "S1_Cell007V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 7200,
+        "id": "17FC007B",
+        "data": "03221e4655555555"
+      },
+      {
+        "name": "S1_Cell013V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 7350,
+        "id": "17FC007B",
+        "data": "03221e4c55555555"
+      },
+      {
+        "name": "S1_Cell019V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 7500,
+        "id": "17FC007B",
+        "data": "03221e5255555555"
+      },
+      {
+        "name": "S1_Cell025V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 7650,
+        "id": "17FC007B",
+        "data": "03221e5855555555"
+      },
+      {
+        "name": "S1_Cell031V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 7800,
+        "id": "17FC007B",
+        "data": "03221e5e55555555"
+      },
+      {
+        "name": "S1_Cell037V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 7950,
+        "id": "17FC007B",
+        "data": "03221e6455555555"
+      },
+      {
+        "name": "S1_Cell043V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 8100,
+        "id": "17FC007B",
+        "data": "03221e6a55555555"
+      },
+      {
+        "name": "S1_Cell049V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 8250,
+        "id": "17FC007B",
+        "data": "03221e7055555555"
+      },
+      {
+        "name": "S1_Cell055V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 8400,
+        "id": "17FC007B",
+        "data": "03221e7655555555"
+      },
+      {
+        "name": "S1_Cell061V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 8550,
+        "id": "17FC007B",
+        "data": "03221e7c55555555"
+      },
+      {
+        "name": "S1_Cell067V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 8700,
+        "id": "17FC007B",
+        "data": "03221e8255555555"
+      },
+      {
+        "name": "S1_Cell073V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 8850,
+        "id": "17FC007B",
+        "data": "03221e8855555555"
+      },
+      {
+        "name": "S1_Cell079V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 9000,
+        "id": "17FC007B",
+        "data": "03221e8e55555555"
+      },
+      {
+        "name": "S1_Cell085V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 9150,
+        "id": "17FC007B",
+        "data": "03221e9455555555"
+      },
+      {
+        "name": "S1_Cell091V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 9300,
+        "id": "17FC007B",
+        "data": "03221e9a55555555"
+      },
+      {
+        "name": "S1_Cell097V",
+        "state": 1,
+        "id_format": 1,
+        "frame_format": 0,
+        "brs": 0,
+        "log": 1,
+        "period": 10000,
+        "delay": 9450,
+        "id": "17FC007B",
+        "data": "03221ea055555555"
       }
     ]
   },
@@ -865,7 +1047,9 @@
       "mode": 1,
       "retransmission": 1,
       "fd_spec": 0,
-      "bit_rate_cfg_mode": 0
+      "bit_rate_cfg_mode": 1,
+      "bit_rate_std": 500000,
+      "bit_rate_fd": 2000000
     },
     "filter": {
       "remote_frames": 0,
@@ -954,24 +1138,36 @@
     "wifi": {
       "mode": 0,
       "keyformat": 0,
-      "accesspoint": []
+      "accesspoint": [
+        {
+          "ssid": "Alippo",
+          "pwd": "010117060517010117",
+          "minrssi": 0
+        }
+      ]
     },
     "protocol": 0,
     "s3": {
       "sync": {
-        "ota": 600,
+        "ota": 0,
         "heartbeat": 300,
-        "logfiles": 1
+        "logfiles": 0
       },
       "server": {
+        "endpoint": "http://172.20.10.2",
+        "port": 9000,
+        "bucket": "canedge-buzz",
+        "region": "us-east-1",
         "request_style": 0,
+        "accesskey": "canedgeadmin",
         "keyformat": 0,
+        "secretkey": "BuzzMEB-canedge-thesis-pw1",
         "signed_payload": 0
       }
     }
   },
   "gnss": {
-    "system": 5,
+    "system": 10,
     "invalid_signals": 0,
     "alignment": {
       "method": 0,

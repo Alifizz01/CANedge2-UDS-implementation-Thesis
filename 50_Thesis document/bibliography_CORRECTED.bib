@@ -1,0 +1,220 @@
+﻿% ============================================================
+%  CORRECTED BIBLIOGRAPHY
+%  Bachelor Thesis - Muhamad Alif Izzuwan Bin Ibrahim - THI/CARISSMA
+%
+%  CHANGE LOG vs bibliography.bib:
+%   * REMOVED  huybrechts2018reverse  -- THE CITED PAPER DOES NOT EXIST.
+%              The old entry claimed: Huybrechts, Joosen, Mustafa,
+%              "Reverse Engineering of CAN Bus Data from a Tesla Model S",
+%              Proc. ACM Workshop on Automotive and Aerial Vehicle Security, 2018.
+%              Verified false: (a) Joosen and Mustafa are not authors;
+%              (b) no such title exists; (c) ACM AutoSec first ran in 2021,
+%              so a 2018 proceedings volume is impossible;
+%              (d) the real Huybrechts paper is about ML-based automatic RE
+%                  and presents NO Tesla Model S battery reverse engineering.
+%   * ADDED    huybrechts2018automatic  -- the real paper, correctly cited.
+%   * ADDED    vwmebpidlist -- THE ACTUAL LOAD-BEARING SOURCE of this thesis.
+%              Every DID and every scaling equation used in Chapter 4 comes
+%              from this list. It was previously cited NOWHERE.
+%   * ADDED    real passive-RE prior art (read, librecan, cand) so that
+%              Sections 2.6 and 5.1 can stand on genuine literature.
+%   * ADDED    battery / MEB background so Sections 2.4-2.5 are not uncited.
+%
+%  NOTE ON `note` FIELDS: a note PRINTS in the rendered bibliography. It may
+%  therefore contain bibliographic fact only -- never guidance to the author.
+%  Anything addressed to the author belongs in a % comment like this one.
+% ============================================================
+
+% ---------- Standards ----------
+@misc{iso11898,
+  author       = {{International Organization for Standardization}},
+  title        = {{ISO 11898-1}: Road vehicles -- Controller area network ({CAN}) -- Part 1: Data link layer and physical signalling},
+  howpublished = {International Standard},
+  year         = {2015},
+}
+
+@misc{iso11898_2,
+  author       = {{International Organization for Standardization}},
+  title        = {{ISO 11898-2}: Road vehicles -- Controller area network ({CAN}) -- Part 2: High-speed medium access unit},
+  howpublished = {International Standard},
+  year         = {2016},
+}
+
+@misc{iso15765,
+  author       = {{International Organization for Standardization}},
+  title        = {{ISO 15765-2}: Road vehicles -- Diagnostic communication over Controller Area Network ({DoCAN}) -- Part 2: Transport protocol and network layer services},
+  howpublished = {International Standard},
+  year         = {2016},
+}
+
+@misc{iso14229,
+  author       = {{International Organization for Standardization}},
+  title        = {{ISO 14229-1}: Road vehicles -- Unified diagnostic services ({UDS}) -- Part 1: Application layer},
+  howpublished = {International Standard},
+  year         = {2020},
+}
+
+@misc{iso14229_2,
+  author       = {{International Organization for Standardization}},
+  title        = {{ISO 14229-2}: Road vehicles -- Unified diagnostic services ({UDS}) -- Part 2: Session layer services},
+  howpublished = {International Standard},
+  year         = {2013},
+}
+
+@misc{saej1962,
+  author       = {{SAE International}},
+  title        = {{SAE J1962}: Diagnostic Connector Equivalent to {ISO} 15031-3},
+  howpublished = {SAE Surface Vehicle Standard},
+  year         = {2016},
+}
+
+@misc{eudir9869,
+  author       = {{European Parliament and Council}},
+  title        = {Directive 98/69/EC relating to measures to be taken against air pollution by emissions from motor vehicles},
+  howpublished = {Official Journal of the European Communities, L 350},
+  year         = {1998},
+  note         = {Mandates EOBD for new petrol passenger cars from 2000 (type approval) and 2001 (first registration).},
+}
+
+@misc{eudir20011,
+  author       = {{European Parliament and Council}},
+  title        = {Directive 2001/1/EC amending Council Directive 70/220/EEC concerning measures to be taken against air pollution by emissions from motor vehicles},
+  howpublished = {Official Journal of the European Communities, L 35},
+  year         = {2001},
+  note         = {Extends EOBD to diesel passenger cars from 2003 (type approval) / 2004 (registration).},
+}
+
+% ---------- Tools / hardware ----------
+@misc{csselectronics_canedge2,
+  author       = {{CSS Electronics}},
+  title        = {{CANedge2}: 2-Channel {CAN}/{LIN} Bus Data Logger with {WiFi} -- Docs and Configuration Reference},
+  howpublished = {Product documentation, CSS Electronics},
+  year         = {2024},
+  note         = {Firmware 01.08.01, configuration schema 01.08.},
+}
+
+@misc{asammdf,
+  author       = {Hrisca, Daniel},
+  title        = {{asammdf}: Fast {Python} reader and editor for {ASAM} {MDF} measurement files},
+  howpublished = {GitHub repository, \url{https://github.com/danielhrisca/asammdf}},
+  year         = {2024},
+  note         = {Version 7.4.5 used in this work},
+}
+
+@misc{asam_mdf,
+  author       = {{ASAM e.V.}},
+  title        = {{ASAM} {MDF} (Measurement Data Format) Version 4.1.1},
+  howpublished = {Association for Standardisation of Automation and Measuring Systems},
+  year         = {2019},
+}
+
+% ---------- THE LOAD-BEARING SOURCE OF THIS THESIS ----------
+% Every Data Identifier and every scaling equation in Chapter 4 originates here.
+% Provenance established 17.07.2026: the repository README's own counts
+% (160 Ready / 17 need-to-logg / 16 equation-missing) match this file exactly.
+@misc{vwmebpidlist,
+  author       = {{spot2000}},
+  title        = {Volkswagen {MEB} {EV} {CAN} parameters: List of all {UDS} {SID} for {VW} {ID.3}},
+  howpublished = {GitHub repository, \url{https://github.com/spot2000/Volkswagen-MEB-EV-CAN-parameters}},
+  year         = {2021},
+  note         = {File \texttt{VW MEB UDS PIDs list.csv}, header version 164; 194 rows,
+                  160 flagged \emph{Ready}. No licence stated. Accessed 17 July 2026.},
+}
+% The list's origin, scope and limitations are discussed in Section 2.6; that
+% discussion belongs in the text, not in this entry -- keep the note short.
+
+% ---------- Genuine prior art on CAN reverse engineering ----------
+% VERIFIED 17.07.2026 against Springer Nature Link: authors, LNDECT vol. 13,
+% pp. 751-761, 2018, DOI 10.1007/978-3-319-69835-9_71 all confirmed.
+% This is the REAL paper that the removed 'huybrechts2018reverse' entry
+% misattributed. It concerns ML-based automation of passive CAN signal
+% recovery and contains NO Tesla Model S battery reverse engineering.
+@inproceedings{huybrechts2018automatic,
+  author    = {Huybrechts, Thomas and Vanommeslaeghe, Yon and Blontrock, Dries and Van Barel, Gregory and Hellinckx, Peter},
+  title     = {Automatic Reverse Engineering of {CAN} Bus Data Using Machine Learning Techniques},
+  booktitle = {Advances on P2P, Parallel, Grid, Cloud and Internet Computing (3PGCIC 2017)},
+  series    = {Lecture Notes on Data Engineering and Communications Technologies},
+  volume    = {13},
+  pages     = {751--761},
+  publisher = {Springer},
+  year      = {2018},
+  doi       = {10.1007/978-3-319-69835-9_71},
+}
+
+% VERIFIED 17.07.2026 against IEEE Xplore / ACM DL: authors, vol. 14 no. 4,
+% pp. 1083-1097, April 2019, DOI 10.1109/TIFS.2018.2870826 all confirmed.
+@article{read,
+  author    = {Marchetti, Mirco and Stabili, Dario},
+  title     = {{READ}: Reverse Engineering of Automotive Data Frames},
+  journal   = {IEEE Transactions on Information Forensics and Security},
+  volume    = {14},
+  number    = {4},
+  pages     = {1083--1097},
+  year      = {2019},
+  doi       = {10.1109/TIFS.2018.2870826},
+}
+
+% VERIFIED 17.07.2026 against ACM DL: authors, CCS '19 (London, 11-15 Nov 2019),
+% pp. 2283-2300, DOI 10.1145/3319535.3363190 all confirmed.
+@inproceedings{librecan,
+  author    = {Pes{\'e}, Mert D. and Stacer, Troy and Campos, C. Andr{\'e}s and Newberry, Eric and Chen, Dongyao and Shin, Kang G.},
+  title     = {{LibreCAN}: Automated {CAN} Message Translator},
+  booktitle = {Proceedings of the 2019 ACM SIGSAC Conference on Computer and Communications Security (CCS '19)},
+  pages     = {2283--2300},
+  year      = {2019},
+  doi       = {10.1145/3319535.3363190},
+}
+
+% VERIFIED 17.07.2026 against IEEE Xplore / ORNL: authors, vol. 70 no. 10,
+% pp. 9685-9700, Oct. 2021, DOI 10.1109/TVT.2021.3092354 all confirmed.
+% Preprint: arXiv:2006.05993.
+@article{cand,
+  author    = {Verma, Miki E. and Bridges, Robert A. and Sosnowski, Jordan J. and Hollifield, Samuel C. and Iannacone, Michael D.},
+  title     = {{CAN-D}: A Modular Four-Step Pipeline for Comprehensively Decoding Controller Area Network Data},
+  journal   = {IEEE Transactions on Vehicular Technology},
+  volume    = {70},
+  number    = {10},
+  pages     = {9685--9700},
+  year      = {2021},
+  doi       = {10.1109/TVT.2021.3092354},
+}
+
+@misc{opendbc,
+  author       = {{comma.ai}},
+  title        = {{opendbc}: Democratizing access to vehicle {CAN} data},
+  howpublished = {GitHub repository, \url{https://github.com/commaai/opendbc}},
+  year         = {2024},
+}
+
+% ---------- Battery / MEB background (Sections 2.4-2.5 are currently uncited) ----------
+@misc{vw_meb,
+  author       = {{Volkswagen AG}},
+  title        = {The Modular Electric Drive Matrix ({MEB}) -- Technical Press Kit},
+  howpublished = {Volkswagen Newsroom},
+  year         = {2023},
+}
+
+@book{plett2015,
+  author    = {Plett, Gregory L.},
+  title     = {Battery Management Systems, Volume I: Battery Modeling},
+  publisher = {Artech House},
+  year      = {2015},
+}
+
+@book{plett2016,
+  author    = {Plett, Gregory L.},
+  title     = {Battery Management Systems, Volume II: Equivalent-Circuit Methods},
+  publisher = {Artech House},
+  year      = {2016},
+}
+
+@article{rivera2021soc,
+  author  = {Rivera-Barrera, Juan P. and Mu{\~n}oz-Galeano, Nicol{\'a}s and Sarmiento-Maldonado, Henry O.},
+  title   = {{SoC} Estimation for Lithium-ion Batteries: Review and Future Challenges},
+  journal = {Electronics},
+  volume  = {6},
+  number  = {4},
+  pages   = {102},
+  year    = {2017},
+  doi     = {10.3390/electronics6040102},
+}

@@ -1,0 +1,273 @@
+% ============================================================================
+%  REVIEW_FIXES.tex  --  drop-in replacements produced during the review.
+%
+%  Every number below was read out of the deployed configuration
+%  (D:\config-01.08.json) or decoded from D:\LOG\2A73E1CC\00000039\00000001.MF4.
+%  Nothing here is invented. No new experiment is assumed.
+%
+%  HOW TO USE: copy the blocks you want into thesis.tex. This file is not
+%  meant to be compiled on its own.
+% ============================================================================
+
+
+% ############################################################################
+% ## 1. SIGNAL-PATH DIAGRAM  (Chapter 3, replaces/extends fig:setup)
+% ############################################################################
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+  font=\footnotesize,
+  node distance=6mm,
+  blk/.style={draw,thick,rounded corners=1pt,minimum height=9mm,minimum width=21mm,align=center,fill=gray!6},
+  veh/.style={blk,fill=blue!8},
+  log/.style={blk,fill=green!10},
+  pc/.style={blk,fill=orange!10},
+  ar/.style={-{Stealth[length=2mm]},thick},
+  lbl/.style={font=\scriptsize\itshape,align=center}]
+
+\node[veh] (bms)  {BMS / BMC\\+ CSCs};
+\node[veh,right=8mm of bms] (ibus) {internal battery\\ /\,powertrain CAN};
+\node[veh,right=8mm of ibus] (gw)  {central\\gateway ECU};
+\node[veh,right=8mm of gw]  (obd)  {OBD-II\\HS-CAN};
+\node[log,right=8mm of obd] (ce)   {CANedge2\\CH1, 500\,kbit/s};
+\node[log,below=9mm of ce]  (sd)   {SD card\\MF4 (MDF 4.11)};
+\node[pc,left=8mm of sd]    (asam) {\texttt{asammdf}\\frame extraction};
+\node[pc,left=8mm of asam]  (dec)  {\texttt{uds\_battery\_decoder.py}\\DID $\rightarrow$ scaling};
+\node[pc,left=8mm of dec]   (val)  {plausibility\\+ validation};
+
+\draw[ar] (bms) -- (ibus);
+\draw[ar] (ibus) -- (gw);
+\draw[ar] (gw) -- (obd);
+\draw[ar] (obd) -- (ce);
+\draw[ar] (ce) -- (sd);
+\draw[ar] (sd) -- (asam);
+\draw[ar] (asam) -- (dec);
+\draw[ar] (dec) -- (val);
+
+% the blocked broadcast path
+\draw[ar,dashed,red!70!black] (ibus.north) to[out=60,in=120] node[lbl,above,red!70!black]
+  {raw BMS broadcast frames\\\textbf{not forwarded}} (obd.north);
+\node[red!70!black,font=\bfseries] at ($(gw.north)+(0,7mm)$) {$\times$};
+
+% the active request path
+\draw[ar,<-,blue!70!black] ([yshift=-3mm]bms.south) to[out=-60,in=-120]
+  node[lbl,below,blue!70!black]
+  {UDS \hex{22} request \hex{17FC007B} \emph{is} routed inward;\\
+   response returns on \hex{17FE007B}} ([yshift=-3mm]obd.south);
+
+\end{tikzpicture}
+\caption[Signal path from cell to engineering value]{Signal path from the physical cell to the
+interpreted engineering value. The gateway does not forward the BMS broadcast frames outward
+(red), but it does route addressed UDS requests inward and their responses back (blue). Every
+stage from the OBD-II connector rightwards is under the control of this work.}
+\label{fig:signal_path}
+\end{figure}
+
+
+% ############################################################################
+% ## 2. UDS ACQUISITION FLOWCHART  (Chapter 3, new)
+% ############################################################################
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+  font=\footnotesize, node distance=5.5mm,
+  st/.style={draw,thick,rounded corners=3pt,minimum height=7mm,minimum width=44mm,align=center,fill=gray!6},
+  dec/.style={draw,thick,diamond,aspect=2.2,inner sep=1pt,align=center,fill=yellow!12},
+  ar/.style={-{Stealth[length=2mm]},thick},
+  note/.style={font=\scriptsize\itshape,align=left,text width=42mm}]
+
+\node[st] (a) {Select target parameter};
+\node[st,below=of a] (b) {Look up ECU address + DID\\in the community list~\cite{vwmebpidlist}};
+\node[st,below=of b] (c) {Build single-frame request\\\texttt{03 22 XX XX 55 55 55 55}};
+\node[st,below=of c] (d) {Add to CANedge2 transmit list\\(period 10\,s, stagger 150\,ms)};
+\node[st,below=of d] (e) {Open extended session \hex{10}\,\hex{03}\\+ cyclic \hex{3E}\,\hex{00} TesterPresent};
+\node[st,below=of e] (f) {Log request + response\\on one hardware clock};
+\node[dec,below=8mm of f] (g) {response?};
+\node[st,below=8mm of g] (h) {Extract payload bytes\\after \hex{62} + DID echo};
+\node[st,below=of h] (i) {Apply scaling from the list};
+\node[dec,below=8mm of i] (j) {physically\\plausible?};
+\node[st,below=8mm of j] (k) {Classify: directly validated /\\indirectly validated /\\plausible unconfirmed / invalid};
+
+\node[st,right=16mm of g,fill=red!8] (g1) {none $\rightarrow$ not exposed\\here (\hex{2AB2}, \hex{2AB8})};
+\node[st,right=16mm of f,fill=orange!10] (g2) {first frame only $\rightarrow$\\no ISO-TP (6 DIDs)};
+\node[st,right=16mm of j,fill=orange!10] (j1) {no $\rightarrow$ sentinel? wrong\\scaling? unsupported slot?\\(\hex{0FFE} on cells 97/100/104)};
+
+\foreach \x/\y in {a/b,b/c,c/d,d/e,e/f,f/g,g/h,h/i,i/j,j/k} \draw[ar] (\x) -- (\y);
+\draw[ar] (g) -- node[above,font=\scriptsize]{none} (g1);
+\draw[ar] (f.east) -- node[above,font=\scriptsize]{FF} (g2);
+\draw[ar] (j) -- node[above,font=\scriptsize]{no} (j1);
+\draw[ar] (j1.north) |- ([yshift=3mm]i.north) node[right,font=\scriptsize,pos=0.75]{re-examine encoding};
+\node[right=1mm of g.south east,font=\scriptsize] {yes};
+\node[right=1mm of j.south east,font=\scriptsize] {yes};
+\end{tikzpicture}
+\caption[UDS acquisition and decoding workflow]{The UDS acquisition workflow actually followed in
+this work, including the three failure branches that the measurement campaign exercised. The
+classification in the final step is the one used in Table~\ref{tab:validation_classes}.}
+\label{fig:uds_flow}
+\end{figure}
+
+
+% ############################################################################
+% ## 3. CORRECTED CONFIG LISTINGS  (replace lst:canedge_cfg and lst:canedge_tx)
+% ##    The previous lst:canedge_tx printed key names that DO NOT EXIST
+% ##    ("data_field", "period_ms", "delay_ms") and an integer id. Anyone
+% ##    following it could not reproduce the configuration.
+% ############################################################################
+\begin{lstlisting}[caption={[CANedge2 PHY settings]Physical-layer settings of channel~1, verbatim from the deployed
+\texttt{config-01.08.json}. The factory default is restricted (listen-only) mode with
+auto bit-rate detection, which never lets the controller transmit.},label={lst:canedge_cfg}]
+"can_1": {
+  "phy": {
+    "mode": 0,                 // 0 = Normal (default 1 = Restricted): required to transmit
+    "retransmission": 1,
+    "fd_spec": 0,
+    "bit_rate_cfg_mode": 1,    // 1 = manual (default 0 = auto-detect): go bus-active at once
+    "bit_rate_std": 500000,    // Classical CAN arbitration rate, matches the ID. Buzz
+    "bit_rate_fd": 2000000     // defined only so the controller initialises; CAN-FD unused
+  },
+  "filter": {                  // pass-all: nothing is discarded at the logger
+    "remote_frames": 0,
+    "id": [
+      { "name": "AllStandardID", "state": 1, "id_format": 0, "f1": "0", "f2": "7FF" },
+      { "name": "AllExtendedID", "state": 1, "id_format": 1, "f1": "0", "f2": "1FFFFFFF" }
+    ]
+  }
+}
+\end{lstlisting}
+
+\begin{lstlisting}[caption={[A transmit-list entry]The first four entries of the 62-entry transmit list, verbatim from the
+deployed \texttt{config-01.08.json}. Entries 1--2 open and hold the diagnostic session;
+entries 3 onward are the \hex{22} reads, staggered by 150\,ms.},label={lst:canedge_tx}]
+"transmit": [
+  { "name": "BMS_DiagSessExt", "state": 1, "id_format": 1, "frame_format": 0, "brs": 0,
+    "log": 1, "period": 10000, "delay": 0,
+    "id": "17FC007B", "data": "0210035555555555" },   // SID 10 sub 03: extended session
+
+  { "name": "BMS_TP",          "state": 1, "id_format": 1, "frame_format": 0, "brs": 0,
+    "log": 1, "period": 10000, "delay": 150,
+    "id": "17FC007B", "data": "023e005555555555" },   // SID 3E sub 00: TesterPresent
+
+  { "name": "SOC_BMS_028C",    "state": 1, "id_format": 1, "frame_format": 0, "brs": 0,
+    "log": 1, "period": 10000, "delay": 300,
+    "id": "17FC007B", "data": "0322028c55555555" },   // SF PCI 03, SID 22, DID 028C
+
+  { "name": "HV_Volt_1E3B",    "state": 1, "id_format": 1, "frame_format": 0, "brs": 0,
+    "log": 1, "period": 10000, "delay": 450,
+    "id": "17FC007B", "data": "03221e3b55555555" }    // SF PCI 03, SID 22, DID 1E3B
+  // ... 58 further 0x22 reads, delay 600 ... 9150 ms
+]
+\end{lstlisting}
+
+
+% ############################################################################
+% ## 4. CORRECTED RESULTS TABLE  (replaces tab:uds_results)
+% ##    Changes: op mode 0->1 (measured!), cell index 62 -> 82/96 (decoder bug),
+% ##    "cells 1-93" -> 28 sampled cells, adds 1E0E/1E0F/1E1B/1E1C/295A/F40D
+% ##    which were requested, answered, and previously omitted.
+% ############################################################################
+\begin{table}[H]
+\caption[Decoded parameters]{Parameters decoded from log \texttt{00000039} (533.5\,s, 21\,438 frames).
+Scalings are those published in the community identifier list~\cite{vwmebpidlist} unless marked
+$\dagger$, which denotes an encoding recovered in this work. Ranges are min--max over the
+53--54 repeated reads in the session.}
+\label{tab:uds_results}
+\centering\small
+\begin{tabular}{@{}llll@{}}
+\toprule
+\textbf{Parameter} & \textbf{DID} & \textbf{Scaling} & \textbf{Measured} \\
+\midrule
+\multicolumn{4}{@{}l}{\itshape Pack-level} \\
+State of charge (BMS)          & \hex{028C} & raw$/2.5$ [\%]                    & 72.8--73.2\,\% \\
+Pack voltage                   & \hex{1E3B} & raw$_{16}/4$ [V]                  & 373.25--373.75\,V \\
+Dynamic charge limit           & \hex{1E1B} & raw$_{16}/5$ [A]                  & 352.4--355.2\,A \\
+Dynamic discharge limit        & \hex{1E1C} & raw$_{16}/5$ [A]                  & 800.0\,A (constant) \\
+\midrule
+\multicolumn{4}{@{}l}{\itshape Cell-level} \\
+Cell voltage, 28 sampled cells & \hex{1E40}$+n-1$ & raw$_{16}/1000+1$ [V]       & 3.888--3.890\,V \\
+Highest cell: voltage $\dagger$/ index & \hex{1E33} & raw$_{16}/4096$ [V] $\dagger$; \texttt{B[3]} & 3.889--3.894\,V; cells 3--82 \\
+Lowest cell: voltage $\dagger$/ index  & \hex{1E34} & raw$_{16}/4096$ [V] $\dagger$; \texttt{B[3]} & 3.881--3.885\,V; \textbf{cell 96} \\
+Unpopulated slots 97, 100, 104 & \hex{1EA0},\hex{1EA3},\hex{1EA7} & raw $=$ \hex{0FFE} $\dagger$ & not available \\
+\midrule
+\multicolumn{4}{@{}l}{\itshape Thermal} \\
+Battery temperature (main)     & \hex{2A0B} & raw$/2-40$ [\textdegree C]        & 16.0\,\textdegree C \\
+Temp.\ points 1,3,6,9,12,15    & \hex{1EAE}$+$ & raw$_{16}/8-40$ [\textdegree C] & 16.00--16.38\,\textdegree C \\
+Temp.\ point 18                & \hex{7426} & raw$_{16}/8-40$ [\textdegree C]   & 16.00--16.12\,\textdegree C \\
+Highest temp.\ / point index   & \hex{1E0E} & raw$_{16}/64$; \texttt{B[3]}      & 16.375\,\textdegree C @ pt.\ 5--6 \\
+Lowest temp.\ / point index    & \hex{1E0F} & raw$_{16}/64$; \texttt{B[3]}      & 15.875\,\textdegree C @ pt.\ 3--7 \\
+Outdoor temperature            & \hex{2609} & raw$/2-50$ [\textdegree C]        & 16.5--18.0\,\textdegree C \\
+PTC heater current             & \hex{1620} & raw$/4$ [A]                       & 0.0\,A \\
+\midrule
+\multicolumn{4}{@{}l}{\itshape Vehicle state} \\
+Car operation mode             & \hex{7448} & enum                              & \textbf{1 (driving) in 54/54} \\
+Speed                          & \hex{F40D} & raw [km/h]                        & 0 (constant) \\
+Odometer                       & \hex{295A} & raw$_{24}$ [km]                   & (redacted, constant) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+% ############################################################################
+% ## 5. VALIDATION CLASSIFICATION TABLE  (new -- the reviewer's key request)
+% ############################################################################
+\begin{table}[H]
+\caption[Validation status of each decoded signal]{Validation status of every signal recovered in
+this work. The distinction matters: only class~A is confirmed against a reference that is
+independent of the decoding, and only class~A may be described as \emph{validated}.}
+\label{tab:validation_classes}
+\centering\small
+\begin{tabular}{@{}p{2.1cm}p{3.5cm}p{7.3cm}@{}}
+\toprule
+\textbf{Class} & \textbf{Signals} & \textbf{Basis, and what it does \emph{not} establish} \\
+\midrule
+\textbf{A -- directly validated} &
+\hex{7448} operation mode; \hex{F40D} speed &
+Agree with a directly observable external fact: the vehicle was switched on and stationary
+throughout. These are the only two signals with a reference wholly independent of the CAN data. \\[2pt]
+
+\textbf{B -- indirectly validated} &
+\hex{1E3B} pack voltage; \hex{1E40}$+$ cell voltages; \hex{1E33}/\hex{1E34} extremes &
+Mutually consistent under a physical constraint that does not involve the decoding:
+$V_\mathrm{pack}/\overline{V}_\mathrm{cell}=95.95$--$96.08$, and the independently
+sampled cells (3.888--3.890\,V) lie strictly inside the BMS-reported extremes
+(3.881--3.894\,V). Confirms the scalings are \emph{mutually} correct; does not fix an
+absolute offset common to all of them. \\[2pt]
+
+& \hex{2A0B}, \hex{1EAE}$+$, \hex{7426}, \hex{1E0E}, \hex{1E0F} temperatures &
+All cluster at 16.0--16.4\,\textdegree C and the extremes bracket the sampled points; broadly
+consistent with the outdoor reading (16.5--18.0\,\textdegree C). No calibrated thermometer was
+placed in the pack, so this is consistency, not calibration. \\[2pt]
+
+\textbf{C -- plausible but unconfirmed} &
+\hex{028C} SOC &
+72.8--73.2\,\% is plausible and internally steady, \textbf{but no dashboard photograph or
+independent SOC reading was recorded for these sessions}. It cannot be called validated. \\[2pt]
+
+& \hex{1E1B}/\hex{1E1C} limits; \hex{1620} PTC; \hex{2609} outdoor T; \hex{295A} odometer &
+Physically plausible magnitudes, no independent reference taken. \\[2pt]
+
+& \hex{2AF7} 12\,V voltage &
+$\approx$14.7\,V decoded from the \emph{first frame only}; the two bytes the formula needs
+happen to fall inside it. Consistent with an active DC/DC, but the remaining 20 bytes of the
+record were never seen, so the field offsets are unverified. \\[2pt]
+
+& \hex{1E3D} pack current &
+First frame carries only the top three data bytes, giving $-4.96$\,A or $-2.40$\,A depending on
+the last-seen byte. Plausible for a stationary vehicle; \textbf{not recoverable} without ISO-TP. \\[2pt]
+
+\textbf{D -- invalid / unexplained} &
+\hex{1EA0}, \hex{1EA3}, \hex{1EA7} cells 97/100/104 &
+Constant raw \hex{0FFE} in 53/53 reads. \hex{0FFE} sits one below the 12-bit all-ones code:
+interpreted here as a reserved \emph{not available} marker for a slot the pack does not
+populate. Excluded, not rescaled. \\[2pt]
+
+& \hex{0800} A/C compressor &
+Answers, varies over six distinct values, but the source list gives no equation and only the
+first frame was captured. Uninterpreted. \\[2pt]
+
+& \hex{2AB2}, \hex{2AB8} energy content &
+No response and no negative response code, while \hex{2AF7} on the \emph{same} ECU (\hex{710})
+answered in the same session. The ECU is reachable; these identifiers are not. Note that no
+extended session was opened on \hex{710}, so a session-state cause cannot be excluded. \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,0 +1,85 @@
+% AUTO-GENERATED from the deployed CANedge2 configuration (D:\config-01.08.json,
+% SHA256 6CDFE93D...A12, identical to 20_Hardware/CANedge/config-01.08-selected.json)
+% and from the measured outcome in log 00000039. Do not hand-edit.
+\begin{longtable}{@{}llllll@{}}
+\caption[Deployed UDS transmit list]{The 60 UDS Data Identifiers actually programmed into the
+CANedge2 transmit list and their measured outcome. The transmit list additionally holds two
+non-read entries -- \texttt{BMS\_DiagSessExt} (\hex{10}\,\hex{03}) and \texttt{BMS\_TP}
+(\hex{3E}\,\hex{00}) -- giving 62 of the 64 available entries. All entries use
+\texttt{period}~=~10\,000\,ms with a 150\,ms stagger (\texttt{delay}~=~0\ldots9150\,ms).
+Signal names and units are reproduced from the community identifier list~\cite{vwmebpidlist};
+the unit given there for \hex{1E33}/\hex{1E34} is erroneous (see Section~4.3).}
+\label{tab:selected_signals}\\
+\toprule
+\textbf{ECU} & \textbf{Request ID} & \textbf{DID} & \textbf{Signal (per~\cite{vwmebpidlist})} & \textbf{Unit} & \textbf{Outcome} \\
+\midrule
+\endfirsthead
+\multicolumn{6}{@{}l}{\small\itshape Table~\ref{tab:selected_signals} -- continued from previous page}\\
+\toprule
+\textbf{ECU} & \textbf{Request ID} & \textbf{DID} & \textbf{Signal (per~\cite{vwmebpidlist})} & \textbf{Unit} & \textbf{Outcome} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+BMS & \texttt{17FC007B} & \texttt{028C} & SOC (BMS) & \% & positive \\
+BMS & \texttt{17FC007B} & \texttt{0500} & HV Battery serial & logic & first frame only \\
+BMS & \texttt{17FC007B} & \texttt{1620} & PTC heater battery current & A & positive \\
+BMS & \texttt{17FC007B} & \texttt{1E0E} & HV Battery max temp and temp point & \textdegree{}C & positive \\
+BMS & \texttt{17FC007B} & \texttt{1E0F} & HV Battery min temp and temp point & \textdegree{}C & positive \\
+BMS & \texttt{17FC007B} & \texttt{1E1B} & Dynamic limit for charging & A & positive \\
+BMS & \texttt{17FC007B} & \texttt{1E1C} & Dynamic limit for discharge & A & positive \\
+BMS & \texttt{17FC007B} & \texttt{1E32} & HV battery total discharge & kWh & first frame only \\
+BMS & \texttt{17FC007B} & \texttt{1E33} & HV Battery cell \# with highest voltage & \textdegree{}C & positive \\
+BMS & \texttt{17FC007B} & \texttt{1E34} & HV Battery cell \# with lowest  voltage & \textdegree{}C & positive \\
+BMS & \texttt{17FC007B} & \texttt{1E3B} & HV Battery voltage & V & positive \\
+BMS & \texttt{17FC007B} & \texttt{1E3D} & HV Battery current & A & first frame only \\
+BMS & \texttt{17FC007B} & \texttt{1E40} & HV Battery cell voltage - cell 1 & V & positive \\
+BMS & \texttt{17FC007B} & \texttt{1E49} & HV Battery cell voltage - cell 10 & V & positive \\
+BMS & \texttt{17FC007B} & \texttt{1E4C} & HV Battery cell voltage - cell 13 & V & positive \\
+BMS & \texttt{17FC007B} & \texttt{1E50} & HV Battery cell voltage - cell 17 & V & positive \\
+BMS & \texttt{17FC007B} & \texttt{1E53} & HV Battery cell voltage - cell 20 & V & positive \\
+BMS & \texttt{17FC007B} & \texttt{1E56} & HV Battery cell voltage - cell 23 & V & positive \\
+BMS & \texttt{17FC007B} & \texttt{1E5A} & HV Battery cell voltage - cell 27 & V & positive \\
+BMS & \texttt{17FC007B} & \texttt{1E5D} & HV Battery cell voltage - cell 30 & V & positive \\
+BMS & \texttt{17FC007B} & \texttt{1E60} & HV Battery cell voltage - cell 33 & V & positive \\
+BMS & \texttt{17FC007B} & \texttt{1E64} & HV Battery cell voltage - cell 37 & V & positive \\
+BMS & \texttt{17FC007B} & \texttt{1E67} & HV Battery cell voltage - cell 41 & V & positive \\
+BMS & \texttt{17FC007B} & \texttt{1E6A} & HV Battery cell voltage - cell 43 & V & positive \\
+BMS & \texttt{17FC007B} & \texttt{1E6E} & HV Battery cell voltage - cell 47 & V & positive \\
+BMS & \texttt{17FC007B} & \texttt{1E71} & HV Battery cell voltage - cell 50 & V & positive \\
+BMS & \texttt{17FC007B} & \texttt{1E74} & HV Battery cell voltage - cell 53 & V & positive \\
+BMS & \texttt{17FC007B} & \texttt{1E76} & HV Battery cell voltage - cell 55 & V & positive \\
+BMS & \texttt{17FC007B} & \texttt{1E78} & HV Battery cell voltage - cell 57 & V & positive \\
+BMS & \texttt{17FC007B} & \texttt{1E7B} & HV Battery cell voltage - cell 60 & V & positive \\
+BMS & \texttt{17FC007B} & \texttt{1E7E} & HV Battery cell voltage - cell 63 & V & positive \\
+BMS & \texttt{17FC007B} & \texttt{1E82} & HV Battery cell voltage - cell 67 & V & positive \\
+BMS & \texttt{17FC007B} & \texttt{1E85} & HV Battery cell voltage - cell 70 & V & positive \\
+BMS & \texttt{17FC007B} & \texttt{1E88} & HV Battery cell voltage - cell 73 & V & positive \\
+BMS & \texttt{17FC007B} & \texttt{1E8C} & HV Battery cell voltage - cell 77 & V & positive \\
+BMS & \texttt{17FC007B} & \texttt{1E8F} & HV Battery cell voltage - cell 80 & V & positive \\
+BMS & \texttt{17FC007B} & \texttt{1E92} & HV Battery cell voltage - cell 83 & V & positive \\
+BMS & \texttt{17FC007B} & \texttt{1E96} & HV Battery cell voltage - cell 87 & V & positive \\
+BMS & \texttt{17FC007B} & \texttt{1E99} & HV Battery cell voltage - cell 90 & V & positive \\
+BMS & \texttt{17FC007B} & \texttt{1E9C} & HV Battery cell voltage - cell 93 & V & positive \\
+BMS & \texttt{17FC007B} & \texttt{1EA0} & HV Battery cell voltage - cell 97 & V & positive ($0\mathrm{x0FFE}$) \\
+BMS & \texttt{17FC007B} & \texttt{1EA3} & HV Battery cell voltage - cell 100 & V & positive ($0\mathrm{x0FFE}$) \\
+BMS & \texttt{17FC007B} & \texttt{1EA7} & HV Battery cell voltage - cell 104 & V & positive ($0\mathrm{x0FFE}$) \\
+BMS & \texttt{17FC007B} & \texttt{1EAE} & HV Battery temp point 1 & \textdegree{}C & positive \\
+BMS & \texttt{17FC007B} & \texttt{1EB0} & HV Battery temp point 3 & \textdegree{}C & positive \\
+BMS & \texttt{17FC007B} & \texttt{1EB3} & HV Battery temp point 6 & \textdegree{}C & positive \\
+BMS & \texttt{17FC007B} & \texttt{1EB6} & HV Battery temp point 9 & \textdegree{}C & positive \\
+BMS & \texttt{17FC007B} & \texttt{1EB9} & HV Battery temp point 12 & \textdegree{}C & positive \\
+BMS & \texttt{17FC007B} & \texttt{1EBC} & HV Battery temp point 15 & \textdegree{}C & positive \\
+BMS & \texttt{17FC007B} & \texttt{2A0B} & HV Battery temp (main value) & \textdegree{}C & positive \\
+BMS & \texttt{17FC007B} & \texttt{7426} & HV Battery temp point 18 & \textdegree{}C & positive \\
+BMS & \texttt{17FC007B} & \texttt{7448} & Car operation mode & logic & positive \\
+BMS & \texttt{17FC007B} & \texttt{F40D} & Speed & km/h & positive \\
+Climate & \texttt{746} & \texttt{0800} & A/C compressor power consumtion & W & first frame only \\
+Climate & \texttt{746} & \texttt{2609} & Outdoor temperature & \textdegree{}C & positive \\
+Drive & \texttt{17FC0076} & \texttt{295A} & ODOMETER & km & positive \\
+Drive & \texttt{17FC0076} & \texttt{F802} & VIN number of car (from engine ECU) &  & first frame only \\
+Gateway & \texttt{710} & \texttt{2AB2} & HV Battery max energy content & Wh & \textbf{no response} \\
+Gateway & \texttt{710} & \texttt{2AB8} & HV Battery energy content & Wh & \textbf{no response} \\
+Gateway & \texttt{710} & \texttt{2AF7} & 12V Battery SoC & \% & first frame only \\
+\bottomrule
+\end{longtable}
