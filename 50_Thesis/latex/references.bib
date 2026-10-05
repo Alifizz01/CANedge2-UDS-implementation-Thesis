@@ -1,0 +1,221 @@
+% ============================================================
+%  BIBLIOGRAPHY -- IEEE style (IEEEtran.bst)
+%  Bachelor Thesis - Muhamad Alif Izzuwan Bin Ibrahim
+%
+%  15 references, all cited in the text. Entry types follow IEEEtran:
+%    standard    for ISO / SAE standards   -> "Title, Std. ISO 11898-1, 2015."
+%    electronic  for online resources      -> "[Online]. Available: <url>"
+%    article / inproceedings / book        for the literature
+%
+%  Every entry was opened and checked; the % comment above each one records
+%  what was verified and when. A `note` field PRINTS -- keep author-facing
+%  remarks in % comments like this one, never in a field.
+% ============================================================
+
+% ---------------- Standards ----------------
+
+% VERIFIED: ISO 11898-1:2015, data link layer and physical signalling.
+@standard{iso11898,
+  organization = {ISO},
+  type         = {Standard 11898-1},
+  title        = {Road vehicles---Controller area network ({CAN})---Part 1: Data link layer and physical signalling},
+  address      = {Geneva, Switzerland},
+  year         = {2015},
+}
+
+% VERIFIED: ISO 15765-2:2016, ISO-TP transport protocol.
+@standard{iso15765,
+  organization = {ISO},
+  type         = {Standard 15765-2},
+  title        = {Road vehicles---Diagnostic communication over Controller Area Network ({DoCAN})---Part 2: Transport protocol and network layer services},
+  address      = {Geneva, Switzerland},
+  year         = {2016},
+}
+
+% VERIFIED: ISO 14229-1:2020, UDS application layer.
+@standard{iso14229,
+  organization = {ISO},
+  type         = {Standard 14229-1},
+  title        = {Road vehicles---Unified diagnostic services ({UDS})---Part 1: Application layer},
+  address      = {Geneva, Switzerland},
+  year         = {2020},
+}
+
+% VERIFIED: SAE J1962, diagnostic connector.
+@standard{saej1962,
+  organization = {SAE International},
+  type         = {Surface Vehicle Standard J1962},
+  title        = {Diagnostic connector equivalent to {ISO} 15031-3},
+  address      = {Warrendale, PA, USA},
+  year         = {2016},
+}
+
+% VERIFIED: ISO 11898-2:2016, high-speed medium access unit (physical layer).
+@standard{iso11898_2,
+  organization = {ISO},
+  type         = {Standard 11898-2},
+  title        = {Road vehicles---Controller area network ({CAN})---Part 2: High-speed medium access unit},
+  address      = {Geneva, Switzerland},
+  year         = {2016},
+}
+
+% ---------------- The load-bearing source of this thesis ----------------
+
+% Every Data Identifier and every scaling equation in Chapter 4 originates here.
+% Provenance established 17.07.2026: the repository README's own counts
+% (160 Ready / 17 need-to-logg / 16 equation-missing) match this file exactly.
+@electronic{vwmebpidlist,
+  author       = {{spot2000}},
+  title        = {Volkswagen {MEB} {EV} {CAN} parameters: List of all {UDS} {SID} for {VW} {ID.3}},
+  howpublished = {GitHub repository},
+  year         = {2021},
+  url          = {https://github.com/spot2000/Volkswagen-MEB-EV-CAN-parameters},
+  note         = {Accessed: Jul. 17, 2026},
+}
+
+% ---------------- Measurement hardware and software ----------------
+
+% VERIFIED: product page and configuration reference; firmware 01.08.01,
+% configuration schema 01.08 as used in this work.
+@electronic{csselectronics_canedge2,
+  author       = {{CSS Electronics}},
+  title        = {{CANedge2}: {CAN}/{LIN} bus data logger with {WiFi}---product and configuration documentation},
+  year         = {2024},
+  url          = {https://www.csselectronics.com/products/can-bus-data-logger-wifi-canedge2},
+  note         = {Accessed: Aug. 30, 2026},
+}
+
+@electronic{asammdf,
+  author       = {Hrisca, Daniel},
+  title        = {{asammdf}: Fast {Python} reader and editor for {ASAM} {MDF} measurement files},
+  howpublished = {GitHub repository},
+  year         = {2024},
+  url          = {https://github.com/danielhrisca/asammdf},
+  note         = {Version 7.4.5 used in this work},
+}
+
+% ---------------- Volkswagen MEB / ID. Buzz (manufacturer sources) ----------------
+
+% VERIFIED 30.08.2026, Volkswagen Newsroom, 09/07/2022: "The battery has a net
+% energy capacity of 77 kWh (82 kWh gross)"; "twelve modules of the lithium-ion
+% high-voltage battery arranged in space-saving manner in the vehicle floor";
+% motor "integrated into the driven rear axle", 150 kW (204 PS).
+@electronic{vw_idbuzz_drive,
+  author       = {{Volkswagen AG}},
+  title        = {Electric drive system---agile, powerful and efficient ({ID.} {Buzz} and {ID.} {Buzz} {Cargo})},
+  howpublished = {Volkswagen Newsroom},
+  month        = jul,
+  year         = {2022},
+  url          = {https://www.volkswagen-newsroom.com/en/the-new-id-buzz-and-id-buzz-cargo-international-media-drive-15144/electric-drive-system-agile-powerful-and-efficient-15146},
+  note         = {Accessed: Aug. 30, 2026},
+}
+
+% VERIFIED 30.08.2026, Volkswagen Newsroom, 05/10/2021: "The 77 kWh battery is
+% made up of twelve modules filling all twelve compartments"; "each compartment
+% holds a battery module comprising 24 cells" -- i.e. 288 cells in total.
+@electronic{vw_meb_battery,
+  author       = {{Volkswagen AG}},
+  title        = {Long range and rapid charging: the battery system is at the heart of the {Volkswagen} {ID.3}, {ID.4} and {ID.4} {GTX}},
+  howpublished = {Volkswagen Newsroom},
+  month        = oct,
+  year         = {2021},
+  url          = {https://www.volkswagen-newsroom.com/en/press-releases/long-range-and-rapid-charging-the-battery-system-is-at-the-heart-of-the-volkswagen-id3-id4-and-id4-gtx-7130},
+  note         = {Accessed: Aug. 30, 2026},
+}
+
+% ---------------- Battery literature ----------------
+
+% VERIFIED 30.08.2026 on IOPscience: teardown of "a large-format pouch cell with
+% a nominal capacity of 78 Ah from the Volkswagen ID.3"; cathode determined as
+% LiNi0.65Mn0.2Co0.15O2, "in between NMC622 and NMC811"; graphite anode.
+@article{guenter2022,
+  author  = {G{\"u}nter, Florian J. and Wassiliadis, Nikolaos},
+  title   = {State of the art of lithium-ion pouch cells in automotive applications: Cell teardown and characterization},
+  journal = {J. Electrochem. Soc.},
+  volume  = {169},
+  number  = {3},
+  pages   = {030515},
+  month   = mar,
+  year    = {2022},
+  url     = {https://doi.org/10.1149/1945-7111/ac4e11},
+}
+
+@book{plett2015,
+  author    = {Plett, Gregory L.},
+  title     = {Battery Management Systems, Volume {I}: Battery Modeling},
+  publisher = {Artech House},
+  address   = {Norwood, MA, USA},
+  year      = {2015},
+}
+
+% ---------------- Prior art on CAN reverse engineering ----------------
+
+% VERIFIED 17.07.2026 on IEEE Xplore: vol. 14, no. 4, pp. 1083-1097, Apr. 2019.
+@article{read,
+  author  = {Marchetti, Mirco and Stabili, Dario},
+  title   = {{READ}: Reverse engineering of automotive data frames},
+  journal = {IEEE Trans. Inf. Forensics Security},
+  volume  = {14},
+  number  = {4},
+  pages   = {1083--1097},
+  month   = apr,
+  year    = {2019},
+  url     = {https://doi.org/10.1109/TIFS.2018.2870826},
+}
+
+% VERIFIED 17.07.2026 on the ACM DL: CCS '19, London, U.K., pp. 2283-2300.
+@inproceedings{librecan,
+  author    = {Pes{\'e}, Mert D. and Stacer, Troy and Campos, C. Andr{\'e}s and Newberry, Eric and Chen, Dongyao and Shin, Kang G.},
+  title     = {{LibreCAN}: Automated {CAN} message translator},
+  booktitle = {Proc. ACM SIGSAC Conf. Comput. Commun. Secur. (CCS)},
+  address   = {London, U.K.},
+  pages     = {2283--2300},
+  month     = nov,
+  year      = {2019},
+  url       = {https://doi.org/10.1145/3319535.3363190},
+}
+
+% VERIFIED 17.07.2026 on IEEE Xplore: vol. 70, no. 10, pp. 9685-9700, Oct. 2021.
+@article{cand,
+  author  = {Verma, Miki E. and Bridges, Robert A. and Sosnowski, Jordan J. and Hollifield, Samuel C. and Iannacone, Michael D.},
+  title   = {{CAN-D}: A modular four-step pipeline for comprehensively decoding controller area network data},
+  journal = {IEEE Trans. Veh. Technol.},
+  volume  = {70},
+  number  = {10},
+  pages   = {9685--9700},
+  month   = oct,
+  year    = {2021},
+  url     = {https://doi.org/10.1109/TVT.2021.3092354},
+}
+
+% VERIFIED 17.07.2026 on Springer Nature Link: LNDECT vol. 13, pp. 751-761.
+@inproceedings{huybrechts2018automatic,
+  author    = {Huybrechts, Thomas and Vanommeslaeghe, Yon and Blontrock, Dries and Van Barel, Gregory and Hellinckx, Peter},
+  title     = {Automatic reverse engineering of {CAN} bus data using machine learning techniques},
+  booktitle = {Advances on P2P, Parallel, Grid, Cloud and Internet Computing (3PGCIC)},
+  series    = {Lecture Notes on Data Engineering and Communications Technologies},
+  volume    = {13},
+  pages     = {751--761},
+  publisher = {Springer},
+  year      = {2018},
+  url       = {https://doi.org/10.1007/978-3-319-69835-9_71},
+}
+
+% ============================================================
+%  NOT CITED -- verified during the sourcing pass of 30.08.2026 and kept here
+%  in case a claim is reinstated. Uncited entries do not appear in the printed
+%  bibliography, so these cost nothing.
+%    iso11898_2, iso14229_2, iso15765_4  -- further parts of the same standards
+%    eudir9869, eudir20011               -- EOBD introduction directives
+%    vw_ssp269                           -- VW Selbststudienprogramm 269 (2003),
+%                                           Antriebs-CAN 500 kBit/s, Komfort 100
+%    vw_id3_sop                          -- ID.3 start of production, 4 Nov 2019
+%    vw_meb                              -- MEB technical press kit
+%    continental_icas1                   -- ICAS1 takes over the gateway function
+%    koenig2021, feng2018, nitta2015     -- BEV cost, thermal runaway, chemistry
+%    plett2016, rivera2021soc            -- BMS vol. II, SOC estimation review
+%    guenter2022 companion: wassiliadis2022 -- ID.3 powertrain, eTransportation
+%    checkoway2011                       -- automotive attack surfaces
+%    opendbc, asam_mdf                   -- community DBC database, ASAM MDF spec
+%  Full entries are preserved in bibliography_CORRECTED.bib.
+% ============================================================

@@ -1,0 +1,55 @@
+ABSTRACT — paste into the OPUS field "Abstract"
+(plain text, no special characters, 380 words)
+
+The high-voltage traction battery is the central subsystem of a battery electric
+vehicle, yet the mapping from its internal state to the bytes on the vehicle bus is
+proprietary. On the Volkswagen MEB platform the raw battery-management broadcast
+frames are not reachable at the diagnostic connector: a central gateway separates the
+private powertrain networks from the OBD-II bus. This thesis therefore acquires the
+battery state actively, by issuing Unified Diagnostic Services ReadDataByIdentifier
+requests from a CANedge2 data logger connected to the OBD-II port of a Volkswagen
+ID. Buzz, so that requests and responses are captured in one hardware-timestamped
+recording without a second tester on the bus.
+
+The identifiers and their proposed encodings are not derived from scratch. They are
+taken from a publicly circulating diagnostic identifier list compiled for the closely
+related VW ID.3, which is treated here as an unverified hypothesis rather than a
+specification. The contribution of this work is therefore threefold: to establish
+which of those identifiers the ID. Buzz answers at all through its gateway, to test
+each proposed encoding against the physical state of the vehicle and against the
+internal consistency of the decoded set, and to recover those encodings the list omits
+or states incorrectly.
+
+Of 60 identifiers requested per cycle across four control units, 52 returned a
+positive single-frame response, of which 49 carried a usable value; six were truncated
+to their first frame because the logger's transmit engine implements no ISO-TP
+segmentation, and two were never answered. The decoded pack voltage (373.25-373.75 V),
+the 28 sampled cell voltages (3.888-3.890 V, inter-cell spread 2.8 mV) and the pack
+temperatures (16.0-16.4 degrees C) are mutually consistent and reproducible across
+three independent sessions. Three findings go beyond the source list: the raw code
+0x0FFE is identified as a reserved not-available marker returned by unpopulated cell
+slots; the leading bytes of the cell-extreme identifiers are shown to carry the cell
+voltage scaled by 1/4096; and the pack is shown, by three independent lines of
+evidence, to expose exactly 96 cell-voltage channels.
+
+The limits of the method are stated explicitly: all recordings were taken with the
+vehicle drive-ready but stationary, so current- and power-related identifiers never
+left their idle value, and only two signals could be validated against a reference
+genuinely independent of the bus.
+
+
+-------------------------------------------------------------------------------
+SHORT VERSION (about 130 words) — if the field rejects the long one
+-------------------------------------------------------------------------------
+
+On the Volkswagen MEB platform the raw battery-management CAN frames are not reachable
+at the diagnostic connector, because a central gateway separates the private powertrain
+networks from the OBD-II bus. This thesis therefore reads the traction-battery state of
+a Volkswagen ID. Buzz actively, by issuing Unified Diagnostic Services
+ReadDataByIdentifier requests from a CANedge2 data logger, so that requests and
+responses are recorded on one hardware time base without a second tester on the bus.
+Of 60 identifiers requested, 52 answered and 49 carried a usable value. Pack voltage,
+cell voltages and pack temperatures were decoded and shown to be mutually consistent
+and reproducible across three sessions; the pack is shown to expose exactly 96
+cell-voltage channels. All recordings were taken with the vehicle stationary, which
+bounds what the decoded current- and power-related identifiers can establish.

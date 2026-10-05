@@ -1,10 +1,31 @@
 # Changelog - VW ID Buzz CAN Bus Reverse Engineering
 
+## 2026-10-05 - Final version: project cleaned up and archived
+
+### What was done
+- `50_Thesis document/` -> `50_Thesis/`. Only the final sources remain, in `50_Thesis/latex/`:
+  `thesis.tex` (was `thesis_noCARISSMA.tex`), `references.bib` (was `bibliography_IEEE.bib`),
+  `selected_signals.tex` (was `selected_signals_CORRECTED.tex`), `Erklaerung_Abschlussarbeit.tex`, `SOURCES.md`,
+  and `figures/` with exactly the 12 figures the thesis uses (+ `figures/src/` for the two SVG originals).
+- Rebuilt from the cleaned folder: 62 pages, text identical on every page to the final build of 2026-09-02.
+  The unsigned build is `latex/thesis.pdf`; the signed, submitted copy stays as
+  `50_Thesis/Bachelorarbeit_Ibrahim_Muhamad_Alif_Izzuwan.pdf` (local only).
+- Every older draft archived with its date in `50_Thesis/_archive/` (`tex/`, `bib/`, `pdf/`, `figures_unused/`);
+  LaTeX build intermediates (.aux/.log/.toc/...) removed.
+- Renamed: `30_Software Code` -> `30_Software`, `40_Experiments/Exprimental Data` -> `data`,
+  `Exprimental Plots` -> `plots`, `60_Final Presentation` -> `60_Final_Presentation`, `10_Literature/00_Archiv` -> `_archive`.
+  Paths in the Python scripts updated to match.
+- Archived the March 2026 experimental reverse-engineering code and the one-off PDF/presentation generators
+  under `30_Software/_archive/`.
+- Signed agreements moved to `00_Organization/Agreements/` and kept out of the public repository.
+
+---
+
 ## 2026-05-05 - First decoded battery signals + project restructure
 
 ### What was done
 - Imported the SD card dump from 2025-04-09 (14 new sessions, 00000007–00000023) under `data/sd_dumps_2A73E1CC_20250409/`.
-- Discovered that sessions 12, 13, 17, 18, 22, 23 already contain working BMS UDS exchanges on `0x17FC007B` request → `0x17FE007B` response. The earlier broad inventory missed these because asammdf splits standard- and extended-ID frames into separate channel groups (`CAN1_Rx_IDE`, `CAN1_Tx_IDE`), and the original `mf4_reader.py` only read the first group.
+- Discovered that sessions 12, 13, 17, 18, 22, 23 already contain working BMS UDS exchanges on `0x17FC007B` request → `0x17FE007B` response. The earlier broad inventory missed these because asammdf splits standard- and extended-ID frames into separate channel groups (`CAN1_Rx_IDE`, `CAN1_Tx_IDE`) and the original `mf4_reader.py` only read the first group.
 - Built `src/uds_battery_decoder.py`: parses the VW MEB UDS PID CSV into a PID database (161 PIDs), decodes ISO-TP framing (SF/FF/NEG), maps payload bytes by position to formula labels (`WW`/`XX`/`YY`/`ZZ`), and evaluates the formula. Outputs `output/uds_decoded/{all_sessions.csv, summary.txt, plots/}`.
 - **First decoded battery signals from VW ID Buzz** (1318 decoded values across the dataset):
   - SOC (0x028C): 66.8–68.0 %
@@ -15,11 +36,11 @@
   - Car operation mode (0x7448): "driving"
 - Built `src/build_canedge_transmit_config.py` to generate `CANedge/config-01.08-built.json` programmatically from the PID CSV. Output: 32 entries (DiagSessionControl + TesterPresent + 13 priority PIDs + 16 sampled cell voltages + 6 temp points). Keeps the device transmit list and decoder in sync with one source of truth.
 - Patched `src/mf4_reader.py` to iterate every CAN_DataFrame channel group, exposing both 11-bit and 29-bit IDs in a single DataFrame with `ide` column. The earlier `mdf.to_dataframe()` approach silently dropped extended-ID frames, which is why the Rust `can_analyzer` couldn't see UDS traffic.
-- Restructured project: `Organisation Stuff/` → `admin/`, `apps/` folded into `tools/asammdf_gui/`, SD dump moved from repo root into `data/sd_dumps_2A73E1CC_20250409/`. Updated project documentation and path references in `src/`.
+- Restructured project: `Organisation Stuff/` → `admin/`, `apps/` folded into `tools/asammdf_gui/`, SD dump moved from repo root into `data/sd_dumps_2A73E1CC_20250409/`. Updated `CLAUDE.md` and path references in `src/`.
 
 ### Key technical notes
 - Session 19 has 1,650,894 `CAN1_Errors` frames over 230s — bus-off from no-ACK retransmission, almost certainly captured with the vehicle off. The active 2025-04-09 device config only sent TesterPresent (now archived as `CANedge/config-01.08-testerpresent-only.json`).
-- The active config that actually produced the working captures (sessions 12, 13) is **not** in the repo — neither `CANedge/config-01.08.json` nor `CANedge 09042025/config-01.08.json` matches the 8-PID schedule observed in the logs. Configs were iterated on the device beyond what was committed. The new `config-01.08-built.json` is what should go on the device next.
+- The active config that actually produced the working captures (sessions 12, 13) is **not** in the repo — neither `CANedge/config-01.08.json` nor `CANedge 09042025/config-01.08.json` matches the 8-PID schedule observed in the logs. The user iterated configs on the device beyond what was committed. The new `config-01.08-built.json` is what should go on the device next.
 - VW MEB PID CSV has formula errors: `0x1E3D` HV current is documented as `(WW*2^32 + XX*2^16 + YY*2^8 + ZZ - 150000) / 100` — the `2^32` should be `2^24` for a 4-byte big-endian value. Decoder evaluates as written; at idle currents (WW=0) this doesn't matter, but it will produce wrong values at high currents. Worth fixing later.
 - CANedge cannot send Flow Control frames, so 8+ byte UDS responses come back only as the First Frame (3 value bytes after `62 PID-HI PID-LO`). Decoder marks these `value_kind = 'partial'`. To get exact multi-byte values would require a real ISO-TP transmitter (e.g. a script on a Raspberry Pi / cantact attached to OBD-II).
 
@@ -29,7 +50,7 @@
 - `src/mf4_reader.py` — rewrote to iterate all channel groups, exposes extended IDs
 - `CANedge/config-01.08-built.json` — generated, 32-entry transmit list
 - `CANedge/config-01.08-testerpresent-only.json` — archived 2025-04-09 experiment
-- Project documentation — updated for new layout, UDS pipeline, and findings
+- `CLAUDE.md` — updated for new layout, UDS pipeline, and findings
 - Restructured: `Organisation Stuff/` → `admin/`, `apps/` → `tools/asammdf_gui/`, SD dump under `data/`
 
 ---
@@ -63,9 +84,11 @@
 - `CANedge/config-01.08-test5.json` -- new (5-PID test config)
 - `CANedge/README_CANedge_Config.md` -- new (deployment docs)
 
+All changes made across Claude sessions are logged here for cross-session reference.
+
 ---
 
-## Initial Setup
+## Session 1 - Initial Setup (prior sessions)
 - Created `mf4_reader.py` to load MF4 files into pandas DataFrames
 - Created `reverse_engineer.py` with 9 RE techniques (byte time series, bit heatmap, boundary detection, 16-bit candidates, counter/checksum detection, ASCII detection, scaling analysis, per-source comparison)
 - Created `can_decoder.py` for signal decoding with decoded plots
@@ -75,7 +98,7 @@
 - Created `DOCUMENTATION.md` with full analysis of all 7 CAN IDs
 - Exported `can_data.csv` with all merged CAN data
 
-## 2026-03-04 - Thesis plan and driving checklist
+## Session 2 - 2026-03-04
 - Created `THESIS_PLAN.md` - 12-week thesis plan with 3 phases:
   - Phase 1 (Weeks 1-4): Data collection + literature review
   - Phase 2 (Weeks 5-8): Deep analysis + signal decoding
@@ -83,8 +106,9 @@
 - Includes experiment matrix (14 driving scenarios), chapter outline, signal tracking table
 - Created `DRIVING_CHECKLIST.md` - Concise checklist of driving cases for data collection proposal
 - Created `CHANGELOG.md` (this file)
+- Updated memory file with current project state and user preferences
 
-## 2026-03-04 - Project folder restructure
+## Session 3 - 2026-03-04 (continued)
 - **Reorganized entire project folder structure:**
   - `src/` - all Python scripts (mf4_reader, reverse_engineer, can_decoder, analyze_patterns, uds_decoder)
   - `data/mf4/` - raw MF4 log files (was `log/`)
@@ -98,7 +122,7 @@
 - Scripts now auto-resolve paths from `src/` using `Path(__file__).parent.parent`
 - Run scripts from `src/` directory: `cd src && python -X utf8 mf4_reader.py`
 
-## 2026-03-09 - CAN Analyzer GUI (Python + Rust)
+## Session 4 - 2026-03-09
 - **Built CAN Analyzer GUI** (`src/can_analyzer.py`) - SavvyCAN-like desktop application for MF4 files
   - **Sniffer tab**: Full CAN frame table with filtering by CAN ID, source, hex data search; color-coded rows; CSV export
   - **ID Analysis tab**: Per-CAN-ID statistics table (count, frequency, DLC, timing) + bar chart + pie chart
@@ -126,3 +150,4 @@
   - Background conversion with spinner UI (uses Python/asammdf under the hood)
   - Seamless workflow: record with CANedge2 → open in CAN Analyzer
   - Falls back to CSV if already exported
+- Updated memory file with complete project state, Rust toolchain details, and workflow notes

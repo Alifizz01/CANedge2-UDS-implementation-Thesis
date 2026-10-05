@@ -125,3 +125,19 @@ secrets.yml
 # *.zip
 # *.7z
 # *.rar
+
+# ---------- Private: never publish ----------
+# signed agreements, the signed submitted PDF, and the declaration (matriculation number)
+00_Organization/Agreements/
+00_Organization/Seminararbeit_Topics/
+50_Thesis/Bachelorarbeit_*.pdf
+50_Thesis/Erklaerung_Abschlussarbeit.pdf
+50_Thesis/Cover_Label.png
+50_Thesis/latex/Erklaerung_Abschlussarbeit.tex
+.claude/
+
+# ---------- Local only ----------
+# dated drafts of the thesis (kept on disk, history is in git anyway)
+50_Thesis/_archive/
+20_Hardware/can_analyzer/target/
+**/.venv/
