@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>CANedge Studio</title>
+  <link rel="stylesheet" href="uPlot.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<aside class="nav">
+  <div class="brand">
+    <svg viewBox="0 0 64 64" width="34" height="34" aria-hidden="true">
+      <rect width="64" height="64" rx="14" fill="#1B2430"/>
+      <rect x="12" y="20" width="40" height="26" rx="5" fill="none" stroke="#3DBFA7" stroke-width="3"/>
+      <rect x="52" y="28" width="4" height="10" rx="1.5" fill="#3DBFA7"/>
+      <path d="M18 33 h7 l3 -6 l5 12 l4 -9 h9" fill="none" stroke="#F2C14E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <div><b>CANedge Studio</b><small>VW ID. Buzz · BMS over UDS</small></div>
+  </div>
+  <button class="tab on" data-tab="logger"><span class="ico">💾</span>Logger &amp; configs</button>
+  <button class="tab" data-tab="logs"><span class="ico">📈</span>Log analysis</button>
+  <div class="nav-foot">
+    <div id="cardMini" class="card-mini">No SD card</div>
+    <button class="link" id="projectBtn" title="Folder with 20_Hardware/CANedge and the PID list">Project folder…</button>
+  </div>
+</aside>
+
+<main>
+  <!-- ======================================================= LOGGER -->
+  <section id="logger" class="page on">
+    <div class="sdcard" id="sdcard"></div>
+
+    <div class="split">
+      <div class="col-list">
+        <div class="head"><h2>Configs</h2><label class="toggle"><input type="checkbox" id="showArchive"> show archived</label></div>
+        <div id="configList" class="config-list"></div>
+      </div>
+      <div class="col-detail" id="configDetail">
+        <div class="empty">Pick a config on the left to see what it asks the car for.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================= LOGS -->
+  <section id="logs" class="page">
+    <div class="toolbar">
+      <button class="primary" id="openLogs">Open MF4 file(s)…</button>
+      <button id="openFolder">Open session folder…</button>
+      <span class="sep"></span>
+      <div id="cardSessions" class="sessions"></div>
+    </div>
+    <div id="logEmpty" class="hero">
+      <div class="hero-ico">📂</div>
+      <h2>Open a log to decode it</h2>
+      <p>Pick an <code>.MF4</code> file from the logger, or a whole session folder. When the SD card is in, its sessions appear above: one click decodes them.</p>
+    </div>
+    <div id="logBusy" class="hero" hidden><div class="spinner"></div><h2>Decoding…</h2><p id="busyText"></p></div>
+    <div id="logResult" hidden>
+      <div class="result-head">
+        <div><h2 id="logTitle"></h2><div class="sub" id="logSub"></div></div>
+        <button id="exportCsv">Export CSV…</button>
+      </div>
+      <div class="stats" id="logStats"></div>
+      <div class="notice" id="logNotice" hidden></div>
+      <div class="grid2">
+        <div class="panel">
+          <div class="panel-head"><h3>Signals</h3><input type="search" id="sigFilter" placeholder="Filter…"></div>
+          <div class="table-wrap"><table class="table" id="sigTable"></table></div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h3 id="plotTitle">Plot</h3><span class="sub">Click signals to add or remove them</span></div>
+          <div id="plot" class="plot"><div class="empty">Select a signal on the left.</div></div>
+        </div>
+      </div>
+      <div class="grid2">
+        <div class="panel" id="cellsPanel">
+          <div class="panel-head"><h3>Cell voltages</h3><span class="sub" id="cellsSub"></span></div>
+          <div id="cells" class="cells"></div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h3>UDS services in this log</h3></div>
+          <table class="table" id="svcTable"></table>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<dialog id="confirm"><form method="dialog">
+  <h3 id="confirmTitle"></h3><div id="confirmBody"></div>
+  <div class="actions"><button value="cancel">Cancel</button><button class="primary" value="ok" id="confirmOk">Write to SD card</button></div>
+</form></dialog>
+<div class="toast" id="toast"></div>
+<script src="uPlot.iife.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

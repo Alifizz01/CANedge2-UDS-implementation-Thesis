@@ -128,16 +128,18 @@ secrets.yml
 
 # ---------- Private: never publish ----------
 # signed agreements, the signed submitted PDF, and the declaration (matriculation number)
-00_Organization/Agreements/
-00_Organization/Seminararbeit_Topics/
-50_Thesis/Bachelorarbeit_*.pdf
-50_Thesis/Erklaerung_Abschlussarbeit.pdf
-50_Thesis/Cover_Label.png
-50_Thesis/latex/Erklaerung_Abschlussarbeit.tex
+00_Organization/agreements/
+00_Organization/seminararbeit_topics/
+50_Thesis/bachelorarbeit_*.pdf
+50_Thesis/erklaerung_abschlussarbeit.pdf
+50_Thesis/cover_label.png
+50_Thesis/latex/erklaerung_abschlussarbeit.tex
 .claude/
 
 # ---------- Local only ----------
 # dated drafts of the thesis (kept on disk, history is in git anyway)
 50_Thesis/_archive/
-20_Hardware/can_analyzer/target/
+# backups CANedge Studio makes of the SD card before writing to it
+20_Hardware/canedge/_card_backups/
+**/target/
 **/.venv/

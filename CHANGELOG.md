@@ -1,5 +1,27 @@
 # Changelog - VW ID Buzz CAN Bus Reverse Engineering
 
+## 2026-10-05 (later) - CANedge Studio, logger profiles, one naming convention
+
+### What was done
+- **CANedge Studio** (`30_Software/canedge_studio/`): one desktop program instead of separate scripts.
+  Detects the CANedge SD card, shows which profile is on it (via the CRC32 in `device.json`) and whether the
+  logger has run it, decodes every profile into the UDS signals it requests, writes a profile to the card with a
+  backup and CRC check, and decodes MF4 logs (signals, plots, cell chart, services, CSV export). Applies the
+  thesis findings (0x1E33/0x1E34 at 1/4096 V, 0x0FFE = not available). 8 tests; `build_exe.ps1` builds an
+  80 MB program with Desktop and Start-menu shortcuts.
+- **Logger configs are now profile folders**: `20_Hardware/canedge/profiles/<nn_name>/` holds exactly what goes
+  on the SD card (`config-01.08.json`, `schema-01.08.json`, `uischema-01.08.json`) plus a README. The profile
+  name moved from the file name to the folder name. `build_canedge_transmit_config.py` now writes profile folders.
+- **Archived** (superseded by CANedge Studio): Streamlit `bms_app.py`, PyQt `can_analyzer.py`, Rust `can_analyzer`.
+- **Removed**: weekly progress spreadsheet and its generator.
+- **Naming**: numbered top-level folders, everything else `lower_snake_case`, dates as `YYYY-MM-DD_`. The SD-card
+  dump folder now carries its real date (`2026-04-09`, the files' own timestamps; it was labelled 2025).
+- Found while building the decoder: the March 2026 logs contain no vehicle frames at all, only the logger's
+  internal GNSS/IMU bus (IDs 0x65-0x6F), which is what the early "reverse engineering" plots of 0x065-0x06F show.
+- README rewritten: problem, results, how it works, work process, the app, profiles, layout.
+
+---
+
 ## 2026-10-05 - Final version: project cleaned up and archived
 
 ### What was done

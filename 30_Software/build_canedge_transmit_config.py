@@ -1,17 +1,17 @@
 """
 Build a CANedge transmit-list config from the VW MEB UDS PIDs CSV.
 
-Reads CANedge/config-01.08.json as the base, replaces the can_1.transmit
-list with a curated set of ReadDataByIdentifier requests (and the required
-DiagnosticSessionControl + TesterPresent keepalives), and writes the result
-to CANedge/config-01.08-built.json.
+Takes the thesis profile as the base, replaces its can_1.transmit list with a
+curated set of ReadDataByIdentifier requests (plus the DiagnosticSessionControl
+and TesterPresent keep-alives), and writes each result as a new profile folder
+20_Hardware/canedge/profiles/<name>/ that can be copied to the SD card as is.
 
 Why programmatic: when a PID is added to the CSV (or fixed), running this
 script propagates the change to the device config so the decoder and the
 transmit list never drift.
 
 Usage:
-    python -X utf8 src/build_canedge_transmit_config.py
+    python 30_Software/build_canedge_transmit_config.py
 """
 
 import json
@@ -20,11 +20,12 @@ from pathlib import Path
 from uds_battery_decoder import parse_pid_csv
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
-PID_CSV = PROJECT_ROOT / "40_Experiments" / "data" / "csv" / "VW MEB UDS PIDs list.csv"
-CANEDGE_DIR = PROJECT_ROOT / "20_Hardware" / "CANedge"
-BASE_CONFIG = CANEDGE_DIR / "config-01.08.json"
-OUT_CONFIG_CURATED = CANEDGE_DIR / "config-01.08-built.json"
-OUT_CONFIG_FULL = CANEDGE_DIR / "config-01.08-full-sweep.json"
+PID_CSV = PROJECT_ROOT / "40_Experiments" / "data" / "csv" / "vw_meb_uds_pid_list.csv"
+PROFILES = PROJECT_ROOT / "20_Hardware" / "canedge" / "profiles"
+BASE_PROFILE = PROFILES / "06_thesis_selected_signals"
+BASE_CONFIG = BASE_PROFILE / "config-01.08.json"
+OUT_CONFIG_CURATED = PROFILES / "generated_curated" / "config-01.08.json"
+OUT_CONFIG_FULL = PROFILES / "generated_full_sweep" / "config-01.08.json"
 
 # CANedge schema hard limit: 64 transmit entries per CAN channel.
 MAX_TRANSMIT_ENTRIES = 64
@@ -282,7 +283,7 @@ def build_split_sweeps(pids_db: dict):
         chunk = rotation[i : i + slots_per_config]
         label = f"S{(i // slots_per_config) + 1}"
         entries = build_sweep_pack(pids_db, chunk, label)
-        out = CANEDGE_DIR / f"config-01.08-sweep-{label}.json"
+        out = PROFILES / f"generated_sweep_{label.lower()}" / "config-01.08.json"
         sweeps.append((out, entries, len(chunk)))
     return sweeps
 
@@ -293,7 +294,14 @@ def write_config(entries, out_path: Path):
     config["can_1"]["general"]["tx_state"] = 1
     config["can_1"]["general"]["rx_state"] = 1
     config["can_1"]["phy"]["mode"] = 0  # Normal (not Restricted)
+    out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(config, indent=2), encoding="utf-8")
+    for schema in ("schema-01.08.json", "uischema-01.08.json"):    # a profile folder = everything the card needs
+        (out_path.parent / schema).write_bytes((BASE_PROFILE / schema).read_bytes())
+    readme = out_path.parent / "README.md"
+    if not readme.exists():
+        readme.write_text(f"# Generated: {out_path.parent.name}\n\n{len(entries)} transmit entries generated from "
+                          "the PID list by build_canedge_transmit_config.py.\n", encoding="utf-8")
 
 
 def main():
@@ -316,7 +324,7 @@ def main():
     if args.mode in ("curated", "both"):
         tx = build_transmit_list(pids)
         write_config(tx, OUT_CONFIG_CURATED)
-        print(f"  CURATED: {len(tx)} entries -> {OUT_CONFIG_CURATED.name}")
+        print(f"  CURATED: {len(tx)} entries -> {OUT_CONFIG_CURATED.parent.name}/")
 
     if args.mode in ("full", "both"):
         # Single 64-entry "best of" sweep
@@ -325,7 +333,7 @@ def main():
         t1 = sum(1 for e in tx if e["name"].startswith("T1_"))
         t2 = sum(1 for e in tx if e["name"].startswith("T2_"))
         t3 = sum(1 for e in tx if e["name"].startswith("T3_"))
-        print(f"  FULL SWEEP: {len(tx)} entries -> {OUT_CONFIG_FULL.name}")
+        print(f"  FULL SWEEP: {len(tx)} entries -> {OUT_CONFIG_FULL.parent.name}/")
         print(f"    Keepalive: 2  Tier1 fast: {t1}  Tier2 medium: {t2}  Tier3 sampled: {t3}")
 
         # Multi-config sweep that together covers EVERY PID (cap is 64/config)
@@ -335,7 +343,7 @@ def main():
         total_covered = 0
         for out_path, entries, slow_count in sweeps:
             write_config(entries, out_path)
-            print(f"    {out_path.name}: {len(entries)} entries  (slow: {slow_count})")
+            print(f"    {out_path.parent.name}/: {len(entries)} entries  (slow: {slow_count})")
             total_covered += slow_count
         print(f"    -> Together cover {total_covered} non-Tier1 PIDs across {len(sweeps)} configs")
 

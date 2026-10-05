@@ -38,7 +38,7 @@ This is the actual day-to-day workflow. Three phases: **prepare at the desk**, *
 
 **Goal:** produce a `config-01.08.json` that tells the CANedge exactly which PIDs to ask for, and put it on the SD card.
 
-1. **Confirm the PID list.** The source of truth is `data/csv/VW MEB UDS PIDs list.csv` — the full ~198-entry list of UDS PIDs documented for the VW MEB platform. **For this thesis we want all of them.** No curation, no "priority subset" — every PID the community has documented gets a transmit entry, so we capture the full picture of the BMS in one go. The CSV is therefore your input as-is; you only edit it if you find a typo in a formula or want to remove a PID that produces only negative responses.
+1. **Confirm the PID list.** The source of truth is `data/csv/vw_meb_uds_pid_list.csv` — the full ~198-entry list of UDS PIDs documented for the VW MEB platform. **For this thesis we want all of them.** No curation, no "priority subset" — every PID the community has documented gets a transmit entry, so we capture the full picture of the BMS in one go. The CSV is therefore your input as-is; you only edit it if you find a typo in a formula or want to remove a PID that produces only negative responses.
 
 2. **Generate the transmit list.** From the repo root:
    ```powershell
@@ -240,7 +240,7 @@ Three things to notice:
 
 2. **0x22 is the "service".** UDS has dozens of services (read data, write data, security access, reset ECU, …). For reading sensor values we only ever use service `0x22 = ReadDataByIdentifier`.
 
-3. **The PID (Parameter ID) is what you actually want.** It's a 16-bit number. `0x028C` = State of Charge. `0x1E3B` = Pack Voltage. `0x1E3D` = Pack Current. The full list comes from the community-sourced CSV at `data/csv/VW MEB UDS PIDs list.csv` (~198 PIDs documented for the VW MEB platform).
+3. **The PID (Parameter ID) is what you actually want.** It's a 16-bit number. `0x028C` = State of Charge. `0x1E3B` = Pack Voltage. `0x1E3D` = Pack Current. The full list comes from the community-sourced CSV at `data/csv/vw_meb_uds_pid_list.csv` (~198 PIDs documented for the VW MEB platform).
 
 ### 5.3 The response, and why it sometimes spans multiple frames
 
@@ -508,7 +508,7 @@ If you set up WiFi credentials and an S3 endpoint, the CANedge can upload finish
 
 ### 6.7 Regenerating the transmit list from the PID CSV
 
-If you fix a PID in `data/csv/VW MEB UDS PIDs list.csv` or want to refresh the JSON, regenerate it instead of editing by hand:
+If you fix a PID in `data/csv/vw_meb_uds_pid_list.csv` or want to refresh the JSON, regenerate it instead of editing by hand:
 
 ```powershell
 python -X utf8 src/build_canedge_transmit_config.py
@@ -566,7 +566,7 @@ python -X utf8 src/uds_battery_decoder.py --session 00000013
 
 What this does, in order:
 
-1. **Loads the PID database** from `data/csv/VW MEB UDS PIDs list.csv`. Each row becomes a record keyed by 16-bit PID with the value-byte layout (`labels_by_position`) parsed out of the `datareceived` column.
+1. **Loads the PID database** from `data/csv/vw_meb_uds_pid_list.csv`. Each row becomes a record keyed by 16-bit PID with the value-byte layout (`labels_by_position`) parsed out of the `datareceived` column.
 2. **Loads every MF4 file** under `data/mf4/` and `data/sd_dumps_*/LOG/*/`, iterating every CAN channel group (so extended-ID groups are not dropped). With `--session <label>`, only matching folders are processed.
 3. **Filters to `0x17FE007B` responses** (BMS replies).
 4. **Decodes each response's ISO-TP framing**:
@@ -714,8 +714,8 @@ python -X utf8 src\some_script.py
 | Path | Contents |
 |------|----------|
 | `data/mf4/<session>/00000001.MF4` | Original CANedge logs (sessions 00000002–00000008). |
-| `data/sd_dumps_2A73E1CC_20250409/LOG/2A73E1CC/<session>/` | Full SD card dump from 2025-04-09 (14 sessions). |
-| `data/csv/VW MEB UDS PIDs list.csv` | Community-sourced UDS PID definitions (~198 entries). |
+| `data/2026-04-09_sd_card_dump_2a73e1cc/LOG/2A73E1CC/<session>/` | Full SD card dump from 2025-04-09 (14 sessions). |
+| `data/csv/vw_meb_uds_pid_list.csv` | Community-sourced UDS PID definitions (~198 entries). |
 
 ### CANedge configs (`CANedge/`)
 | File | Purpose |

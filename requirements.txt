@@ -1,7 +1,9 @@
-asammdf>=7.0.0
-pandas>=2.0.0
-canedge_browser>=0.1.0
-numpy>=1.24.0
-matplotlib>=3.7.0
-PyQt5>=5.15.0
-pyqtgraph>=0.13.0
+# CANedge Studio (desktop app: 30_Software/canedge_studio) and the batch decoder scripts
+asammdf>=7.0
+numpy>=1.24
+pywebview>=5.0
+# batch scripts only (uds_battery_decoder.py / mf4_reader.py: tables and plots)
+pandas>=2.0
+matplotlib>=3.7
+# building the .exe (30_Software/canedge_studio/build_exe.ps1 installs these itself)
+# pyinstaller>=6

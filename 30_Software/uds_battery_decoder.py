@@ -34,7 +34,7 @@ from asammdf import MDF
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = PROJECT_ROOT / "40_Experiments" / "data"
-PID_CSV = DATA_DIR / "csv" / "VW MEB UDS PIDs list.csv"
+PID_CSV = DATA_DIR / "csv" / "vw_meb_uds_pid_list.csv"
 OUTPUT_DIR = PROJECT_ROOT / "40_Experiments" / "plots" / "uds_decoded"
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 (OUTPUT_DIR / "plots").mkdir(exist_ok=True)
@@ -422,7 +422,7 @@ def main():
 
     for label in df["session"].unique():
         sub = df[df["session"] == label]
-        out = OUTPUT_DIR / f"{label.replace('/', '__')}.csv"
+        out = OUTPUT_DIR / f"{label.replace('/', '_').lower()}.csv"
         sub.to_csv(out, index=False)
 
     # Per-session summaries — one .txt per session so non-contiguous sessions
@@ -431,7 +431,7 @@ def main():
         s = build_summary(recs)
         if not s:
             continue
-        sess_summary_path = OUTPUT_DIR / f"{label.replace('/', '__')}__summary.txt"
+        sess_summary_path = OUTPUT_DIR / f"{label.replace('/', '_').lower()}_summary.txt"
         write_summary(
             s,
             sess_summary_path,
@@ -476,7 +476,7 @@ def main():
         ax.grid(alpha=0.3)
         if len(sub["session"].unique()) <= 6:
             ax.legend(fontsize=7, loc="best")
-        fname = OUTPUT_DIR / "plots" / f"pid_0x{pid:04X}.png"
+        fname = OUTPUT_DIR / "plots" / f"pid_0x{pid:04x}.png"
         fig.tight_layout()
         fig.savefig(fname, dpi=110)
         plt.close(fig)

@@ -4,10 +4,10 @@
 the Volkswagen ID. Buzz (MEB platform) using the **Unified Diagnostic Services
 (UDS)** protocol on the OBD-II connector, and how the retrieved data flows
 through the project's analysis pipeline (`uds_decoder.py`,
-`VW MEB UDS PIDs list.csv`, `mf4_reader.py`).
+`vw_meb_uds_pid_list.csv`, `mf4_reader.py`).
 
 Companion document:
-[`DOCUMENTATION.md`](DOCUMENTATION.md) — the *passive* CAN bus reverse
+[`documentation.md`](documentation.md) — the *passive* CAN bus reverse
 engineering (byte/bit analysis, counter detection, etc.). The work in this file
 is *active*: we **talk to** the Battery Management Controller instead of just
 listening.
@@ -40,7 +40,7 @@ The OBD-II connector of a VW MEB vehicle does **not** expose the private
 battery-CAN. It exposes the emission-relevant HS-CAN bus and the **gateway
 ECU**. On that gateway-routed bus you can see a small inventory of broadcast
 frames (IDs `0x065` … `0x06F` in our recordings — see
-[`DOCUMENTATION.md`](DOCUMENTATION.md)), but cell-level voltages, per-module
+[`documentation.md`](documentation.md)), but cell-level voltages, per-module
 temperatures and the BMS internal SOC estimate are *not* broadcast there.
 
 UDS solves this the other way round: instead of hoping the ECU volunteers the
@@ -98,7 +98,7 @@ addresses used on older OBD-II cars. Every ECU has its own 29-bit pair.
 ## 5. Software tool chain
 
 ```
-data/csv/VW MEB UDS PIDs list.csv          # authoritative PID database (164 entries, v164)
+data/csv/vw_meb_uds_pid_list.csv          # authoritative PID database (164 entries, v164)
  └─▶ src/uds_decoder.py                    # parses CSV, matches CAN frames, applies formulas
 src/mf4_reader.py                          # MDF4 → pandas DataFrame
 src/can_analyzer.py                        # raw byte/bit statistics
@@ -357,7 +357,7 @@ Signal Correlation).
 python -m src.uds_tester \
     --interface pcan \
     --channel   PCAN_USBBUS1 \
-    --pids-csv  "data/csv/VW MEB UDS PIDs list.csv" \
+    --pids-csv  "data/csv/vw_meb_uds_pid_list.csv" \
     --ecus      battery,dcdc \
     --out       output/uds_session_YYYYMMDD.csv \
     --plot
@@ -414,8 +414,8 @@ This working process directly populates two chapters of the thesis
 
 The `docs/` folder therefore splits cleanly in two:
 
-- [`DOCUMENTATION.md`](DOCUMENTATION.md) — passive, broadcast CAN RE
-- **`UDS_WORKING_PROCESS.md`** (this file) — active, UDS-driven retrieval
+- [`documentation.md`](documentation.md) — passive, broadcast CAN RE
+- **`uds_working_process.md`** (this file) — active, UDS-driven retrieval
 
 Together they capture the full methodology that the thesis then synthesises.
 
@@ -427,5 +427,5 @@ Together they capture the full methodology that the thesis then synthesises.
 - ISO 15765-2:2016 — ISO-TP transport layer
 - ISO 11898-1:2015 — CAN physical / data link layer
 - SAE J1962 — OBD-II diagnostic connector
-- Internal: `data/csv/VW MEB UDS PIDs list.csv` (v164)
+- Internal: `data/csv/vw_meb_uds_pid_list.csv` (v164)
 - Internal: `src/uds_decoder.py`, `src/mf4_reader.py`

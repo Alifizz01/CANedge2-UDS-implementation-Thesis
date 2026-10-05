@@ -25,7 +25,7 @@ from asammdf import MDF
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 EXPERIMENT_DATA_DIR = PROJECT_ROOT / "40_Experiments" / "data"
 DATA_DIR = EXPERIMENT_DATA_DIR / "mf4"
-SD_DUMP_DIR = EXPERIMENT_DATA_DIR / "sd_dumps_2A73E1CC_20250409" / "LOG" / "2A73E1CC"
+SD_DUMP_DIR = EXPERIMENT_DATA_DIR / "2026-04-09_sd_card_dump_2a73e1cc" / "LOG" / "2A73E1CC"
 OUTPUT_DIR = PROJECT_ROOT / "40_Experiments" / "plots"
 
 

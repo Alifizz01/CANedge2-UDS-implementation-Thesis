@@ -124,7 +124,7 @@ No arithmetic — just a lookup. State variables (mode, gear, error flags) are u
 
 ## 4. Reading raw broadcast frames (no DBC, no UDS)
 
-The other half of this project is the periodic broadcast traffic on standard IDs `0x065`–`0x06F`. These have no PID list, so we reverse-engineer the layout. The technique is documented in detail in `docs/DOCUMENTATION.md`. Quick version:
+The other half of this project is the periodic broadcast traffic on standard IDs `0x065`–`0x06F`. These have no PID list, so we reverse-engineer the layout. The technique is documented in detail in `docs/documentation.md`. Quick version:
 
 1. Plot every byte over time. Smooth curves = analog signal. Flat = constant or padding. Sawtooth = counter.
 2. Combine adjacent bytes as 16-bit big-endian and 16-bit little-endian and plot — only one ordering will look like a real signal.
@@ -259,4 +259,4 @@ The decoder identifies every response, looks up the PID in the CSV, applies the 
 | `0x7E0`/`0x7E7` | std | tester | OBD-II ECU-specific TesterPresent |
 | `0x7E8`/`0x7EF` | std | ECU→tester | OBD-II response (not seen yet — gateway likely blocks) |
 
-For the broadcast frames, see `docs/DOCUMENTATION.md` for per-byte signal hypotheses and the evidence behind each one.
+For the broadcast frames, see `docs/documentation.md` for per-byte signal hypotheses and the evidence behind each one.
