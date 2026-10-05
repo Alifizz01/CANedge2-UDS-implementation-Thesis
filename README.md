@@ -1,10 +1,3 @@
-<p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/mark-dark.svg">
-    <img src="assets/mark.svg" alt="OBD" width="84">
-  </picture>
-</p>
-
 <h1 align="center">Reading the battery of a VW ID. Buzz through the OBD-II port</h1>
 
 <p align="center">
