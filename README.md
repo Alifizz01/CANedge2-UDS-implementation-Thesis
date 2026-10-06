@@ -172,6 +172,7 @@ Each folder in [`20_Hardware/canedge/profiles/`](20_Hardware/canedge/README.md) 
 50_Thesis/
   latex/                final sources: thesis.tex, references.bib, figures/ (+ thesis.pdf)
   opus_abstract.txt     abstract as submitted to the university repository
+60_Final_Presentation/  colloquium slides (PPTX with speaker notes, PDF)
 CHANGELOG.md            what was done when
 ```
 

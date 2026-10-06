@@ -1,5 +1,14 @@
 # Changelog - VW ID Buzz CAN Bus Reverse Engineering
 
+## 2026-10-06 - Colloquium presentation
+
+### What was done
+- **`60_Final_Presentation/`**: 15-slide colloquium deck (`colloquium_slides.pptx`, speaker notes for a
+  30-minute talk) and a PDF copy. One claim per slide, backed by the thesis measurements.
+- Slide 5 states the corrected reading of the broadcast frames: the 14,921 frames on 0x065-0x06F are the
+  logger's internal GNSS/IMU channel, so no broadcast frame of the vehicle reaches the OBD-II socket.
+  The submitted thesis (Section 4.1.1) still reads them as gateway traffic.
+
 ## 2026-10-05 (later) - CANedge Studio, logger profiles, one naming convention
 
 ### What was done
